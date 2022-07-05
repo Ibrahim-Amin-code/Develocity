@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors
+// ignore_for_file: file_names, use_key_in_widget_constructors, unused_local_variable
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
@@ -112,8 +112,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               //         builder: (context) => const HomeScreen()));
             },
             fontSize: 13,
-            height: 50,
-            width: 350,
+            height: h * 0.063,
+            width: w * 0.9,
             color: MyColors.mainColor,
           ),
           SizedBox(
@@ -172,7 +172,7 @@ class SplashContent extends StatelessWidget {
                 fontFamily: 'SourceSansPro'),
           ),
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: h * 0.022),
         SizedBox(
           width: w * 0.85,
           child: Text(

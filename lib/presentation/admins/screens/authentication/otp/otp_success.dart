@@ -1,6 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/core/colors.dart';
+import '../../bottom_nav/layout.dart';
 import '../../onBorading/onBoardingScreen.dart';
 
 class OtpSuccessScreen extends StatefulWidget {
@@ -61,14 +64,14 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen> {
               Image.asset(
                 'assets/images/bro12.png',
                 fit: BoxFit.cover,
-                height: 200,
-                width: 215,
+                height: h * 0.26,
+                width: w * 0.55,
               ),
               SizedBox(
                 height: h * 0.06,
               ),
               SizedBox(
-                width: 130,
+                width: w * 0.4,
                 child: Text(
                   'Your Account has been Verified Successfully!',
                   textAlign: TextAlign.center,
@@ -76,31 +79,30 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen> {
                   style: headingStyle.copyWith(
                       fontFamily: 'SF Pro Display',
                       fontSize: 12,
-                      color: Color(0xff4A4646),
+                      color: const Color(0xff4A4646),
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              const SizedBox(
-                height: 100,
+              SizedBox(
+                height: h * 0.15,
               ),
               defaultButton(
                   title: 'Go to Dashboard',
                   onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => OtpSuccessScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LayoutScreen(
+                                  index: 0,
+                                )));
                   },
                   fontSize: 14,
-                  height: 50,
-                  width: 345,
+                  height: h * 0.06,
+                  width: w * 0.95,
                   color: MyColors.mainColor,
                   textColor: Colors.white),
               SizedBox(
-                height: h * 0.026,
-              ),
-              SizedBox(
-                height: h * 0.025,
+                height: h * 0.048,
               ),
             ],
           ),
@@ -108,6 +110,5 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen> {
       ),
       backgroundColor: Colors.white,
     );
-    ;
   }
 }

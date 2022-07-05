@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable
+// ignore_for_file: prefer_const_constructors, unused_local_variable, duplicate_ignore
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
-import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../otp/otp_screen.dart';
 
@@ -36,11 +34,10 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).pop();
-                    print('ffffffffffffff');
                   },
                   child: Container(
-                    width: 35,
-                    height: 35,
+                    width: w * 0.095,
+                    height: h * 0.05,
                     decoration: BoxDecoration(
                         color: MyColors.mainColor,
                         borderRadius: BorderRadius.circular(10)),
@@ -103,7 +100,7 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   buildUserOrAdminCard(
-                      image: 'assets/images/Vector (1).png',
+                      image: 'assets/images/user11.png',
                       text: 'User',
                       cardColor: Colors.white,
                       textColor: Color(0xffC4C4C4)),
@@ -122,8 +119,8 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                         MaterialPageRoute(builder: (context) => OtpScreen()));
                   },
                   fontSize: 14,
-                  height: 50,
-                  width: 345,
+                  height: h * 0.063,
+                  width: w * 0.95,
                   color: MyColors.mainColor,
                   textColor: Colors.white),
               SizedBox(
@@ -145,30 +142,34 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
     required String text,
     required Color cardColor,
     required Color textColor,
-  }) =>
-      Column(
-        children: [
-          Container(
-            width: 125,
-            height: 105,
-            decoration: BoxDecoration(
-                color: cardColor,
-                border: Border.all(color: Color(0xffC4C4C4)),
-                borderRadius: BorderRadius.circular(10)),
-            child: Center(child: Image.asset(image)),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: headingStyle.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'SF Pro Display',
-                color: textColor),
-          )
-        ],
-      );
+  }) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+
+    return Column(
+      children: [
+        Container(
+          width: w * 0.4,
+          height: h * 0.17,
+          decoration: BoxDecoration(
+              color: cardColor,
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10)),
+          child: Center(child: Image.asset(image)),
+        ),
+        SizedBox(
+          height: h * 0.02,
+        ),
+        Text(
+          text,
+          textAlign: TextAlign.center,
+          style: headingStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              fontFamily: 'SF Pro Display',
+              color: textColor),
+        )
+      ],
+    );
+  }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, duplicate_ignore
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/admins/widgets/login_widget.dart';
@@ -126,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontSize: 12,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
-                              color: Color(0xff87ADF4)),
+                              color: const Color(0xff87ADF4)),
                         ),
                       ),
                       SizedBox(
@@ -136,8 +138,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           title: 'Login',
                           onPressed: () {},
                           fontSize: 14,
-                          height: 50,
-                          width: 345,
+                          height: h * 0.063,
+                          width: w * 0.95,
                           color: MyColors.mainColor,
                           textColor: Colors.white),
                       SizedBox(
@@ -146,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text(
                         '- Or Login With -',
                         style: headingStyle.copyWith(
-                            color: Color(0xff474747),
+                            color: const Color(0xff474747),
                             fontFamily: 'Poppins',
                             fontSize: 14,
                             fontWeight: FontWeight.w400),
@@ -198,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       )
                     ],

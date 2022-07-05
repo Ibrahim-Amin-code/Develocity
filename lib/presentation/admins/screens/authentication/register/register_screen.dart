@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable
+// ignore_for_file: prefer_const_constructors, unused_local_variable, duplicate_ignore
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
@@ -53,8 +53,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Navigator.pop(context);
                           },
                           child: Container(
-                            width: 35,
-                            height: 35,
+                            width: w * 0.095,
+                            height: h * 0.05,
                             decoration: BoxDecoration(
                                 color: MyColors.mainColor,
                                 borderRadius: BorderRadius.circular(10)),
@@ -198,8 +198,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     builder: (context) => UserOrAdminScreen()));
                           },
                           fontSize: 14,
-                          height: 50,
-                          width: 365,
+                          height: h * 0.063,
+                          width: w * 0.95,
                           color: MyColors.mainColor,
                           textColor: Colors.white),
                       SizedBox(

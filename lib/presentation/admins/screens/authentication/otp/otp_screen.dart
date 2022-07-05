@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/core/colors.dart';
@@ -33,8 +35,8 @@ class _OtpScreenState extends State<OtpScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 35,
-                    height: 35,
+                    width: w * 0.095,
+                    height: h * 0.05,
                     decoration: BoxDecoration(
                         color: MyColors.mainColor,
                         borderRadius: BorderRadius.circular(10)),
@@ -85,14 +87,14 @@ class _OtpScreenState extends State<OtpScreen> {
               Image.asset(
                 'assets/images/bro11.png',
                 fit: BoxFit.cover,
-                height: 150,
-                width: 185,
+                height: h * 0.22,
+                width: w * 0.54,
               ),
               SizedBox(
                 height: h * 0.05,
               ),
               SizedBox(
-                width: 200,
+                width: w * 0.4,
                 child: Text(
                   'Please enter the verification number we send to your email',
                   textAlign: TextAlign.center,
@@ -100,11 +102,11 @@ class _OtpScreenState extends State<OtpScreen> {
                   style: headingStyle.copyWith(
                       fontFamily: 'SF Pro Display',
                       fontSize: 12,
-                      color: Color(0xff4A4646),
+                      color: const Color(0xff4A4646),
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               defaultButton(
                   title: 'Confirm',
                   onPressed: () {
@@ -114,22 +116,21 @@ class _OtpScreenState extends State<OtpScreen> {
                             builder: (context) => const OtpSuccessScreen()));
                   },
                   fontSize: 14,
-                  height: 50,
-                  width: 345,
+                  height: h * 0.06,
+                  width: w * 0.95,
                   color: MyColors.mainColor,
                   textColor: Colors.white),
               SizedBox(
-                height: h * 0.026,
+                height: h * 0.042,
               ),
-              SizedBox(
-                height: h * 0.025,
-              ),
+              // SizedBox(
+              //   height: h * 0.025,
+              // ),
             ],
           ),
         ),
       ),
       backgroundColor: Colors.white,
     );
-    ;
   }
 }
