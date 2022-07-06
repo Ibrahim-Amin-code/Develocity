@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.w400,
                       color: (currentIndex == index)
                           ? Colors.white
-                          : MyColors.unslectedIconColor),
+                          : MyColors.unselectedIconColor),
                 ),
               ),
             ),
