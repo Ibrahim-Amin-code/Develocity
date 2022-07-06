@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class MyColors {
   static Color mainColor = const Color(0xff696CFF);
+  static Color hintColor = const Color(0xffC4C4C4);
   static Color unselectedIconColor = Colors.black.withOpacity(0.5);
   static Color gradientColor1 = const Color(0xff3a0ca300);
   static Color gradientColor2 = const Color(0xff3a0ca3db);

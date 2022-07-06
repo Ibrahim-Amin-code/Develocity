@@ -1,9 +1,11 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/theme/themes.dart';
+import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
-import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -19,10 +21,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      home: const SafeArea(child: ProfileScreen()),
+    return BlocProvider(
+      create: (BuildContext context)=> ProfileCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme,
+        home: const SafeArea(child: ProfileScreen()),
+      ),
     );
   }
 }
