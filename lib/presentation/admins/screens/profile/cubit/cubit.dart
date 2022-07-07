@@ -10,7 +10,6 @@ class ProfileCubit extends Cubit<ProfileStates>{
 
    void profileEdit(){
      profileEditing = !profileEditing;
-
      emit(ProfileEditingState());
    }
 }

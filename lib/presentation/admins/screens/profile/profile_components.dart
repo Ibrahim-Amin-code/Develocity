@@ -50,7 +50,7 @@ class MenuProfileItems extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return MaterialButton(
-      height: height*0.07,
+      height: height * 0.07,
       onPressed: () {
         onTap();
       },
@@ -143,13 +143,15 @@ class CustomTextFormField extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(3.0),
-          child: Text(label,
-          style: TextStyle(
-            fontSize: 14.0,
-            fontFamily: 'SF Pro Display',
-            fontWeight: FontWeight.w500,
-            color: MyColors.mainColor,
-          ),),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 14.0,
+              fontFamily: 'SF Pro Display',
+              fontWeight: FontWeight.w500,
+              color: MyColors.mainColor,
+            ),
+          ),
         ),
         TextFormField(
           controller: controller,
@@ -180,7 +182,7 @@ class CustomTextFormField extends StatelessWidget {
                 width: 2.0,
               ),
             ),
-            focusedErrorBorder:  OutlineInputBorder(
+            focusedErrorBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: MyColors.mainColor,
                 width: 2.0,
@@ -195,6 +197,71 @@ class CustomTextFormField extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class LogoutAlertDialog extends StatelessWidget {
+  String title;
+  String bodyText;
+  String buttonText;
+  Function buttonOnPressed;
+  String cancelText;
+  Function cancelOnPressed;
+
+  LogoutAlertDialog(
+    this.title,
+    this.bodyText,
+    this.buttonText,
+    this.buttonOnPressed,
+    this.cancelText,
+    this.cancelOnPressed,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return AlertDialog(
+      elevation: 0.0,
+      scrollable: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      title: Center(
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+      ),
+      content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: height*0.02,),
+          Row(
+            children: [
+              Checkbox(value: true, onChanged: (s) {}),
+
+              Text(
+                bodyText,
+                style: Theme.of(context).textTheme.bodySmall,
+              )
+            ],
+          ),
+          SizedBox(height: height*0.02,width: width,),
+          CustomButton(
+              onPressed: () {
+                buttonOnPressed();
+              },
+              text: buttonText),
+          SizedBox(height: height*0.005,),
+          TextButton(
+              onPressed: () {
+                cancelOnPressed();
+              },
+              child: Text(cancelText)),
+        ],
+      ),
     );
   }
 }

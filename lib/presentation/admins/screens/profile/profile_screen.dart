@@ -14,21 +14,19 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   final _keyForm = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     ProfileCubit _cubit = ProfileCubit.get(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return BlocConsumer<ProfileCubit,ProfileStates>(
-      listener: (BuildContext context, state) {  },
+    return BlocConsumer<ProfileCubit, ProfileStates>(
+      listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
         return Scaffold(
           backgroundColor: Colors.white,
@@ -48,10 +46,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             elevation: 0.0,
-            actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+            ],
             leading: IconButton(
                 onPressed: () {
-                _cubit.profileEditing? _cubit.profileEdit() : Navigator.of(context).pop();
+                  _cubit.profileEditing
+                      ? _cubit.profileEdit()
+                      : Navigator.of(context).pop();
                 },
                 icon: const Icon(Icons.arrow_back_outlined)),
           ),
@@ -95,41 +97,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                         !_cubit.profileEditing
                                             ? Column(
-                                          children: [
-                                            Text(
-                                              'Samaa Samir',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleMedium!
-                                                  .copyWith(
-                                                  color:
-                                                  MyColors.mainColor),
-                                            ),
-                                            SizedBox(
-                                              height: height * 0.02,
-                                            ),
-                                            Text(
-                                              'UI/UX Design',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .copyWith(
-                                                  color: Colors.black),
-                                            ),
-                                          ],
-                                        )
+                                                children: [
+                                                  Text(
+                                                    'Samaa Samir',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                            color: MyColors
+                                                                .mainColor),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  Text(
+                                                    'UI/UX Design',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.black),
+                                                  ),
+                                                ],
+                                              )
                                             : CustomButton(
-                                          height: height * 0.05,
-                                          width: width * 0.05,
-                                          onPressed: () {},
-                                          text: 'Change Picture',
-                                        ),
+                                                height: height * 0.05,
+                                                width: width * 0.05,
+                                                onPressed: () {},
+                                                text: 'Change Picture',
+                                              ),
                                         SizedBox(
                                           height: height * 0.04,
                                         ),
                                         Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
                                             CardProfileInfo(
                                                 text: 'Mansoura, Egypt',
@@ -164,20 +167,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                   ),
                                 ),
-                                if(!_cubit.profileEditing)
+                                if (!_cubit.profileEditing)
                                   GestureDetector(
                                     onTap: () {
                                       _cubit.profileEdit();
                                     },
                                     child: Container(
-                                      padding: const EdgeInsetsDirectional.all(1.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.all(1.0),
                                       height: height * 0.033,
                                       width: width * 0.07,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         border: Border.all(
-                                            color: MyColors.mainColor, width: 2.0),
-                                        borderRadius: BorderRadius.circular(5.0),
+                                            color: MyColors.mainColor,
+                                            width: 2.0),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                       ),
                                       child: Icon(
                                         Icons.edit,
@@ -195,98 +201,96 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       !_cubit.profileEditing
                           ? Container(
-                        color: Colors.white,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            MenuProfileItems(
-                              text: 'Settings',
-                              icon: Icons.settings,
-                              onTap: () {},
-                            ),
-                            SizedBox(
-                              height: height * 0.01,
-                            ),
-                            MenuProfileItems(
-                              text: 'Logout',
-                              icon: Icons.logout,
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      )
+                              color: Colors.white,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  MenuProfileItems(
+                                    text: 'Settings',
+                                    icon: Icons.settings,
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  MenuProfileItems(
+                                    text: 'Logout',
+                                    icon: Icons.logout,
+                                    onTap: () {
+                                      showDialog(context: context, builder: (BuildContext context){
+                                        return LogoutAlertDialog(
+                                            'Logout of Develocity?',
+                                            'Remember my login info',
+                                            'Logout',
+                                                () {},
+                                            'Cancel',
+                                                () {
+                                              Navigator.of(context).pop();
+                                                });
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
                           : Form(
-                        key: _keyForm,
-                        child: Column(
-                          children: [
-                            CustomTextFormField(
-                                _nameController,
-                                TextInputType.name,
-                                    (String value) {
-                                  if(value.isEmpty){
-                                    return 'Please Enter your name!';
-                                  }
-                                },
-                                'Name *',
-                                'Type Name',
-                                    () {}),
-                            SizedBox(
-                              height: height * 0.02,
+                              key: _keyForm,
+                              child: Column(
+                                children: [
+                                  CustomTextFormField(
+                                      _nameController, TextInputType.name,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your name!';
+                                    }
+                                  }, 'Name *', 'Type Name', () {}),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(_emailController,
+                                      TextInputType.emailAddress,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your email!';
+                                    }
+                                  }, 'Email *', 'Enter Email', () {}),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(
+                                      _phoneController, TextInputType.phone,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your phone!';
+                                    }
+                                  }, 'Phone Number *', 'Type Number', () {}),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(_passwordController,
+                                      TextInputType.visiblePassword,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your password!';
+                                    }
+                                  }, 'Password *', 'Type Password', () {}),
+                                  SizedBox(
+                                    height: height * 0.05,
+                                  ),
+                                  CustomButton(
+                                      onPressed: () {
+                                        if (_keyForm.currentState!.validate()) {
+                                          print(_nameController.text);
+                                          print(_phoneController.text);
+                                          print(_emailController.text);
+                                          print(_passwordController.text);
+                                        }
+                                      },
+                                      text: 'Edit')
+                                ],
+                              ),
                             ),
-                            CustomTextFormField(
-                                _emailController,
-                                TextInputType.emailAddress,
-                                    (String value) {
-                                  if(value.isEmpty){
-                                    return 'Please Enter your email!';
-                                  }
-                                },
-                                'Email *',
-                                'Enter Email',
-                                    () {}),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            CustomTextFormField(
-                                _phoneController,
-                                TextInputType.phone,
-                                    (String value) {
-                                  if(value.isEmpty){
-                                    return 'Please Enter your phone!';
-                                  }
-                                },
-                                'Phone Number *',
-                                'Type Number',
-                                    () {}),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            CustomTextFormField(
-                                _passwordController,
-                                TextInputType.visiblePassword,
-                                    (String value) {
-                                  if(value.isEmpty){
-                                    return 'Please Enter your password!';
-                                  }
-                                },
-                                'Password *',
-                                'Type Password',
-                                    () {}),
-                            SizedBox(
-                              height: height * 0.05,
-                            ),
-                            CustomButton(onPressed: () {
-                              if(_keyForm.currentState!.validate()){
-                                print(_nameController.text);
-                                print(_phoneController.text);
-                                print(_emailController.text);
-                                print(_passwordController.text);
-                              }
-                            }, text: 'Edit')
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),

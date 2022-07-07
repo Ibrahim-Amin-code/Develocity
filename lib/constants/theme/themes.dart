@@ -3,6 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData lightTheme = ThemeData(
+  primarySwatch: const MaterialColor(0xff696CFF,{
+    50:  Color(0xff696CF0),
+    100: Color(0xff696CF1),
+    200: Color(0xff696CF2),
+    300: Color(0xff696CF3),
+    400: Color(0xff696CF4),
+    500: Color(0xff696CFF),
+    600: Color(0xff696CF6),
+    700: Color(0xff696CF7),
+    800: Color(0xff696CF8),
+    900: Color(0xff696CF9),
+  }),
   scaffoldBackgroundColor: Colors.white,
   textTheme: TextTheme(
     bodySmall: const TextStyle(
