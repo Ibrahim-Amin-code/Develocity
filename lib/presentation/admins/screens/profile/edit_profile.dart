@@ -1,23 +1,25 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/core/const.dart';
+import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import '../../../../constants/clip_path.dart';
-import 'edit_profile.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+    TextEditingController nameController = TextEditingController();
 
     return Scaffold(
         appBar: AppBar(
@@ -36,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: MyColors.mainColor,
           title: Center(
             child: Text(
-              'Profile',
+              'Edit Profile',
               style: headingStyle.copyWith(
                   color: Colors.white,
                   fontFamily: 'SF Pro Display',
@@ -85,65 +87,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Stack(
-                            children: [
-                              Container(
-                                // alignment: Alignment.bottomCenter,
-                                margin: EdgeInsets.only(left: w * .28),
-                                width: w * .22,
-                                height: h * 0.12,
-                                decoration: BoxDecoration(
-                                    color: MyColors.mainColor,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: MyColors.mainColor,
-                                    ),
-                                    image: const DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/profile11.png'))),
-                              ),
-                              Container(
+                          Container(
+                            // alignment: Alignment.bottomCenter,
+                            margin: EdgeInsets.only(left: w * .28),
+                            width: w * .22,
+                            height: h * 0.12,
+                            decoration: BoxDecoration(
                                 color: MyColors.mainColor,
-                                margin: EdgeInsets.only(
-                                  left: w * .44,
-                                  top: h * .08,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: MyColors.mainColor,
                                 ),
-                                child: Image.asset(
-                                  'assets/images/pin.png',
-                                  // color: MyColors.mainColor,
-
-                                  width: w * 0.078,
-                                  height: h * 0.04,
-                                ),
-                              ),
-                            ],
+                                image: const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/profile11.png'))),
                           ),
                           SizedBox(
-                            height: h * 0.02,
+                            height: h * 0.018,
                           ),
-                          Container(
-                              margin: EdgeInsets.only(left: w * .29),
-                              child: Text(
-                                'Samaa Samir',
-                                style: headingStyle.copyWith(
-                                    color: MyColors.mainColor,
-                                    fontSize: 16,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500),
-                              )),
+                          defaultButton(
+                              margin: EdgeInsets.only(left: w * .28),
+                              title: 'change picture',
+                              onPressed: () {},
+                              fontSize: 14,
+                              height: 35,
+                              width: 125,
+                              color: MyColors.mainColor,
+                              textColor: Colors.white),
                           SizedBox(
                             height: h * 0.01,
                           ),
-                          Container(
-                              margin: const EdgeInsets.only(left: 120),
-                              child: Text(
-                                'UI UX Designer',
-                                style: headingStyle.copyWith(
-                                    color: const Color(0xff4A4646),
-                                    fontSize: 12,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500),
-                              )),
                           SizedBox(
                               width: 250,
                               height: h * 0.05,
@@ -204,75 +177,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             SizedBox(
-              height: h * 0.07,
+              height: h * 0.05,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: w * 0.1),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EditProfileScreen()));
-                },
-                child: SizedBox(
-                  height: h * 0.05,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/edit.png',
-                        width: 25,
-                        height: 25,
-                      ),
-                      SizedBox(
-                        width: w * 0.04,
-                      ),
-                      Text(
-                        'Settings',
-                        style: headingStyle.copyWith(
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: w * 0.1),
+                child: textFormField(
+                    controller: nameController,
+                    obscureText: false,
+                    hintText: 'type name',
+                    image: '',
+                    keyboardType: TextInputType.name)),
             SizedBox(
               height: h * 0.03,
-            ),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: SizedBox(
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/out.png',
-                        width: 25,
-                        height: 25,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        'Logout',
-                        style: headingStyle.copyWith(
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ),
           ],
         ));

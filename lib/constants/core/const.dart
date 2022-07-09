@@ -7,10 +7,12 @@ AppBar csutomAppBar({
   required String image,
   required String image2,
   required String text,
+  required GestureTapCallback? onTap,
+  required GestureTapCallback? onTap1,
 }) =>
     AppBar(
       actions: [
-        Image.asset(image),
+        InkWell(onTap: onTap1, child: Image.asset(image)),
       ],
       elevation: 0.0,
       backgroundColor: Colors.white,
@@ -24,7 +26,7 @@ AppBar csutomAppBar({
               fontWeight: FontWeight.w500),
         ),
       ),
-      leading: Image.asset(image2),
+      leading: InkWell(onTap: onTap, child: Image.asset(image2)),
     );
 
 customCachedNetworkImage(
