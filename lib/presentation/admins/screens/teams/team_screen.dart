@@ -1,5 +1,7 @@
+import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class TeamScreen extends StatefulWidget {
@@ -16,18 +18,18 @@ class _TeamScreenState extends State<TeamScreen> {
     double w = MediaQuery.of(context).size.width;
     // int? group;
     // bool? checkValue = false;
-    int selected = 0;
-    bool _value = false;
+    // int selected = 0;
+    // bool _value = false;
 
-    return SingleChildScrollView(
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0.0,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -229,16 +231,21 @@ class _TeamScreenState extends State<TeamScreen> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500),
                               ),
-                              Radio<int>(
-                                  value: 0,
-                                  splashRadius: 20,
-                                  groupValue: selected, // selected: _value,
-                                  activeColor: MyColors.mainColor,
-                                  onChanged: (int? val) {
-                                    setState(() {
-                                      selected = index;
-                                    });
-                                  }),
+                              BlocConsumer<AppCubit, AppState>(
+                                listener: (context, state) {},
+                                builder: (context, state) {
+                                  return Radio<int>(
+                                      value: index,
+                                      splashRadius: 20,
+                                      groupValue:
+                                          AppCubit.get(context).selectRadio,
+                                      activeColor: MyColors.mainColor,
+                                      onChanged: (int? val) {
+                                        AppCubit.get(context).changeRadio(val);
+                                        AppCubit.get(context).selectRadio = val;
+                                      });
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -248,16 +255,6 @@ class _TeamScreenState extends State<TeamScreen> {
                       ],
                     );
                   },
-                  //  RadioListTile(
-                  //   value: index,
-                  //   groupValue: selected,
-                  //   onChanged: (val) {
-                  //     setState(() {
-                  //       selected = val as int?;
-                  //     });
-                  //   },
-                  //   title: Text('Make DAshboooard'),
-                  // ),
                   itemCount: 7,
                 ),
               )

@@ -36,7 +36,7 @@ class CardProfileInfo extends StatelessWidget {
 
 class MenuProfileItems extends StatelessWidget {
   String text;
-  IconData icon;
+  String icon;
   Function onTap;
 
   MenuProfileItems({
@@ -54,24 +54,28 @@ class MenuProfileItems extends StatelessWidget {
       onPressed: () {
         onTap();
       },
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 20.0,
-            color: MyColors.mainColor,
-          ),
-          SizedBox(
-            width: width * 0.05,
-          ),
-          Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(color: Colors.black),
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+        child: Row(
+          children: [
+            Image.asset(
+              icon,
+              width: 25,
+              height: 25,
+              color: MyColors.mainColor,
+            ),
+            SizedBox(
+              width: width * 0.05,
+            ),
+            Text(
+              text,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: Colors.black),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -171,25 +175,29 @@ class CustomTextFormField extends StatelessWidget {
               color: MyColors.hintColor,
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: MyColors.hintColor,
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(
+                color: Color(0xff0F006EE9),
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
                 color: MyColors.mainColor,
                 width: 2.0,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
                 color: MyColors.mainColor,
                 width: 2.0,
               ),
             ),
-            errorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(
                 color: Colors.red,
                 width: 1.0,
               ),
@@ -237,24 +245,30 @@ class LogoutAlertDialog extends StatelessWidget {
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: height*0.02,),
+          SizedBox(
+            height: height * 0.02,
+          ),
           Row(
             children: [
               Checkbox(value: true, onChanged: (s) {}),
-
               Text(
                 bodyText,
                 style: Theme.of(context).textTheme.bodySmall,
               )
             ],
           ),
-          SizedBox(height: height*0.02,width: width,),
+          SizedBox(
+            height: height * 0.02,
+            width: width,
+          ),
           CustomButton(
               onPressed: () {
                 buttonOnPressed();
               },
               text: buttonText),
-          SizedBox(height: height*0.005,),
+          SizedBox(
+            height: height * 0.005,
+          ),
           TextButton(
               onPressed: () {
                 cancelOnPressed();

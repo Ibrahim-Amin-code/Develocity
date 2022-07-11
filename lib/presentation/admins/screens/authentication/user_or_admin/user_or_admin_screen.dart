@@ -3,7 +3,9 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../business_logic/app_cubit/app_cubit.dart';
 import '../otp/otp_screen.dart';
 
 class UserOrAdminScreen extends StatefulWidget {
@@ -19,6 +21,7 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     // ignore: unused_local_variable
+    bool click = false;
 
     return Scaffold(
       body: Center(
@@ -96,20 +99,47 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
               SizedBox(
                 height: h * 0.06,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  buildUserOrAdminCard(
-                      image: 'assets/images/user11.png',
-                      text: 'User',
-                      cardColor: Colors.white,
-                      textColor: Color(0xffC4C4C4)),
-                  buildUserOrAdminCard(
-                      image: 'assets/images/Group 2474.png',
-                      text: 'Admin',
-                      cardColor: MyColors.mainColor.withOpacity(0.25),
-                      textColor: MyColors.mainColor),
-                ],
+              BlocConsumer<AppCubit, AppState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      buildUserOrAdminCard(
+                          image: 'assets/images/user11.png',
+                          text: 'User',
+                          cardColor: (AppCubit.get(context).isUser == true)
+                              ? MyColors.mainColor.withOpacity(0.25)
+                              : Colors.white,
+                          onTap: () {
+                            AppCubit.get(context).userOrAdmin(
+                                isUserClicked: true, isAdminClicked: false);
+                          },
+                          imageColor: (AppCubit.get(context).isUser == true)
+                              ? MyColors.mainColor
+                              : Color(0xffC4C4C4),
+                          textColor: (AppCubit.get(context).isUser == true)
+                              ? MyColors.mainColor
+                              : Color(0xffC4C4C4)),
+                      buildUserOrAdminCard(
+                          image: 'assets/images/Group 2474.png',
+                          text: 'Admin',
+                          cardColor: (AppCubit.get(context).isAdmin == true)
+                              ? MyColors.mainColor.withOpacity(0.25)
+                              : Colors.white,
+                          onTap: () {
+                            AppCubit.get(context).userOrAdmin(
+                                isUserClicked: false, isAdminClicked: true);
+                          },
+                          imageColor: (AppCubit.get(context).isAdmin == true)
+                              ? MyColors.mainColor
+                              : Color(0xffC4C4C4),
+                          textColor: (AppCubit.get(context).isAdmin == true)
+                              ? MyColors.mainColor
+                              : Color(0xffC4C4C4)),
+                    ],
+                  );
+                },
               ),
               Spacer(),
               defaultButton(
@@ -139,37 +169,47 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
 
   Widget buildUserOrAdminCard({
     required String image,
+    Color? imageColor,
     required String text,
     required Color cardColor,
     required Color textColor,
+    required GestureTapCallback? onTap,
   }) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
-    return Column(
-      children: [
-        Container(
-          width: w * 0.4,
-          height: h * 0.17,
-          decoration: BoxDecoration(
-              color: cardColor,
-              border: Border.all(color: Color(0xffC4C4C4)),
-              borderRadius: BorderRadius.circular(10)),
-          child: Center(child: Image.asset(image)),
-        ),
-        SizedBox(
-          height: h * 0.02,
-        ),
-        Text(
-          text,
-          textAlign: TextAlign.center,
-          style: headingStyle.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'SF Pro Display',
-              color: textColor),
-        )
-      ],
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            width: w * 0.4,
+            height: h * 0.17,
+            decoration: BoxDecoration(
+                color: cardColor,
+                border: Border.all(
+                    color: Color(
+                  0xffC4C4C4,
+                )),
+                borderRadius: BorderRadius.circular(10)),
+            child: Center(
+              child: Image.asset(image, color: imageColor ?? Color(0xffC4C4C4)),
+            ),
+          ),
+          SizedBox(
+            height: h * 0.02,
+          ),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: headingStyle.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'SF Pro Display',
+                color: textColor),
+          )
+        ],
+      ),
     );
   }
 }
