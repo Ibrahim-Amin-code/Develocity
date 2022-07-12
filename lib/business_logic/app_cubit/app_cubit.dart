@@ -25,4 +25,10 @@ class AppCubit extends Cubit<AppState> {
     selectRadio == select;
     emit(ChangeRadioState());
   }
+
+  String color = '';
+  void changeColor(String type) {
+    color = type;
+    emit(ChangeColorState());
+  }
 }

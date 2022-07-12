@@ -7,8 +7,6 @@ import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-import '../../../../constants/clip_path.dart';
-
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
 

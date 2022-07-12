@@ -1,11 +1,13 @@
 // ignore_for_file: unused_local_variable, duplicate_ignore
 
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../register/register_screen.dart';
+import '../user_or_admin/user_or_admin_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -136,7 +138,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       defaultButton(
                           title: 'Login',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LayoutScreen(
+                                          index: 0,
+                                        )));
+                          },
                           fontSize: 14,
                           height: h * 0.063,
                           width: w * 0.95,

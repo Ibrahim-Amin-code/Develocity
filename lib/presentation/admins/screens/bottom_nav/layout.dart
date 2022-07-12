@@ -2,6 +2,7 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/fab_buttom.dart';
+import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
@@ -21,7 +22,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   List<Widget> screens = [
     HomeScreen(),
     TasksScreen(),
-    RateScreen(),
+    RateAdminScreeen(),
     ProfileScreen(),
   ];
 
@@ -99,23 +100,67 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   Future<bool> showExitPopup() async {
     return await showDialog(
+          useSafeArea: true,
+
+          // barrierColor: Colors.transparent,
+          useRootNavigator: true,
           context: context,
+          barrierDismissible: true,
+          // barrierColor: Colors.white24,
           builder: (context) => AlertDialog(
-            title: const Text("Are You Sure"),
-            content: Text('Exit'),
+            backgroundColor: Colors.white,
+
+            //#006EE966
+            title: Center(
+              child: Text(
+                "Logout of Develocity?",
+                style: headingStyle.copyWith(
+                    color: MyColors.mainColor,
+                    fontFamily: 'SF Pro Display',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            content: Text(
+              'Remember my login info',
+              textAlign: TextAlign.center,
+              style: headingStyle.copyWith(
+                  color: Color(0xff474747),
+                  fontFamily: 'SF Pro Display',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500),
+            ),
+            elevation: 0.0,
+
             actions: [
+              defaultButton(
+                  title: 'Logout',
+                  onPressed: () {},
+                  fontSize: 16,
+                  height: 40,
+                  width: 325,
+                  color: MyColors.mainColor,
+                  textColor: Colors.white),
+              defaultButton(
+                  title: 'cancel',
+                  onPressed: () {},
+                  fontSize: 14,
+                  height: 40,
+                  width: 325,
+                  color: Colors.transparent,
+                  textColor: Colors.black)
               // ignore: deprecated_member_use
-              RaisedButton(
-                color: MyColors.mainColor,
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text('No'),
-              ),
-              // ignore: deprecated_member_use
-              RaisedButton(
-                color: MyColors.mainColor,
-                onPressed: () => Navigator.of(context).pop(true),
-                child: Text('YES'),
-              ),
+              // RaisedButton(
+              //   color: MyColors.mainColor,
+              //   onPressed: () => Navigator.of(context).pop(false),
+              //   child: Text('No'),
+              // ),
+              // // ignore: deprecated_member_use
+              // RaisedButton(
+              //   color: MyColors.mainColor,
+              //   onPressed: () => Navigator.of(context).pop(true),
+              //   child: Text('YES'),
+              // ),
             ],
           ),
         ) ??

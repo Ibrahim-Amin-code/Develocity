@@ -1,13 +1,10 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/theme/themes.dart';
-import 'package:develocity/presentation/admins/screens/authentication/otp/otp_screen.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
-import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
 import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'business_logic/app_cubit/app_cubit.dart';
 
 void main() async {

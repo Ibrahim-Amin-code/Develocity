@@ -1,4 +1,5 @@
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/profile/profile_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -50,10 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             MenuProfileItems(
                 icon: 'assets/images/out.png',
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const EditProfileScreen()));
+                  showExitPopup(context);
                 },
                 text: 'Logout'),
           ],
