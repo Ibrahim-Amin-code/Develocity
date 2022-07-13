@@ -4,51 +4,47 @@ import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../constants/core/const.dart';
-import '../../widgets/drawer_widget.dart';
-import '../profile/profile_components.dart';
+import '../../../../../constants/core/const.dart';
+import '../../../widgets/drawer_widget.dart';
+import '../../profile/profile_components.dart';
+import 'add_user_screen.dart';
 
-class RateAdminScreeen extends StatefulWidget {
-  const RateAdminScreeen({Key? key}) : super(key: key);
+class AddUsersScreeen extends StatefulWidget {
+  const AddUsersScreeen({Key? key}) : super(key: key);
 
   @override
-  State<RateAdminScreeen> createState() => _RateAdminScreeenState();
+  State<AddUsersScreeen> createState() => _AddUsersScreeenState();
 }
 
-class _RateAdminScreeenState extends State<RateAdminScreeen> {
+class _AddUsersScreeenState extends State<AddUsersScreeen> {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+    TextEditingController nameController = TextEditingController();
     final _keyForm = GlobalKey<FormState>();
-    final TextEditingController noteController = TextEditingController();
-    final TextEditingController rateController = TextEditingController();
-    final List<String> company = [
-      'company1',
-      'company2',
-      'company3',
-      'company4',
-      'company5',
-      'company6',
-      'company7',
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    final List<String> section = [
+      'Deveovity1',
+      'Deveovity2',
+      'Deveovity3',
+      'Deveovity4',
+      'Deveovity5',
+      'Deveovity6',
+      'Deveovity7',
     ];
+
     final List<String> branch = [
-      'branch1',
-      'branch2',
-      'branch3',
-      'branch4',
-      'branch5',
-      'branch6',
-      'branch7',
-    ];
-    final List<String> employee = [
-      'employee1',
-      'employee2',
-      'employee3',
-      'employee4',
-      'employee5',
-      'employee6',
-      'employee7',
+      'Deveovity1',
+      'Deveovity2',
+      'Deveovity3',
+      'Deveovity4',
+      'Deveovity5',
+      'Deveovity6',
+      'Deveovity7',
     ];
 
     return Scaffold(
@@ -56,7 +52,7 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
-          text: 'Rate',
+          text: 'Users',
           onTap: () {
             Navigator.pop(context);
           },
@@ -66,29 +62,39 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
         child: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
-              height: h * 0.025,
-            ),
             Text(
-              'Company *',
+              'Add new User',
               style: headingStyle.copyWith(
                   fontFamily: 'SF Pro Display',
-                  color: MyColors.mainColor,
-                  fontSize: 14,
+                  fontSize: 20,
+                  color: Color(0xff435971),
                   fontWeight: FontWeight.w500),
             ),
             SizedBox(
-              height: h * 0.005,
+              height: h * 0.04,
             ),
-            CustomDropDown(
-              items: company,
-              text: 'Select company',
+            CustomTextFormField(nameController, TextInputType.name, () {},
+                'User Name *', 'Enter name', () {}),
+            SizedBox(
+              height: h * 0.02,
             ),
+            CustomTextFormField(emailController, TextInputType.emailAddress,
+                () {}, 'Email *', 'Enter Email', () {}),
+            SizedBox(
+              height: h * 0.02,
+            ),
+            CustomTextFormField(
+                passwordController,
+                TextInputType.visiblePassword,
+                () {},
+                'Password *',
+                'Enter Password',
+                () {}),
             SizedBox(
               height: h * 0.02,
             ),
             Text(
-              'Branch *',
+              'Branches *',
               style: headingStyle.copyWith(
                   fontFamily: 'SF Pro Display',
                   color: MyColors.mainColor,
@@ -96,17 +102,18 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
                   fontWeight: FontWeight.w500),
             ),
             SizedBox(
-              height: h * 0.005,
+              height: h * 0.01,
             ),
             CustomDropDown(
               items: branch,
               text: 'Select Branch',
             ),
+
             SizedBox(
-              height: h * 0.02,
+              height: h * 0.03,
             ),
             Text(
-              'Employee *',
+              'Sections *',
               style: headingStyle.copyWith(
                   fontFamily: 'SF Pro Display',
                   color: MyColors.mainColor,
@@ -114,35 +121,16 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
                   fontWeight: FontWeight.w500),
             ),
             SizedBox(
-              height: h * 0.005,
+              height: h * 0.01,
             ),
             CustomDropDown(
-              items: employee,
-              text: 'Select Employee',
+              items: section,
+              text: 'Select Sections',
             ),
-            SizedBox(
-              height: h * 0.02,
-            ),
-            CustomTextFormField(rateController, TextInputType.number, () {},
-                'Rate *', 'Enter Rate Value', () {}),
-            SizedBox(
-              height: h * 0.005,
-            ),
-            Text(
-              'Rate should be from 0.0 to 5.0',
-              style: headingStyle.copyWith(
-                  fontFamily: 'Roboto',
-                  color: MyColors.mainColor,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400),
-            ),
+            // Spacer(),
+
             SizedBox(
               height: h * 0.03,
-            ),
-            CustomTextFormField(noteController, TextInputType.text, () {},
-                'Notes *', 'Type Note', () {}),
-            SizedBox(
-              height: h * 0.02,
             ),
             defaultButton(
                 title: 'Submit',
