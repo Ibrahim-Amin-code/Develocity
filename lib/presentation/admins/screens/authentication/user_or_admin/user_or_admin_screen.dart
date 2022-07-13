@@ -2,6 +2,7 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/screens/home_layout/home_layout.dart';
 import 'package:flutter/material.dart';
 
 import '../otp/otp_screen.dart';
@@ -99,11 +100,17 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  buildUserOrAdminCard(
-                      image: 'assets/images/user11.png',
-                      text: 'User',
-                      cardColor: Colors.white,
-                      textColor: Color(0xffC4C4C4)),
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
+                    },
+                    child: buildUserOrAdminCard(
+                        image: 'assets/images/user11.png',
+                        text: 'User',
+                        cardColor: Colors.white,
+                        textColor: Color(0xffC4C4C4)),
+                  ),
                   buildUserOrAdminCard(
                       image: 'assets/images/Group 2474.png',
                       text: 'Admin',

@@ -1,3 +1,5 @@
+import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/constants/core/const.dart';
 import 'package:flutter/material.dart';
 
 class RateScreen extends StatefulWidget {
@@ -10,8 +12,7 @@ class RateScreen extends StatefulWidget {
 class _RateScreenState extends State<RateScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('rate')),
-    );
+
+    return const Center(child: Text('Rate'));
   }
 }

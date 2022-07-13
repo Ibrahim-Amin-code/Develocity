@@ -1,7 +1,7 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/state.dart';
-import 'package:develocity/presentation/admins/screens/profile/profile_components.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -238,43 +238,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               key: _keyForm,
                               child: Column(
                                 children: [
-                                  CustomTextFormField(
-                                      _nameController, TextInputType.name,
-                                      (String value) {
+                                  CustomTextFormField(controller: _nameController, inputType: TextInputType.name, validate: (String value) {
                                     if (value.isEmpty) {
                                       return 'Please Enter your name!';
                                     }
-                                  }, 'Name *', 'Type Name', () {}),
+                                  }, label: 'Name *', hint: 'type name', onTap: (){}),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  CustomTextFormField(_emailController,
-                                      TextInputType.emailAddress,
-                                      (String value) {
+                                  CustomTextFormField(controller: _emailController, inputType: TextInputType.emailAddress, validate: (String value) {
                                     if (value.isEmpty) {
                                       return 'Please Enter your email!';
                                     }
-                                  }, 'Email *', 'Enter Email', () {}),
+                                  }, label: 'Email *', hint: 'Enter Email', onTap: (){}),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  CustomTextFormField(
-                                      _phoneController, TextInputType.phone,
-                                      (String value) {
+                                  CustomTextFormField(controller: _phoneController, inputType: TextInputType.phone, validate: (String value) {
                                     if (value.isEmpty) {
                                       return 'Please Enter your phone!';
                                     }
-                                  }, 'Phone Number *', 'Type Number', () {}),
+                                  }, label: 'Phone number *', hint: 'type number', onTap: (){}),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  CustomTextFormField(_passwordController,
-                                      TextInputType.visiblePassword,
-                                      (String value) {
+                                  CustomTextFormField(controller: _passwordController, inputType: TextInputType.visiblePassword, validate: (String value) {
                                     if (value.isEmpty) {
                                       return 'Please Enter your password!';
                                     }
-                                  }, 'Password *', 'Type Password', () {}),
+                                  }, label: 'Password *', hint: 'type password', onTap: (){}),
                                   SizedBox(
                                     height: height * 0.05,
                                   ),
