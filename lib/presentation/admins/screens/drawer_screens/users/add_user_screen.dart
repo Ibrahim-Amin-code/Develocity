@@ -2,11 +2,11 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/core/const.dart';
 import '../../../widgets/drawer_widget.dart';
-import '../../profile/profile_components.dart';
 import 'add_user_screen.dart';
 
 class AddUsersScreeen extends StatefulWidget {
@@ -73,23 +73,36 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
             SizedBox(
               height: h * 0.04,
             ),
-            CustomTextFormField(nameController, TextInputType.name, () {},
-                'User Name *', 'Enter name', () {}),
-            SizedBox(
-              height: h * 0.02,
-            ),
-            CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Email *', 'Enter Email', () {}),
-            SizedBox(
-              height: h * 0.02,
-            ),
             CustomTextFormField(
-                passwordController,
-                TextInputType.visiblePassword,
-                () {},
-                'Password *',
-                'Enter Password',
-                () {}),
+              controller: nameController,
+              inputType: TextInputType.name,
+              validate: (){},
+              label: 'User Name *',
+              hint: 'Enter name',
+              onTap: (){},
+            ),
+            SizedBox(
+              height: h * 0.02,
+            ),
+                CustomTextFormField(
+                  controller: emailController,
+                  inputType: TextInputType.emailAddress,
+                  validate: (){},
+                  label: 'Email *',
+                  hint: 'Enter Email',
+                  onTap: (){},
+                ),
+            SizedBox(
+              height: h * 0.02,
+            ),
+                CustomTextFormField(
+                  controller: passwordController,
+                  inputType: TextInputType.visiblePassword,
+                  validate: (){},
+                  label: 'Password *',
+                  hint: 'Enter Password',
+                  onTap: (){},
+                ),
             SizedBox(
               height: h * 0.02,
             ),

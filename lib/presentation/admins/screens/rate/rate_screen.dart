@@ -2,11 +2,11 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/core/const.dart';
 import '../../widgets/drawer_widget.dart';
-import '../profile/profile_components.dart';
 
 class RateAdminScreeen extends StatefulWidget {
   const RateAdminScreeen({Key? key}) : super(key: key);
@@ -123,8 +123,14 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
             SizedBox(
               height: h * 0.02,
             ),
-            CustomTextFormField(rateController, TextInputType.number, () {},
-                'Rate *', 'Enter Rate Value', () {}),
+            CustomTextFormField(
+              hint: 'Enter Rate Value',
+              label: 'Rate *',
+              inputType: TextInputType.number,
+              controller: rateController,
+              onTap: () {},
+              validate: (s) {},
+            ),
             SizedBox(
               height: h * 0.005,
             ),
@@ -139,8 +145,14 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
             SizedBox(
               height: h * 0.03,
             ),
-            CustomTextFormField(noteController, TextInputType.text, () {},
-                'Notes *', 'Type Note', () {}),
+            CustomTextFormField(
+              controller: noteController,
+              onTap: () {},
+              label: 'Notes *',
+              validate: (s) {},
+              inputType: TextInputType.text,
+              hint: 'Type Note',
+            ),
             SizedBox(
               height: h * 0.02,
             ),

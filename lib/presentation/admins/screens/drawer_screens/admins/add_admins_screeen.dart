@@ -2,10 +2,10 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/drawer_widget.dart';
-import '../../profile/profile_components.dart';
 
 class AddAdminsScreeen extends StatefulWidget {
   const AddAdminsScreeen({Key? key}) : super(key: key);
@@ -50,23 +50,36 @@ class _AddAdminsScreeenState extends State<AddAdminsScreeen> {
             SizedBox(
               height: h * 0.04,
             ),
-            CustomTextFormField(nameController, TextInputType.name, () {},
-                'Admin Name *', 'Enter name', () {}),
+                CustomTextFormField(
+                  controller: nameController,
+                  inputType: TextInputType.name,
+                  validate: (){},
+                  label: 'Section Name *',
+                  hint: 'Enter name',
+                  onTap: (){},
+                ),
             SizedBox(
               height: h * 0.02,
             ),
-            CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Email *', 'Enter Email', () {}),
+                CustomTextFormField(
+                  controller: emailController,
+                  inputType: TextInputType.emailAddress,
+                  validate: (){},
+                  label: 'Email *',
+                  hint: 'Enter Email',
+                  onTap: (){},
+                ),
             SizedBox(
               height: h * 0.02,
             ),
-            CustomTextFormField(
-                passwordController,
-                TextInputType.visiblePassword,
-                () {},
-                'Password *',
-                'Enter Password',
-                () {}),
+                CustomTextFormField(
+                  controller: passwordController,
+                  inputType: TextInputType.visiblePassword,
+                  validate: (){},
+                  label: 'Password *',
+                  hint: 'Enter Password',
+                  onTap: (){},
+                ),
             SizedBox(
               height: h * 0.04,
             ),

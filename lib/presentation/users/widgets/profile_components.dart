@@ -36,7 +36,7 @@ class CardProfileInfo extends StatelessWidget {
 
 class MenuProfileItems extends StatelessWidget {
   String text;
-  String icon;
+  IconData icon;
   Function onTap;
 
   MenuProfileItems({
@@ -58,12 +58,7 @@ class MenuProfileItems extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: width * 0.04),
         child: Row(
           children: [
-            Image.asset(
-              icon,
-              width: 25,
-              height: 25,
-              color: MyColors.mainColor,
-            ),
+            Icon(icon),
             SizedBox(
               width: width * 0.05,
             ),

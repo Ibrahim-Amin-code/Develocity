@@ -1,7 +1,7 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/state.dart';
-import 'package:develocity/presentation/admins/screens/profile/profile_components.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -218,17 +218,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     text: 'Logout',
                                     icon: Icons.logout,
                                     onTap: () {
-                                      showDialog(context: context, builder: (BuildContext context){
-                                        return LogoutAlertDialog(
-                                            'Logout of Develocity?',
-                                            'Remember my login info',
-                                            'Logout',
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return LogoutAlertDialog(
+                                                'Logout of Develocity?',
+                                                'Remember my login info',
+                                                'Logout',
                                                 () {},
-                                            'Cancel',
-                                                () {
+                                                'Cancel', () {
                                               Navigator.of(context).pop();
-                                                });
-                                      });
+                                            });
+                                          });
                                     },
                                   ),
                                 ],
@@ -239,42 +240,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: Column(
                                 children: [
                                   CustomTextFormField(
-                                      _nameController, TextInputType.name,
-                                      (String value) {
-                                    if (value.isEmpty) {
-                                      return 'Please Enter your name!';
-                                    }
-                                  }, 'Name *', 'Type Name', () {}),
-                                  SizedBox(
-                                    height: height * 0.02,
+                                    controller: _nameController,
+                                    inputType: TextInputType.name,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your name!';
+                                      }
+                                    },
+                                    label: 'Name *',
+                                    hint: 'Type Name',
+                                    onTap: () {},
                                   ),
-                                  CustomTextFormField(_emailController,
-                                      TextInputType.emailAddress,
-                                      (String value) {
-                                    if (value.isEmpty) {
-                                      return 'Please Enter your email!';
-                                    }
-                                  }, 'Email *', 'Enter Email', () {}),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
                                   CustomTextFormField(
-                                      _phoneController, TextInputType.phone,
-                                      (String value) {
-                                    if (value.isEmpty) {
-                                      return 'Please Enter your phone!';
-                                    }
-                                  }, 'Phone Number *', 'Type Number', () {}),
+                                    controller: _emailController,
+                                    inputType: TextInputType.emailAddress,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your email!';
+                                      }
+                                    },
+                                    label: 'Email *',
+                                    hint: 'Enter Email',
+                                    onTap: () {},
+                                  ),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  CustomTextFormField(_passwordController,
-                                      TextInputType.visiblePassword,
-                                      (String value) {
-                                    if (value.isEmpty) {
-                                      return 'Please Enter your password!';
-                                    }
-                                  }, 'Password *', 'Type Password', () {}),
+                                  CustomTextFormField(
+                                    controller: _phoneController,
+                                    inputType: TextInputType.phone,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your phone!';
+                                      }
+                                    },
+                                    label: 'Phone Number *',
+                                    hint: 'Type Number',
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(
+                                    controller: _passwordController,
+                                    inputType: TextInputType.visiblePassword,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your password!';
+                                      }
+                                    },
+                                    label: 'Password *',
+                                    hint: 'Type Password',
+                                    onTap: () {},
+                                  ),
                                   SizedBox(
                                     height: height * 0.05,
                                   ),
