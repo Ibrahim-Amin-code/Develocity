@@ -278,3 +278,117 @@ class LogoutAlertDialog extends StatelessWidget {
     );
   }
 }
+
+class MyDivider extends StatelessWidget {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(
+        start: 20.0,
+      ),
+      child: Container(
+        height: 1.0,
+        width: double.infinity,
+        color: Colors.grey[300],
+      ),
+    );
+  }
+}
+
+class UserHomeItem extends StatelessWidget {
+  const UserHomeItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Card(
+      color: Colors.white,
+      elevation: 3.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      shadowColor: MyColors.mainColor,
+      child: SizedBox(
+        height: height*0.2,
+        width: width*0.6,
+        child: Column(
+          children: [
+            SizedBox(height: height*0.01,),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.flag,
+                  color: Colors.red,
+                ),
+                SizedBox(
+                  width: width * 0.02,
+                ),
+                const Text('UI Element Design'),
+                SizedBox(
+                  width: width * 0.02,
+                ),
+                CircleAvatar(
+                  backgroundColor: MyColors.mainColor.withOpacity(0.2),
+                  child: const Icon(Icons.edit),
+                  radius: 20,
+                ),
+              ],
+            ),
+            SizedBox(height: height*0.02,),
+            Text(
+              '4 New Updates',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: MyColors.mainColor),
+            ),
+            SizedBox(height: height*0.02,),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomButton(
+                  onPressed: () {},
+                  text: 'View',
+                  width: double.minPositive,
+                ),
+                SizedBox(
+                  width: width * 0.03,
+                ),
+                MaterialButton(
+                  minWidth: double.minPositive,
+                  height: 45.0,
+                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  color: const Color(0xFFE9AE25),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Text(
+                        'Status',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Icon(Icons.keyboard_arrow_down,color: Colors.white,),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
