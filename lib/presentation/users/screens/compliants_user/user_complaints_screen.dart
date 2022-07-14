@@ -79,17 +79,17 @@ class UserComplaintsScreen extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextFormField(
-                controller: _complaintController,
-                inputType: TextInputType.text,
-                validate: (String value) {
+                _complaintController,
+                TextInputType.text,
+                (String value) {
                   if (value.isEmpty) {
                     return 'Enter your complaints, Please.';
                   }
                 },
-                label: 'Complaints *',
-                hint: 'Type Here ...',
-                onTap: () {},
-                maxLine: 8,
+                'Complaints *',
+                'Type Here ...',
+                () {},
+                8,
               ),
               SizedBox(
                 height: height * 0.03,

@@ -73,7 +73,7 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
             SizedBox(
               height: h * 0.04,
             ),
-<<<<<<< HEAD
+
             CustomTextFormField(nameController, TextInputType.name, () {},
                 'User Name *', 'Enter name', () {}, 1),
             SizedBox(
@@ -92,38 +92,24 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
                 'Enter Password',
                 () {},
                 1),
-=======
+            CustomTextFormField(nameController, TextInputType.name, () {},
+                'User Name *', 'Enter name', () {}, 1),
+            SizedBox(
+              height: h * 0.02,
+            ),
+            CustomTextFormField(emailController, TextInputType.emailAddress,
+                () {}, 'Email *', 'Enter Email', () {}, 1),
+            SizedBox(
+              height: h * 0.02,
+            ),
             CustomTextFormField(
-              controller: nameController,
-              inputType: TextInputType.name,
-              validate: (){},
-              label: 'User Name *',
-              hint: 'Enter name',
-              onTap: (){},
-            ),
-            SizedBox(
-              height: h * 0.02,
-            ),
-                CustomTextFormField(
-                  controller: emailController,
-                  inputType: TextInputType.emailAddress,
-                  validate: (){},
-                  label: 'Email *',
-                  hint: 'Enter Email',
-                  onTap: (){},
-                ),
-            SizedBox(
-              height: h * 0.02,
-            ),
-                CustomTextFormField(
-                  controller: passwordController,
-                  inputType: TextInputType.visiblePassword,
-                  validate: (){},
-                  label: 'Password *',
-                  hint: 'Enter Password',
-                  onTap: (){},
-                ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
+                passwordController,
+                TextInputType.visiblePassword,
+                () {},
+                'Password *',
+                'Enter Password',
+                () {},
+                1),
             SizedBox(
               height: h * 0.02,
             ),

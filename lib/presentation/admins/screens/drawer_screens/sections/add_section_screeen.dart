@@ -55,19 +55,10 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
           SizedBox(
             height: h * 0.04,
           ),
-<<<<<<< HEAD
           CustomTextFormField(nameController, TextInputType.name, () {},
               'Section Name *', 'Enter name', () {}, 1),
-=======
-          CustomTextFormField(
-            controller: nameController,
-            inputType: TextInputType.name,
-            validate: (){},
-            label: 'Section Name *',
-            hint: 'Enter name',
-            onTap: (){},
-          ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
+          CustomTextFormField(nameController, TextInputType.name, () {},
+              'Section Name *', 'Enter name', () {}, 1),
           SizedBox(
             height: h * 0.02,
           ),

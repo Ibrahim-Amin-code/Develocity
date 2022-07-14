@@ -19,11 +19,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    final _keyForm = GlobalKey<FormState>();
-    final TextEditingController _nameController = TextEditingController();
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _phoneController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
+    final keyForm = GlobalKey<FormState>();
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
         appBar: adminProfileAppBar(
@@ -41,24 +41,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   padding: EdgeInsets.symmetric(horizontal: w * 0.03),
                   child: Column(
                     children: [
-<<<<<<< HEAD
                       CustomTextFormField(nameController, TextInputType.name,
                           () {}, 'Name *', 'type name', () {}, 1),
-=======
-                      CustomTextFormField(
-                        controller: _nameController,
-                        inputType: TextInputType.name,
-                        validate: (s) {},
-                        label: 'Name *',
-                        hint: 'type name',
-                        onTap: () {},
-                      ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
                       SizedBox(
                         height: h * 0.02,
                       ),
                       CustomTextFormField(
-<<<<<<< HEAD
                           emailController,
                           TextInputType.emailAddress,
                           () {},
@@ -71,31 +59,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       CustomTextFormField(phoneController, TextInputType.number,
                           () {}, 'Phone number *', 'type number', () {}, 1),
-=======
-                        controller: _emailController,
-                        inputType: TextInputType.emailAddress,
-                        validate: (s) {},
-                        label: 'Email *',
-                        hint: 'Enter Email',
-                        onTap: () {},
-                      ),
                       SizedBox(
                         height: h * 0.02,
                       ),
                       CustomTextFormField(
-                        controller: _phoneController,
-                        inputType: TextInputType.number,
-                        validate: (s) {},
-                        label: 'Phone number *',
-                        hint: 'type number',
-                        onTap: () {},
-                      ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
-                      SizedBox(
-                        height: h * 0.02,
-                      ),
-                      CustomTextFormField(
-<<<<<<< HEAD
                           passwordController,
                           TextInputType.visiblePassword,
                           () {},
@@ -103,15 +70,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           'type password',
                           () {},
                           1),
-=======
-                        controller: _passwordController,
-                        inputType: TextInputType.visiblePassword,
-                        validate: (s) {},
-                        label: 'Password *',
-                        hint: 'type password',
-                        onTap: () {},
-                      ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
                       SizedBox(
                         height: h * 0.02,
                       ),

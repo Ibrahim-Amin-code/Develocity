@@ -50,7 +50,6 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             SizedBox(
               height: h * 0.04,
             ),
-<<<<<<< HEAD
             CustomTextFormField(nameController, TextInputType.name, () {},
                 'Company Name *', 'Enter name', () {}, 1),
             SizedBox(
@@ -58,27 +57,13 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
                 () {}, 'Location *', 'Enter Location', () {}, 1),
-=======
-                CustomTextFormField(
-                  controller: nameController,
-                  inputType: TextInputType.name,
-                  validate: (){},
-                  label: 'Section Name *',
-                  hint: 'Enter name',
-                  onTap: (){},
-                ),
+            CustomTextFormField(nameController, TextInputType.name, () {},
+                'Section Name *', 'Enter name', () {}, 1),
             SizedBox(
               height: h * 0.02,
             ),
-                CustomTextFormField(
-                  controller: emailController,
-                  inputType: TextInputType.emailAddress,
-                  validate: (){},
-                  label: 'Email *',
-                  hint: 'Enter Email',
-                  onTap: (){},
-                ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
+            CustomTextFormField(emailController, TextInputType.emailAddress,
+                () {}, 'Email *', 'Enter Email', () {}, 1),
             SizedBox(
               height: h * 0.03,
             ),

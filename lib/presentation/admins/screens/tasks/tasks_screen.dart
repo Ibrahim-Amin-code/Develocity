@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../business_logic/app_cubit/app_cubit.dart';
 import '../../../../constants/core/const.dart';
+import '../../../users/widgets/profile_components.dart';
 import '../../widgets/tasks.dart';
-import '../profile/profile_components.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);

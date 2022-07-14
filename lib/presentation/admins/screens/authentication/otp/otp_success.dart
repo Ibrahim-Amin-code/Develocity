@@ -1,6 +1,9 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
+import 'package:develocity/presentation/users/screens/home_layout/home_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constants/core/colors.dart';
 import '../../bottom_nav/layout.dart';
@@ -86,21 +89,31 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen> {
               SizedBox(
                 height: h * 0.15,
               ),
-              defaultButton(
-                  title: 'Go to Dashboard',
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LayoutScreen(
-                                  index: 0,
-                                )));
-                  },
-                  fontSize: 14,
-                  height: h * 0.06,
-                  width: w * 0.95,
-                  color: MyColors.mainColor,
-                  textColor: Colors.white),
+              BlocConsumer<AppCubit, AppState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return defaultButton(
+                      title: 'Go to Dashboard',
+                      onPressed: () {
+                        (AppCubit.get(context).isAdmin)
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LayoutScreen(
+                                          index: 0,
+                                        )))
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeLayoutScreen()));
+                      },
+                      fontSize: 14,
+                      height: h * 0.06,
+                      width: w * 0.95,
+                      color: MyColors.mainColor,
+                      textColor: Colors.white);
+                },
+              ),
               SizedBox(
                 height: h * 0.048,
               ),

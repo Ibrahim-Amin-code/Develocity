@@ -123,19 +123,8 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
             SizedBox(
               height: h * 0.02,
             ),
-<<<<<<< HEAD
             CustomTextFormField(rateController, TextInputType.number, () {},
                 'Rate *', 'Enter Rate Value', () {}, 1),
-=======
-            CustomTextFormField(
-              hint: 'Enter Rate Value',
-              label: 'Rate *',
-              inputType: TextInputType.number,
-              controller: rateController,
-              onTap: () {},
-              validate: (s) {},
-            ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
             SizedBox(
               height: h * 0.005,
             ),
@@ -150,19 +139,8 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
             SizedBox(
               height: h * 0.03,
             ),
-<<<<<<< HEAD
             CustomTextFormField(noteController, TextInputType.text, () {},
                 'Notes *', 'Type Note', () {}, 2),
-=======
-            CustomTextFormField(
-              controller: noteController,
-              onTap: () {},
-              label: 'Notes *',
-              validate: (s) {},
-              inputType: TextInputType.text,
-              hint: 'Type Note',
-            ),
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
             SizedBox(
               height: h * 0.02,
             ),

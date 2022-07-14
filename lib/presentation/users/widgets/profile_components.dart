@@ -58,7 +58,10 @@ class MenuProfileItems extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: width * 0.04),
         child: Row(
           children: [
-            Icon(icon),
+            Icon(
+              icon,
+              color: MyColors.mainColor,
+            ),
             SizedBox(
               width: width * 0.05,
             ),
@@ -67,7 +70,7 @@ class MenuProfileItems extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .bodySmall!
-                  .copyWith(color: Colors.black),
+                  .copyWith(color: MyColors.mainColor),
             ),
           ],
         ),
@@ -125,25 +128,19 @@ class CustomTextFormField extends StatelessWidget {
   Function onTap;
   String label;
   String hint;
-<<<<<<< HEAD:lib/presentation/admins/screens/profile/profile_components.dart
-  int maxLine;
-
-  CustomTextFormField(this.controller, this.inputType, this.validate,
-      this.label, this.hint, this.onTap, this.maxLine);
-=======
   int? maxLine;
+  CustomTextFormField(
+    this.controller,
+    this.inputType,
+    this.validate,
+    this.label,
+    this.hint,
+    this.onTap,
+    this.maxLine,
+  );
 
-
-  CustomTextFormField({
-   required this.controller,
-   required this.inputType,
-   required this.validate,
-   required this.label,
-   required this.hint,
-   required this.onTap,
-   this.maxLine
-  });
->>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc:lib/presentation/users/widgets/profile_components.dart
+  // CustomTextFormField(this.controller, this.inputType, this.validate,
+  //     this.label, this.hint, this.onTap, this.maxLine);
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +170,7 @@ class CustomTextFormField extends StatelessWidget {
             onTap();
           },
           // maxLength: maxLine,
-          maxLines: maxLine,
+
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(
@@ -289,8 +286,6 @@ class LogoutAlertDialog extends StatelessWidget {
 }
 
 class MyDivider extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -321,11 +316,13 @@ class UserHomeItem extends StatelessWidget {
       ),
       shadowColor: MyColors.mainColor,
       child: SizedBox(
-        height: height*0.2,
-        width: width*0.6,
+        height: height * 0.2,
+        width: width * 0.6,
         child: Column(
           children: [
-            SizedBox(height: height*0.01,),
+            SizedBox(
+              height: height * 0.01,
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -347,7 +344,9 @@ class UserHomeItem extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: height*0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             Text(
               '4 New Updates',
               style: Theme.of(context)
@@ -355,7 +354,9 @@ class UserHomeItem extends StatelessWidget {
                   .bodySmall!
                   .copyWith(color: MyColors.mainColor),
             ),
-            SizedBox(height: height*0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -387,7 +388,10 @@ class UserHomeItem extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      Icon(Icons.keyboard_arrow_down,color: Colors.white,),
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.white,
+                      ),
                     ],
                   ),
                 ),
@@ -399,5 +403,3 @@ class UserHomeItem extends StatelessWidget {
     );
   }
 }
-
-

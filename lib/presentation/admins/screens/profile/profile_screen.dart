@@ -58,7 +58,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: const Icon(Icons.arrow_back_outlined)),
           ),
           body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
             child: Stack(
               children: [
                 const Image(
@@ -240,62 +239,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: Column(
                                 children: [
                                   CustomTextFormField(
-                                    controller: _nameController,
-                                    inputType: TextInputType.name,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'Please Enter your name!';
-                                      }
-                                    },
-                                    label: 'Name *',
-                                    hint: 'Type Name',
-                                    onTap: () {},
+                                      _nameController, TextInputType.name,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your name!';
+                                    }
+                                  }, 'Name *', 'Type Name', () {}, 1),
+                                  SizedBox(
+                                    height: height * 0.02,
                                   ),
+                                  CustomTextFormField(_emailController,
+                                      TextInputType.emailAddress,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your email!';
+                                    }
+                                  }, 'Email *', 'Enter Email', () {}, 1),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
                                   CustomTextFormField(
-                                    controller: _emailController,
-                                    inputType: TextInputType.emailAddress,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'Please Enter your email!';
-                                      }
-                                    },
-                                    label: 'Email *',
-                                    hint: 'Enter Email',
-                                    onTap: () {},
-                                  ),
+                                      _phoneController, TextInputType.phone,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your phone!';
+                                    }
+                                  }, 'Phone Number *', 'Type Number', () {}, 1),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  CustomTextFormField(
-                                    controller: _phoneController,
-                                    inputType: TextInputType.phone,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'Please Enter your phone!';
-                                      }
-                                    },
-                                    label: 'Phone Number *',
-                                    hint: 'Type Number',
-                                    onTap: () {},
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.02,
-                                  ),
-                                  CustomTextFormField(
-                                    controller: _passwordController,
-                                    inputType: TextInputType.visiblePassword,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'Please Enter your password!';
-                                      }
-                                    },
-                                    label: 'Password *',
-                                    hint: 'Type Password',
-                                    onTap: () {},
-                                  ),
+                                  CustomTextFormField(_passwordController,
+                                      TextInputType.visiblePassword,
+                                      (String value) {
+                                    if (value.isEmpty) {
+                                      return 'Please Enter your password!';
+                                    }
+                                  }, 'Password *', 'Type Password', () {}, 1),
                                   SizedBox(
                                     height: height * 0.05,
                                   ),

@@ -34,33 +34,21 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTextFormField(
-                controller: _userNameController,
-                inputType: TextInputType.text,
-                validate: (String value) {
-                  if (value.isEmpty) {
-                    return 'Enter user name, please.';
-                  }
-                },
-                label: 'User Name *',
-                hint: 'Enter name',
-                onTap: () {},
-              ),
+              CustomTextFormField(_userNameController, TextInputType.text,
+                  (String value) {
+                if (value.isEmpty) {
+                  return 'Enter user name, please.';
+                }
+              }, 'User Name *', 'Enter name', () {}, 1),
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomTextFormField(
-                controller: _costController,
-                inputType: TextInputType.number,
-                validate: (String value) {
-                  if (value.isEmpty) {
-                    return 'Enter cost, please.';
-                  }
-                },
-                label: 'Cost *',
-                hint: 'Enter cost',
-                onTap: () {},
-              ),
+              CustomTextFormField(_costController, TextInputType.number,
+                  (String value) {
+                if (value.isEmpty) {
+                  return 'Enter cost, please.';
+                }
+              }, 'Cost *', 'Enter cost', () {}, 1),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -68,9 +56,10 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                 padding: const EdgeInsets.all(3.0),
                 child: Text(
                   'Admin *',
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontSize: 14.0
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 14.0),
                 ),
               ),
               DropdownButtonFormField2(
@@ -99,7 +88,7 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                 buttonHeight: 65,
                 buttonPadding: const EdgeInsets.only(left: 20, right: 10),
                 decoration: InputDecoration(
-                contentPadding: EdgeInsets.zero,
+                  contentPadding: EdgeInsets.zero,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: MyColors.hintColor,
@@ -136,19 +125,12 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomTextFormField(
-                controller: _taskNameController,
-                maxLine: 9,
-                inputType: TextInputType.text,
-                validate: (String value) {
-                  if (value.isEmpty) {
-                    return 'type requirements which you need';
-                  }
-                },
-                label: 'Task *',
-                hint: 'type requirements which you need',
-                onTap: () {},
-              ),
+              CustomTextFormField(_taskNameController, TextInputType.text,
+                  (String value) {
+                if (value.isEmpty) {
+                  return 'type requirements which you need';
+                }
+              }, 'Task *', 'type requirements which you need', () {}, 9),
               SizedBox(
                 height: height * 0.03,
               ),
