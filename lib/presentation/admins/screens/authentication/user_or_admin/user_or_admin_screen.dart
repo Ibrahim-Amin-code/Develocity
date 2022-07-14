@@ -2,6 +2,7 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -114,6 +115,10 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                           onTap: () {
                             AppCubit.get(context).userOrAdmin(
                                 isUserClicked: true, isAdminClicked: false);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UserHomeLayoutScreen()));
                           },
                           imageColor: (AppCubit.get(context).isUser == true)
                               ? MyColors.mainColor

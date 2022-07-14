@@ -285,21 +285,6 @@ class LogoutAlertDialog extends StatelessWidget {
   }
 }
 
-class MyDivider extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(
-        start: 20.0,
-      ),
-      child: Container(
-        height: 1.0,
-        width: double.infinity,
-        color: Colors.grey[300],
-      ),
-    );
-  }
-}
 
 class UserHomeItem extends StatelessWidget {
   const UserHomeItem({Key? key}) : super(key: key);

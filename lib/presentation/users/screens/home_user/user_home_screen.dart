@@ -1,6 +1,6 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/main.dart';
-import 'package:develocity/presentation/users/widgets/profile_components.dart';
+import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
 
 class UserHomeScreen extends StatelessWidget {
@@ -8,14 +8,8 @@ class UserHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
@@ -25,10 +19,7 @@ class UserHomeScreen extends StatelessWidget {
           children: [
             Text(
               'Tasks',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .titleMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(
               height: height * 0.05,
@@ -37,8 +28,7 @@ class UserHomeScreen extends StatelessWidget {
               children: [
                 Text(
                   'Personal Tasks',
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .bodySmall!
                       .copyWith(fontSize: 14.0, fontWeight: FontWeight.w500),
@@ -50,10 +40,7 @@ class UserHomeScreen extends StatelessWidget {
                   backgroundColor: MyColors.mainColor.withOpacity(0.2),
                   child: Text(
                     '2',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
               ],
@@ -68,25 +55,21 @@ class UserHomeScreen extends StatelessWidget {
                   color: MyColors.mainColor,
                 ),
                 Text('Today  22/7/2022',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall),
+                    style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
-            SizedBox(height: height * 0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               child: Row(
-                children: [
-                  UserHomeItem(),
-                  SizedBox(width: width*0.02,),
+                children: const [
                   UserHomeItem(),
                   UserHomeItem(),
-                  SizedBox(width: width*0.02,),
                   UserHomeItem(),
-
+                  UserHomeItem(),
                 ],
               ),
             ),
@@ -99,26 +82,21 @@ class UserHomeScreen extends StatelessWidget {
                   Icons.date_range_outlined,
                   color: MyColors.mainColor,
                 ),
-                Text('This Week',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall),
+                Text('This Week', style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
-            SizedBox(height: height * 0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               child: Row(
-                children: [
-                  UserHomeItem(),
-                  SizedBox(width: width*0.02,),
+                children: const [
                   UserHomeItem(),
                   UserHomeItem(),
-                  SizedBox(width: width*0.02,),
                   UserHomeItem(),
-
+                  UserHomeItem(),
                 ],
               ),
             ),
@@ -129,8 +107,7 @@ class UserHomeScreen extends StatelessWidget {
               children: [
                 Text(
                   'Team Tasks',
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .bodySmall!
                       .copyWith(fontSize: 14.0, fontWeight: FontWeight.w500),
@@ -142,10 +119,7 @@ class UserHomeScreen extends StatelessWidget {
                   backgroundColor: MyColors.mainColor.withOpacity(0.2),
                   child: Text(
                     '4',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
               ],
@@ -160,25 +134,21 @@ class UserHomeScreen extends StatelessWidget {
                   color: MyColors.mainColor,
                 ),
                 Text('Today  22/7/2022',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall),
+                    style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
-            SizedBox(height: height * 0.02,),
+            SizedBox(
+              height: height * 0.02,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               child: Row(
-                children: [
-                  UserHomeItem(),
-                  SizedBox(width: width*0.02,),
+                children: const [
                   UserHomeItem(),
                   UserHomeItem(),
-                  SizedBox(width: width*0.02,),
                   UserHomeItem(),
-
+                  UserHomeItem(),
                 ],
               ),
             ),

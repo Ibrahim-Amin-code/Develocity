@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
-import 'package:develocity/presentation/users/screens/home_layout/home_layout.dart';
+import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -105,7 +105,7 @@ class _OtpSuccessScreenState extends State<OtpSuccessScreen> {
                             : Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeLayoutScreen()));
+                                    builder: (context) => UserHomeLayoutScreen()));
                       },
                       fontSize: 14,
                       height: h * 0.06,

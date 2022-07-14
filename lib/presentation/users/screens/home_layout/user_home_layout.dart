@@ -4,16 +4,17 @@ import 'package:develocity/presentation/users/users_cubit/user_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeLayoutScreen extends StatefulWidget {
+class UserHomeLayoutScreen extends StatefulWidget {
   @override
-  State<HomeLayoutScreen> createState() => _HomeLayoutScreenState();
+  State<UserHomeLayoutScreen> createState() => _UserHomeLayoutScreenState();
 }
 
-class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
+class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     var cubit = UserCubit.get(context);
     return BlocConsumer<UserCubit, UserStates>(
       listener: (context, state) {},
@@ -28,13 +29,20 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
             ),
             actions: [
               cubit.currentIndex == 0
-                  ? IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.notifications,
-                        color: MyColors.mainColor,
+                  ? InkWell(
+                onTap: (){},
+                    child: Container(
+                      height: height * 0.05,
+                      width: width * 0.1,
+                      decoration: BoxDecoration(
+                        color:Colors.white,
+                        image: const DecorationImage(
+                            image: AssetImage('assets/images/carbon_notification-new.png')
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                    )
+                    ),
+                  )
                   : IconButton(
                       onPressed: () {},
                       icon: Icon(

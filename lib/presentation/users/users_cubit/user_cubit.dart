@@ -15,11 +15,11 @@ class UserCubit extends Cubit<UserStates> {
   var currentIndex = 0;
   List<BottomNavigationBarItem> bottomNavItems = [
     const BottomNavigationBarItem(
-      icon: const Icon(Icons.home),
+      icon:  Icon(Icons.home),
       label: 'Home',
     ),
     const BottomNavigationBarItem(
-      icon: const Icon(Icons.stars),
+      icon:  Icon(Icons.stars),
       label: 'Rate',
     ),
     const BottomNavigationBarItem(
@@ -27,7 +27,7 @@ class UserCubit extends Cubit<UserStates> {
       label: 'Complaints',
     ),
     const BottomNavigationBarItem(
-      icon: const Icon(Icons.error),
+      icon:  Icon(Icons.error),
       label: 'Requirements',
     ),
   ];

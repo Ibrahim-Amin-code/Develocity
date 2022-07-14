@@ -1,5 +1,5 @@
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/presentation/users/widgets/profile_components.dart';
+import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class UserRateScreen extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: MyColors.mainColor, fontSize: 20.0),
+                        .copyWith(color: MyColors.mainColor, fontSize: 20.0,),
                   ),
                 ),
                 TextButton(
@@ -47,12 +47,10 @@ class UserRateScreen extends StatelessWidget {
                     width: width * 0.1,
                     decoration: BoxDecoration(
                       color: MyColors.mainColor,
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/filter.png')
+                      ),
                       borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: const Icon(
-                      Icons.filter_list_sharp,
-                      color: Colors.white,
-                      size: 30.0,
                     ),
                   ),
                 )
@@ -161,7 +159,7 @@ class UserRateScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   onPressed: () {},
-                  color: MyColors.mainColor.withOpacity(0.2),
+                  color: MyColors.mainColor.withOpacity(0.25),
                   child: Text(
                     'View',
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(

@@ -1,5 +1,5 @@
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/presentation/users/widgets/profile_components.dart';
+import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 

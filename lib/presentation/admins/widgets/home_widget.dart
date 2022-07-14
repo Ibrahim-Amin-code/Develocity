@@ -161,7 +161,7 @@ Widget buildHomeGrid(context) {
                                   color: Color(0xffDC6465),
                                 ),
                                 Text(
-                                  '1 week left',
+                                  '1week left',
                                   style: headingStyle.copyWith(
                                       fontSize: w * 0.023,
                                       color: const Color(0xffDC6465),
