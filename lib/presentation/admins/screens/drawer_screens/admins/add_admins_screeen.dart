@@ -2,10 +2,10 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/drawer_widget.dart';
-import '../../profile/profile_components.dart';
 
 class AddAdminsScreeen extends StatefulWidget {
   const AddAdminsScreeen({Key? key}) : super(key: key);
@@ -68,6 +68,24 @@ class _AddAdminsScreeenState extends State<AddAdminsScreeen> {
                 'Enter Password',
                 () {},
                 1),
+            CustomTextFormField(nameController, TextInputType.name, () {},
+                'Section Name *', 'Enter name', () {}, 1),
+            SizedBox(
+              height: h * 0.02,
+            ),
+            CustomTextFormField(emailController, TextInputType.emailAddress,
+                () {}, 'Email *', 'Enter Email', () {}, 1),
+            SizedBox(
+              height: h * 0.02,
+            ),
+            CustomTextFormField(
+                passwordController,
+                TextInputType.visiblePassword,
+                () {},
+                'Password *',
+                'Enter Password',
+                () {},
+                11),
             SizedBox(
               height: h * 0.04,
             ),

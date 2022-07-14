@@ -1,11 +1,10 @@
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
-import 'package:develocity/presentation/admins/screens/profile/profile_components.dart';
+import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
+import 'package:develocity/presentation/admins/screens/profile/cubit/state.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-
-import '../../widgets/admin_profile_widget.dart';
-import 'edit_profile.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,45 +15,311 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final _keyForm = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-        appBar: adminProfileAppBar(
-            context: context, onTapSearch: () {}, title: 'Profile'),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const AdminProfileCard(),
-            SizedBox(
-              height: h * 0.07,
+    ProfileCubit _cubit = ProfileCubit.get(context);
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return BlocConsumer<ProfileCubit, ProfileStates>(
+      listener: (BuildContext context, state) {},
+      builder: (BuildContext context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: MyColors.mainColor,
             ),
-            MenuProfileItems(
-                icon: 'assets/images/edit.png',
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EditProfileScreen()));
-                },
-                text: 'Settings'),
-            SizedBox(
-              height: h * 0.02,
+            backgroundColor: MyColors.mainColor,
+            centerTitle: true,
+            title: Text(
+              'Profile',
+              style: headingStyle.copyWith(
+                color: Colors.white,
+                fontFamily: 'SF Pro Display',
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            MenuProfileItems(
-                icon: 'assets/images/out.png',
-                onTap: () {
-                  showExitPopup(context);
+            elevation: 0.0,
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+            ],
+            leading: IconButton(
+                onPressed: () {
+                  _cubit.profileEditing
+                      ? _cubit.profileEdit()
+                      : Navigator.of(context).pop();
                 },
-                text: 'Logout'),
-          ],
-        ));
+                icon: const Icon(Icons.arrow_back_outlined)),
+          ),
+          body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Stack(
+              children: [
+                const Image(
+                  image: AssetImage('assets/images/0.png'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: height * 0.08,
+                      ),
+                      SizedBox(
+                        height: height * 0.37,
+                        child: Stack(
+                          alignment: AlignmentDirectional.topCenter,
+                          children: [
+                            Center(
+                              child: Card(
+                                color: Colors.white,
+                                elevation: 1.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                shadowColor: MyColors.mainColor,
+                                child: SizedBox(
+                                  width: width * 0.9,
+                                  height: height * 0.24,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: height * 0.06,
+                                        ),
+                                        !_cubit.profileEditing
+                                            ? Column(
+                                                children: [
+                                                  Text(
+                                                    'Samaa Samir',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                            color: MyColors
+                                                                .mainColor),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  Text(
+                                                    'UI/UX Design',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.black),
+                                                  ),
+                                                ],
+                                              )
+                                            : CustomButton(
+                                                height: height * 0.05,
+                                                width: width * 0.05,
+                                                onPressed: () {},
+                                                text: 'Change Picture',
+                                              ),
+                                        SizedBox(
+                                          height: height * 0.04,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            CardProfileInfo(
+                                                text: 'Mansoura, Egypt',
+                                                icon: Icons.location_on),
+                                            SizedBox(
+                                              width: width * 0.005,
+                                              child: Container(
+                                                height: height * 0.02,
+                                                color: MyColors.mainColor
+                                                    .withOpacity(0.5),
+                                              ),
+                                            ),
+                                            CardProfileInfo(
+                                                text: '2653 Tasks Completed',
+                                                icon: Icons.work),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Stack(
+                              alignment: AlignmentDirectional.bottomEnd,
+                              children: [
+                                const CircleAvatar(
+                                  radius: 50.0,
+                                  child: Image(
+                                    image: AssetImage(
+                                      'assets/images/img.png',
+                                    ),
+                                  ),
+                                ),
+                                if (!_cubit.profileEditing)
+                                  GestureDetector(
+                                    onTap: () {
+                                      _cubit.profileEdit();
+                                    },
+                                    child: Container(
+                                      padding:
+                                          const EdgeInsetsDirectional.all(1.0),
+                                      height: height * 0.033,
+                                      width: width * 0.07,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                            color: MyColors.mainColor,
+                                            width: 2.0),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: MyColors.mainColor,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                      !_cubit.profileEditing
+                          ? Container(
+                              color: Colors.white,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  MenuProfileItems(
+                                    text: 'Settings',
+                                    icon: Icons.settings,
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  MenuProfileItems(
+                                    text: 'Logout',
+                                    icon: Icons.logout,
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return LogoutAlertDialog(
+                                                'Logout of Develocity?',
+                                                'Remember my login info',
+                                                'Logout',
+                                                () {},
+                                                'Cancel', () {
+                                              Navigator.of(context).pop();
+                                            });
+                                          });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Form(
+                              key: _keyForm,
+                              child: Column(
+                                children: [
+                                  CustomTextFormField(
+                                    controller: _nameController,
+                                    inputType: TextInputType.name,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your name!';
+                                      }
+                                    },
+                                    label: 'Name *',
+                                    hint: 'Type Name',
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(
+                                    controller: _emailController,
+                                    inputType: TextInputType.emailAddress,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your email!';
+                                      }
+                                    },
+                                    label: 'Email *',
+                                    hint: 'Enter Email',
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(
+                                    controller: _phoneController,
+                                    inputType: TextInputType.phone,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your phone!';
+                                      }
+                                    },
+                                    label: 'Phone Number *',
+                                    hint: 'Type Number',
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  CustomTextFormField(
+                                    controller: _passwordController,
+                                    inputType: TextInputType.visiblePassword,
+                                    validate: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Please Enter your password!';
+                                      }
+                                    },
+                                    label: 'Password *',
+                                    hint: 'Type Password',
+                                    onTap: () {},
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.05,
+                                  ),
+                                  CustomButton(
+                                      onPressed: () {
+                                        if (_keyForm.currentState!.validate()) {
+                                          print(_nameController.text);
+                                          print(_phoneController.text);
+                                          print(_emailController.text);
+                                          print(_passwordController.text);
+                                        }
+                                      },
+                                      text: 'Edit')
+                                ],
+                              ),
+                            ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

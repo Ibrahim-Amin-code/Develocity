@@ -2,10 +2,10 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/drawer_widget.dart';
-import '../../profile/profile_components.dart';
 
 class AddBranchScreeen extends StatefulWidget {
   const AddBranchScreeen({Key? key}) : super(key: key);
@@ -50,6 +50,7 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             SizedBox(
               height: h * 0.04,
             ),
+<<<<<<< HEAD
             CustomTextFormField(nameController, TextInputType.name, () {},
                 'Company Name *', 'Enter name', () {}, 1),
             SizedBox(
@@ -57,6 +58,27 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
                 () {}, 'Location *', 'Enter Location', () {}, 1),
+=======
+                CustomTextFormField(
+                  controller: nameController,
+                  inputType: TextInputType.name,
+                  validate: (){},
+                  label: 'Section Name *',
+                  hint: 'Enter name',
+                  onTap: (){},
+                ),
+            SizedBox(
+              height: h * 0.02,
+            ),
+                CustomTextFormField(
+                  controller: emailController,
+                  inputType: TextInputType.emailAddress,
+                  validate: (){},
+                  label: 'Email *',
+                  hint: 'Enter Email',
+                  onTap: (){},
+                ),
+>>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
             SizedBox(
               height: h * 0.03,
             ),

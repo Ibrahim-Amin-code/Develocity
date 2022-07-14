@@ -34,6 +34,16 @@ ThemeData lightTheme = ThemeData(
   cardColor: MyColors.backgroundColor,
   backgroundColor: Colors.white,
   iconTheme: IconThemeData(color: MyColors.unselectedIconColor),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: MyColors.mainColor,
+    selectedIconTheme: const IconThemeData(
+      size: 30,
+    ),
+    elevation: 20.0,
+    backgroundColor: Colors.white,
+    unselectedItemColor: MyColors.unselectedIconColor,
+  ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.white,
     systemOverlayStyle: SystemUiOverlayStyle(

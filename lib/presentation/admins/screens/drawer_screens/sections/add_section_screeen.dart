@@ -3,10 +3,9 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/users/widgets/profile_components.dart';
 import 'package:flutter/material.dart';
-
 import '../../../widgets/drawer_widget.dart';
-import '../../profile/profile_components.dart';
 
 class AddSectionScreeen extends StatefulWidget {
   const AddSectionScreeen({Key? key}) : super(key: key);
@@ -56,8 +55,19 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
           SizedBox(
             height: h * 0.04,
           ),
+<<<<<<< HEAD
           CustomTextFormField(nameController, TextInputType.name, () {},
               'Section Name *', 'Enter name', () {}, 1),
+=======
+          CustomTextFormField(
+            controller: nameController,
+            inputType: TextInputType.name,
+            validate: (){},
+            label: 'Section Name *',
+            hint: 'Enter name',
+            onTap: (){},
+          ),
+>>>>>>> c4e7213069236b9d276da4bd685c99bff0adbbcc
           SizedBox(
             height: h * 0.02,
           ),
