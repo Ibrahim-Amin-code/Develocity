@@ -56,12 +56,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddUsersScreeen()));
-                  },
+                  onTap: () {},
                   child: Image.asset(
                     'assets/images/filter.png',
                     width: w * 0.1,

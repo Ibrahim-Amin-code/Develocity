@@ -42,7 +42,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: Column(
                     children: [
                       CustomTextFormField(nameController, TextInputType.name,
-                          () {}, 'Name *', 'type name', () {}),
+                          () {}, 'Name *', 'type name', () {}, 1),
                       SizedBox(
                         height: h * 0.02,
                       ),
@@ -52,12 +52,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           () {},
                           'Email *',
                           'Enter Email',
-                          () {}),
+                          () {},
+                          1),
                       SizedBox(
                         height: h * 0.02,
                       ),
                       CustomTextFormField(phoneController, TextInputType.number,
-                          () {}, 'Phone number *', 'type number', () {}),
+                          () {}, 'Phone number *', 'type number', () {}, 1),
                       SizedBox(
                         height: h * 0.02,
                       ),
@@ -67,7 +68,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           () {},
                           'Password *',
                           'type password',
-                          () {}),
+                          () {},
+                          1),
                       SizedBox(
                         height: h * 0.02,
                       ),

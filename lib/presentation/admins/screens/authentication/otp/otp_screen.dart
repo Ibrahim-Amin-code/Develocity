@@ -143,9 +143,9 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
 
           SizedBox(
-            height: h * 0.09,
+            height: h * 0.08,
           ),
-          const Spacer(),
+          // const Spacer(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.2, vertical: 5),
             child: Form(
@@ -204,7 +204,7 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
           ),
-          SizedBox(height: h * 0.01),
+          // SizedBox(height: h * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

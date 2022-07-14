@@ -57,7 +57,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
             height: h * 0.04,
           ),
           CustomTextFormField(nameController, TextInputType.name, () {},
-              'Section Name *', 'Enter name', () {}),
+              'Section Name *', 'Enter name', () {}, 1),
           SizedBox(
             height: h * 0.02,
           ),

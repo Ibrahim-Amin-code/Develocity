@@ -3,7 +3,54 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'colors.dart';
+
+Future<bool> showTaskPopup({context, required String title}) async {
+  return await showDialog(
+        useSafeArea: true,
+        useRootNavigator: true,
+        context: context,
+        barrierDismissible: true,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          title: SizedBox(
+            height: 20,
+          ),
+          elevation: 0.0,
+          actions: [
+            Column(
+              children: [
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: headingStyle.copyWith(
+                      color: MyColors.mainColor,
+                      fontFamily: 'SF Pro Display',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                defaultButton(
+                    title: 'Back',
+                    onPressed: () {},
+                    fontSize: 16,
+                    height: 40,
+                    width: 325,
+                    color: MyColors.mainColor,
+                    textColor: Colors.white),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ) ??
+      false;
+}
 
 AppBar csutomAppBar({
   required String image,

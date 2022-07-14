@@ -2,6 +2,10 @@
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/fab_buttom.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/admins/add_admins_screeen.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/branches/add_branch_screeen.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/sections/add_section_screeen.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/users/add_user_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
 import '../home/home_screen.dart';
@@ -53,17 +57,72 @@ class _LayoutScreenState extends State<LayoutScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // setState(() {
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (context) => SubCategoriesScreen(
-            //                 catItem: HomeCubit.get(context)
-            //                     .homeitemsModel!
-            //                     .data!
-            //                     .categories!,
-            //               )));
-            // });
+            /**assets/images/Vector (1).png',
+
+assets/images/branches.png',
+  
+assets/images/sections.png',
+  
+assets/images/admins.png',
+     */
+            homeBottomSheet(
+                context: context,
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.45,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildListTileBottomSheet(
+                          title: 'Add Admin',
+                          image: 'assets/images/Vector (1).png',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddAdminsScreeen()));
+                          }),
+                      buildListTileBottomSheet(
+                          title: 'Add branches',
+                          image: 'assets/images/branches.png',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddBranchScreeen()));
+                          }),
+                      buildListTileBottomSheet(
+                          title: 'Add Sections',
+                          image: 'assets/images/sections.png',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddSectionScreeen()));
+                          }),
+                      buildListTileBottomSheet(
+                          title: 'Add User',
+                          image: 'assets/images/admins.png',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddUsersScreeen()));
+                          }),
+                      buildListTileBottomSheet(
+                          title: 'Add Task',
+                          image: 'assets/images/tasks.png',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LayoutScreen(
+                                          index: 1,
+                                        )));
+                          }),
+                    ],
+                  ),
+                ));
           },
           backgroundColor: MyColors.mainColor,
           child: Icon(
@@ -98,19 +157,53 @@ class _LayoutScreenState extends State<LayoutScreen> {
     );
   }
 
+  homeBottomSheet({context, child}) {
+    var w = MediaQuery.of(context).size.width;
+
+    return showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(w * 0.07),
+            topLeft: Radius.circular(w * 0.07)),
+      ),
+      isDismissible: true,
+      context: context,
+      builder: (context) => child,
+    );
+  }
+
+  Widget buildListTileBottomSheet({
+    required String title,
+    required String image,
+    required GestureTapCallback? onTap,
+  }) =>
+      ListTile(
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 50,
+        ),
+        leading: Image.asset(
+          image,
+          color: MyColors.mainColor,
+        ),
+        title: Text(
+          title,
+          style: headingStyle.copyWith(
+              color: MyColors.mainColor,
+              fontFamily: 'SF Pro Display',
+              fontSize: 16,
+              fontWeight: FontWeight.w500),
+        ),
+        onTap: onTap,
+      );
+
   Future<bool> showExitPopup() async {
     return await showDialog(
           useSafeArea: true,
-
-          // barrierColor: Colors.transparent,
           useRootNavigator: true,
           context: context,
           barrierDismissible: true,
-          // barrierColor: Colors.white24,
           builder: (context) => AlertDialog(
             backgroundColor: Colors.white,
-
-            //#006EE966
             title: Center(
               child: Text(
                 "Logout of Develocity?",
@@ -131,7 +224,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
                   fontWeight: FontWeight.w500),
             ),
             elevation: 0.0,
-
             actions: [
               defaultButton(
                   title: 'Logout',

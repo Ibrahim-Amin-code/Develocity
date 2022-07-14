@@ -124,7 +124,7 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
               height: h * 0.02,
             ),
             CustomTextFormField(rateController, TextInputType.number, () {},
-                'Rate *', 'Enter Rate Value', () {}),
+                'Rate *', 'Enter Rate Value', () {}, 1),
             SizedBox(
               height: h * 0.005,
             ),
@@ -140,7 +140,7 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
               height: h * 0.03,
             ),
             CustomTextFormField(noteController, TextInputType.text, () {},
-                'Notes *', 'Type Note', () {}),
+                'Notes *', 'Type Note', () {}, 2),
             SizedBox(
               height: h * 0.02,
             ),

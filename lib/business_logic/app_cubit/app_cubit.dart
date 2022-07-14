@@ -20,6 +20,18 @@ class AppCubit extends Cubit<AppState> {
     emit(UserOrAdminState());
   }
 
+  bool isIndividualTask = false;
+  bool isTeamTask = false;
+
+  void individualOrTeamTask({
+    required bool isIndividualClicked,
+    required bool isTeamTaskClicked,
+  }) {
+    isIndividualTask = isIndividualClicked;
+    isTeamTask = isTeamTaskClicked;
+    emit(IndividualOrTeamTask());
+  }
+
   int? selectRadio = 0;
   void changeRadio(int? select) {
     selectRadio == select;

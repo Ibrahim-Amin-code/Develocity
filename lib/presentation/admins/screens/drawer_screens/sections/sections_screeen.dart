@@ -56,12 +56,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddSectionScreeen()));
-                  },
+                  onTap: () {},
                   child: Image.asset(
                     'assets/images/filter.png',
                     width: w * 0.1,

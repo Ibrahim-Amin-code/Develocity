@@ -128,7 +128,6 @@ Widget buildDrawerWidget({required context}) {
                       MaterialPageRoute(
                           builder: (context) => BranchesScreeen()));
                 }),
-
             SizedBox(
               height: h * 0.01,
             ),
@@ -143,7 +142,6 @@ Widget buildDrawerWidget({required context}) {
                 image: 'assets/images/sections.png',
                 onPress: () {
                   AppCubit.get(context).changeColor('Sections');
-
                   Navigator.push(
                       context,
                       MaterialPageRoute(

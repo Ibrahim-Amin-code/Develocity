@@ -74,12 +74,12 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
               height: h * 0.04,
             ),
             CustomTextFormField(nameController, TextInputType.name, () {},
-                'User Name *', 'Enter name', () {}),
+                'User Name *', 'Enter name', () {}, 1),
             SizedBox(
               height: h * 0.02,
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Email *', 'Enter Email', () {}),
+                () {}, 'Email *', 'Enter Email', () {}, 1),
             SizedBox(
               height: h * 0.02,
             ),
@@ -89,7 +89,8 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
                 () {},
                 'Password *',
                 'Enter Password',
-                () {}),
+                () {},
+                1),
             SizedBox(
               height: h * 0.02,
             ),

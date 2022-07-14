@@ -222,6 +222,7 @@ Widget defaultButton({
       width: width,
       margin: margin,
       decoration: BoxDecoration(
+        border: Border.all(color: Color(0xff050D60DF)),
         color: color,
         borderRadius: BorderRadius.circular(10),
 

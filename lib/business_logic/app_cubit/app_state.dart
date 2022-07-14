@@ -10,3 +10,5 @@ class UserOrAdminState extends AppState {}
 class ChangeRadioState extends AppState {}
 
 class ChangeColorState extends AppState {}
+
+class IndividualOrTeamTask extends AppState {}

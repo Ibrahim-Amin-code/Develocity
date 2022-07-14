@@ -51,12 +51,12 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
               height: h * 0.04,
             ),
             CustomTextFormField(nameController, TextInputType.name, () {},
-                'Company Name *', 'Enter name', () {}),
+                'Company Name *', 'Enter name', () {}, 1),
             SizedBox(
               height: h * 0.02,
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Location *', 'Enter Location', () {}),
+                () {}, 'Location *', 'Enter Location', () {}, 1),
             SizedBox(
               height: h * 0.03,
             ),

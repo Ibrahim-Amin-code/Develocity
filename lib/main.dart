@@ -2,10 +2,13 @@ import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/theme/themes.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/splash/splash.dart';
+import 'package:develocity/presentation/admins/screens/tasks/tasks_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
+
+import 'constants/network/bloc_observer.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -14,7 +17,13 @@ void main() async {
       statusBarBrightness: Brightness.dark,
     ),
   );
-  runApp(const MyApp());
+
+  BlocOverrides.runZoned(
+    () {
+      runApp(MyApp());
+    },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
