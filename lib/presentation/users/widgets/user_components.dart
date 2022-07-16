@@ -9,8 +9,14 @@ class CardProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -24,7 +30,8 @@ class CardProfileInfo extends StatelessWidget {
         ),
         Text(
           text,
-          style: Theme.of(context)
+          style: Theme
+              .of(context)
               .textTheme
               .bodySmall!
               .copyWith(color: Colors.black),
@@ -47,8 +54,14 @@ class MenuProfileItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return MaterialButton(
       height: height * 0.07,
       onPressed: () {
@@ -67,7 +80,8 @@ class MenuProfileItems extends StatelessWidget {
             ),
             Text(
               text,
-              style: Theme.of(context)
+              style: Theme
+                  .of(context)
                   .textTheme
                   .bodySmall!
                   .copyWith(color: MyColors.mainColor),
@@ -129,15 +143,14 @@ class CustomTextFormField extends StatelessWidget {
   String label;
   String hint;
   int? maxLine;
-  CustomTextFormField(
-    this.controller,
-    this.inputType,
-    this.validate,
-    this.label,
-    this.hint,
-    this.onTap,
-    this.maxLine,
-  );
+
+  CustomTextFormField(this.controller,
+      this.inputType,
+      this.validate,
+      this.label,
+      this.hint,
+      this.onTap,
+      this.maxLine,);
 
   // CustomTextFormField(this.controller, this.inputType, this.validate,
   //     this.label, this.hint, this.onTap, this.maxLine);
@@ -222,19 +235,23 @@ class LogoutAlertDialog extends StatelessWidget {
   String cancelText;
   Function cancelOnPressed;
 
-  LogoutAlertDialog(
-    this.title,
-    this.bodyText,
-    this.buttonText,
-    this.buttonOnPressed,
-    this.cancelText,
-    this.cancelOnPressed,
-  );
+  LogoutAlertDialog(this.title,
+      this.bodyText,
+      this.buttonText,
+      this.buttonOnPressed,
+      this.cancelText,
+      this.cancelOnPressed,);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return AlertDialog(
       elevation: 0.0,
       scrollable: true,
@@ -244,7 +261,10 @@ class LogoutAlertDialog extends StatelessWidget {
       title: Center(
         child: Text(
           title,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme
+              .of(context)
+              .textTheme
+              .titleMedium,
         ),
       ),
       content: Column(
@@ -258,7 +278,10 @@ class LogoutAlertDialog extends StatelessWidget {
               Checkbox(value: true, onChanged: (s) {}),
               Text(
                 bodyText,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .bodySmall,
               )
             ],
           ),
@@ -285,14 +308,19 @@ class LogoutAlertDialog extends StatelessWidget {
   }
 }
 
-
 class UserHomeItem extends StatelessWidget {
   const UserHomeItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Card(
       color: Colors.white,
       elevation: 3.0,
@@ -322,10 +350,21 @@ class UserHomeItem extends StatelessWidget {
                 SizedBox(
                   width: width * 0.02,
                 ),
-                CircleAvatar(
-                  backgroundColor: MyColors.mainColor.withOpacity(0.2),
-                  child: const Icon(Icons.edit),
-                  radius: 20,
+                InkWell(
+                  onTap: () {},
+                  child: CircleAvatar(
+                    backgroundColor: MyColors.mainColor.withOpacity(0.2),
+                    child: Container(
+                      height: height * 0.03,
+                      width: width * 0.1,
+                      decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage('assets/images/edit-line.png')),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    radius: 20,
+                  ),
                 ),
               ],
             ),
@@ -334,7 +373,8 @@ class UserHomeItem extends StatelessWidget {
             ),
             Text(
               '4 New Updates',
-              style: Theme.of(context)
+              style: Theme
+                  .of(context)
                   .textTheme
                   .bodySmall!
                   .copyWith(color: MyColors.mainColor),
@@ -383,6 +423,53 @@ class UserHomeItem extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class IconsOnTap extends StatelessWidget {
+  String icon;
+  Function onTap;
+  double? padding;
+  double? height;
+  double? width;
+  double? raduis;
+
+  IconsOnTap({
+    required this.icon,
+    required this.onTap,
+    this.padding,
+    this.height,
+    this.width,
+    this.raduis,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    double h = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double w = MediaQuery
+        .of(context)
+        .size
+        .width;
+    return InkWell(
+      onTap: () {
+        onTap();
+      },
+      child: Padding(
+        padding: EdgeInsets.all(padding ?? 8.0),
+        child: Container(
+          height: height ?? h * 0.05,
+          width: width ?? w * 0.1,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(image: AssetImage(icon)),
+            borderRadius: BorderRadius.circular(raduis ?? 10.0),
+          ),
         ),
       ),
     );

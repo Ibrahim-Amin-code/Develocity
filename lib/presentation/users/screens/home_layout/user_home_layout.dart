@@ -1,6 +1,8 @@
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/users/screens/home_layout/user_fab_buttom.dart';
 import 'package:develocity/presentation/users/users_cubit/user_cubit.dart';
 import 'package:develocity/presentation/users/users_cubit/user_state.dart';
+import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +12,6 @@ class UserHomeLayoutScreen extends StatefulWidget {
 }
 
 class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -29,20 +30,10 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
             ),
             actions: [
               cubit.currentIndex == 0
-                  ? InkWell(
-                onTap: (){},
-                    child: Container(
-                      height: height * 0.05,
-                      width: width * 0.1,
-                      decoration: BoxDecoration(
-                        color:Colors.white,
-                        image: const DecorationImage(
-                            image: AssetImage('assets/images/carbon_notification-new.png')
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  )
+                  ? IconsOnTap(
+                      icon: 'assets/images/carbon_notification-new.png',
+                      onTap: () {},
+                    )
                   : IconButton(
                       onPressed: () {},
                       icon: Icon(
@@ -52,12 +43,9 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
                     ),
             ],
             leading: cubit.currentIndex == 0
-                ? IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.menu,
-                      color: MyColors.mainColor,
-                    ),
+                ? IconsOnTap(
+                    icon: 'assets/images/eva_menu-outline.png',
+                    onTap: () {},
                   )
                 : IconButton(
                     onPressed: () {
@@ -71,12 +59,17 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
                     ),
                   ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: cubit.currentIndex,
-            items: cubit.bottomNavItems,
-            onTap: (index) {
-              cubit.changeBottomNavBar(index);
+          bottomNavigationBar: UserFABBottomAppBar(
+            onTabSelected: (index) {
+              setState(() {
+                cubit.currentIndex = index;
+              });
             },
+            items: cubit.bottomNavItems,
+            backgroundColor: Colors.white,
+            centerItemText: '',
+            color: const Color(0xff80535763),
+            selectedColor: MyColors.mainColor,
           ),
           body: cubit.screens[cubit.currentIndex],
         );
