@@ -1,4 +1,5 @@
 import 'package:develocity/presentation/users/screens/compliants_user/user_complaints_screen.dart';
+import 'package:develocity/presentation/users/screens/home_layout/user_fab_buttom.dart';
 import 'package:develocity/presentation/users/screens/home_user/user_home_screen.dart';
 import 'package:develocity/presentation/users/screens/rate_user/user_rate_screen.dart';
 import 'package:develocity/presentation/users/screens/requirements_user/user_requirements_screen.dart';
@@ -13,23 +14,15 @@ class UserCubit extends Cubit<UserStates> {
   static UserCubit get(context) => BlocProvider.of(context);
 
   var currentIndex = 0;
-  List<BottomNavigationBarItem> bottomNavItems = [
-    const BottomNavigationBarItem(
-      icon: const Icon(Icons.home),
-      label: 'Home',
-    ),
-    const BottomNavigationBarItem(
-      icon: const Icon(Icons.stars),
-      label: 'Rate',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.markunread_mailbox),
-      label: 'Complaints',
-    ),
-    const BottomNavigationBarItem(
-      icon: const Icon(Icons.error),
-      label: 'Requirements',
-    ),
+  List<UserFABBottomAppBarItem> bottomNavItems = [
+    UserFABBottomAppBarItem(
+        iconData: "assets/images/home11.png", text: 'Home'),
+    UserFABBottomAppBarItem(
+        iconData: "assets/images/rates.png", text: 'Rate'),
+    UserFABBottomAppBarItem(
+        iconData: "assets/images/comp.png", text: 'Complaints'),
+    UserFABBottomAppBarItem(
+        iconData: "assets/images/requ.png", text: 'Requirements'),
   ];
 
   List<Widget> screens = [
@@ -50,5 +43,13 @@ class UserCubit extends Cubit<UserStates> {
     currentIndex = index;
 
     emit(UserBottomNavState());
+  }
+
+
+  bool userRecentlyRate = false;
+
+  void changeUserRecentlyRate(){
+    userRecentlyRate = !userRecentlyRate;
+    emit(UserRateRecentlyState());
   }
 }

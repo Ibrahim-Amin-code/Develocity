@@ -4,6 +4,7 @@ import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/admins/widgets/login_widget.dart';
+import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
 
 import '../forget_passwrd/forget_password_screen.dart';

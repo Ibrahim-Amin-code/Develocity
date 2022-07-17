@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../business_logic/app_cubit/app_cubit.dart';
 import '../../../../constants/core/const.dart';
-import '../../../users/widgets/profile_components.dart';
+import '../../../users/widgets/user_components.dart';
 import '../../widgets/tasks.dart';
 
 class TasksScreen extends StatefulWidget {
