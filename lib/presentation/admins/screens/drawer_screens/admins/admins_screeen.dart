@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/drawer_widget.dart';
 import 'add_admins_screeen.dart';
@@ -31,39 +33,60 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
           onTap1: () {}),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: Column(
+        child: ListView(
           children: [
-            Row(
-              children: [
-                Text(
-                  'All',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff696CFF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  width: w * 0.05,
-                ),
-                Text(
-                  'Recently added',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.25),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'assets/images/filter.png',
-                    width: w * 0.1,
-                    height: h * 0.07,
-                  ),
-                ),
-              ],
+            BlocConsumer<AppCubit, AppState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        AppCubit.get(context).recentlyAdmins(
+                            alladmmins: true, admminAdded: false);
+                      },
+                      child: Text(
+                        'All',
+                        style: headingStyle.copyWith(
+                            fontFamily: 'SF Pro Display',
+                            color: AppCubit.get(context).isAllAdmins
+                                ? const Color(0xff696CFF)
+                                : Color(0xff435971).withOpacity(0.25),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    SizedBox(
+                      width: w * 0.05,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        AppCubit.get(context).recentlyAdmins(
+                            alladmmins: false, admminAdded: true);
+                      },
+                      child: Text(
+                        'Recently added',
+                        style: headingStyle.copyWith(
+                            fontFamily: 'SF Pro Display',
+                            color: AppCubit.get(context).isRecentlyAdmins
+                                ? const Color(0xff696CFF)
+                                : Color(0xff435971).withOpacity(0.25),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {},
+                      child: Image.asset(
+                        'assets/images/filter.png',
+                        width: w * 0.1,
+                        height: h * 0.07,
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
             SizedBox(
               height: h * 0.01,
@@ -81,7 +104,7 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
                 separatorBuilder: (context, index) => SizedBox(
                   height: h * 0.01,
                 ),
-                itemCount: 11,
+                itemCount: 15,
               ),
             )
           ],

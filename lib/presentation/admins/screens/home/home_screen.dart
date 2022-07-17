@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   text,
                   style: headingStyle.copyWith(
                       fontFamily: 'SF Pro Display',
-                      fontSize: 14,
+                      fontSize: 13,
                       fontWeight: FontWeight.w400,
                       color: (currentIndex == index)
                           ? Colors.white

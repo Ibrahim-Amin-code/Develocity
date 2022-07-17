@@ -43,4 +43,16 @@ class AppCubit extends Cubit<AppState> {
     color = type;
     emit(ChangeColorState());
   }
+
+  bool isRecentlyAdmins = false;
+  bool isAllAdmins = true;
+
+  void recentlyAdmins({
+    required bool admminAdded,
+    required bool alladmmins,
+  }) {
+    isRecentlyAdmins = admminAdded;
+    isAllAdmins = alladmmins;
+    emit(ChangeRecentlyAdminsState());
+  }
 }

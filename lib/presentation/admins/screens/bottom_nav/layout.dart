@@ -241,18 +241,6 @@ assets/images/admins.png',
                   width: 325,
                   color: Colors.transparent,
                   textColor: Colors.black)
-              // ignore: deprecated_member_use
-              // RaisedButton(
-              //   color: MyColors.mainColor,
-              //   onPressed: () => Navigator.of(context).pop(false),
-              //   child: Text('No'),
-              // ),
-              // // ignore: deprecated_member_use
-              // RaisedButton(
-              //   color: MyColors.mainColor,
-              //   onPressed: () => Navigator.of(context).pop(true),
-              //   child: Text('YES'),
-              // ),
             ],
           ),
         ) ??

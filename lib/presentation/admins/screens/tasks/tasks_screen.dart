@@ -178,9 +178,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   height: h * 0.01,
                 ),
                 BlocConsumer<AppCubit, AppState>(
-                  listener: (context, state) {
-                    // TODO: implement listener
-                  },
+                  listener: (context, state) {},
                   builder: (context, state) {
                     return Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceAround,

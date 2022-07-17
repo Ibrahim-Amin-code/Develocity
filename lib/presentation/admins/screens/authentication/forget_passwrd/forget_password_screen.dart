@@ -6,22 +6,24 @@ import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScre
 import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../forget_passwrd/forget_password_screen.dart';
 import '../register/register_screen.dart';
 import '../user_or_admin/user_or_admin_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ForgetPasswordScreen extends StatefulWidget {
+  const ForgetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
+
   FocusNode emailFocus = FocusNode();
   FocusNode passFocus = FocusNode();
+  FocusNode confirmPassFocus = FocusNode();
 
   final formKey = GlobalKey<FormState>();
 
@@ -68,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: h * 0.08,
                       ),
                       Text(
-                        'Login to your account',
+                        'Forgot Your Pasword',
                         style: headingStyle.copyWith(
                             fontSize: 14,
                             fontFamily: 'Poppins',
@@ -111,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         focusNode: passFocus,
                         onEditingComplete: () {
                           passFocus.unfocus();
-                          // FocusScope.of(context).requestFocus(passFocus);
+                          FocusScope.of(context).requestFocus(confirmPassFocus);
                         },
                         validator: (val) {
                           if (val!.isEmpty) {
@@ -121,25 +123,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       SizedBox(
-                        height: h * 0.01,
+                        height: h * 0.025,
                       ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: InkWell(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ForgetPasswordScreen())),
-                          child: Text(
-                            'Forgot password?  ',
-                            style: headingStyle.copyWith(
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                                color: const Color(0xff87ADF4)),
-                          ),
-                        ),
+                      textFormField(
+                        controller: confirmPassController,
+                        obscureText: true,
+                        hintText: 'Confirm Password',
+                        image: 'assets/images/lock.png',
+                        keyboardType: TextInputType.visiblePassword,
+                        focusNode: confirmPassFocus,
+                        onEditingComplete: () {
+                          confirmPassFocus.unfocus();
+                          // FocusScope.of(context).requestFocus(passFocus);
+                        },
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'Confirm Password Is Requried';
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: h * 0.03,
@@ -159,67 +161,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: w * 0.95,
                           color: MyColors.mainColor,
                           textColor: Colors.white),
-                      SizedBox(
-                        height: h * 0.03,
-                      ),
-                      Text(
-                        '- Or Login With -',
-                        style: headingStyle.copyWith(
-                            color: const Color(0xff474747),
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: h * 0.03,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          socialCard(
-                              image: 'assets/images/google.png', onTap: () {}),
-                          socialCardSvg(
-                              imageSvg: 'assets/images/fb.svg', onTap: () {}),
-                          socialCardSvg(
-                              imageSvg: 'assets/images/twe.svg', onTap: () {}),
-                        ],
-                      ),
-                      SizedBox(
-                        height: h * 0.03,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Don’t have an account? ',
-                            style: headingStyle.copyWith(
-                                fontFamily: 'Poppins',
-                                color: const Color(0xff9A9A9A),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) =>
-                                          const RegisterScreen())));
-                            },
-                            child: Text(
-                              'Sign Up',
-                              style: headingStyle.copyWith(
-                                  fontFamily: 'Poppins',
-                                  color: MyColors.mainColor,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      )
                     ],
                   ),
                 ],
