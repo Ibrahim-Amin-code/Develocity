@@ -1,4 +1,6 @@
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/notification/notification_screen.dart';
+import 'package:develocity/presentation/admins/widgets/drawer_widget.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_fab_buttom.dart';
 import 'package:develocity/presentation/users/users_cubit/user_cubit.dart';
 import 'package:develocity/presentation/users/users_cubit/user_state.dart';
@@ -12,6 +14,8 @@ class UserHomeLayoutScreen extends StatefulWidget {
 }
 
 class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
+
+  final  _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -21,6 +25,8 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          key: _scaffoldKey,
+          drawer: buildDrawerWidget(context: context),
           appBar: AppBar(
             centerTitle: true,
             elevation: 0.0,
@@ -32,7 +38,14 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
               cubit.currentIndex == 0
                   ? IconsOnTap(
                       icon: 'assets/images/carbon_notification-new.png',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationScreen(),
+                          ),
+                        );
+                      },
                     )
                   : IconButton(
                       onPressed: () {},
@@ -45,7 +58,9 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
             leading: cubit.currentIndex == 0
                 ? IconsOnTap(
                     icon: 'assets/images/eva_menu-outline.png',
-                    onTap: () {},
+                    onTap: () {
+                      _scaffoldKey.currentState!.openDrawer();
+                    },
                   )
                 : IconButton(
                     onPressed: () {

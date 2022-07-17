@@ -44,4 +44,12 @@ class UserCubit extends Cubit<UserStates> {
 
     emit(UserBottomNavState());
   }
+
+
+  bool userRecentlyRate = false;
+
+  void changeUserRecentlyRate(){
+    userRecentlyRate = !userRecentlyRate;
+    emit(UserRateRecentlyState());
+  }
 }

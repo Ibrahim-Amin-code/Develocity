@@ -475,3 +475,29 @@ class IconsOnTap extends StatelessWidget {
     );
   }
 }
+
+class MyDivider extends StatelessWidget {
+
+  double? height;
+  double? width;
+  Color? color;
+
+  MyDivider({this.height,this.width,this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    double h = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double w = MediaQuery
+        .of(context)
+        .size
+        .width;
+    return Container(
+      height:height ?? h*0.001,
+      width: width?? w*0.52,
+      color: color?? Colors.black45,
+    );
+  }
+}

@@ -1,5 +1,4 @@
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/main.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +55,10 @@ class UserHomeScreen extends StatelessWidget {
                 ),
                 Text('Today  22/7/2022',
                     style: Theme.of(context).textTheme.bodySmall),
+                SizedBox(
+                  width: width * 0.02,
+                ),
+                MyDivider(),
               ],
             ),
             SizedBox(
@@ -83,6 +86,10 @@ class UserHomeScreen extends StatelessWidget {
                   color: MyColors.mainColor,
                 ),
                 Text('This Week', style: Theme.of(context).textTheme.bodySmall),
+                SizedBox(
+                  width: width * 0.02,
+                ),
+                MyDivider(width: width*0.64,),
               ],
             ),
             SizedBox(
@@ -101,7 +108,7 @@ class UserHomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: height * 0.05,
+              height: height * 0.03,
             ),
             Row(
               children: [
@@ -135,6 +142,10 @@ class UserHomeScreen extends StatelessWidget {
                 ),
                 Text('Today  22/7/2022',
                     style: Theme.of(context).textTheme.bodySmall),
+                SizedBox(
+                  width: width * 0.02,
+                ),
+                MyDivider(),
               ],
             ),
             SizedBox(
