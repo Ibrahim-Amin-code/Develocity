@@ -78,7 +78,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Center(
                               child: Card(
-                                color: Colors.white,
+                                color: Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .backgroundColor,
                                 elevation: 1.0,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -115,8 +117,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         .textTheme
                                                         .bodySmall!
                                                         .copyWith(
-                                                            color:
-                                                                Colors.black),
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .drawerTheme
+                                                                .backgroundColor),
                                                   ),
                                                 ],
                                               )
@@ -145,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               ),
                                             ),
                                             CardProfileInfo(
-                                                text: '2653 Tasks Completed',
+                                                text: ' 2653 Tasks Completed',
                                                 icon: Icons.work),
                                           ],
                                         )
@@ -177,7 +181,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       height: height * 0.033,
                                       width: width * 0.07,
                                       decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        color: Theme.of(context)
+                                            .bottomNavigationBarTheme
+                                            .backgroundColor,
                                         border: Border.all(
                                             color: MyColors.mainColor,
                                             width: 2.0),

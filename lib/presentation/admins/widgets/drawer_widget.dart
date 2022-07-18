@@ -20,7 +20,8 @@ Widget buildDrawerWidget({required context}) {
   return Container(
     width: w * 0.85,
     height: h,
-    decoration: const BoxDecoration(color: Colors.white),
+    decoration:
+        BoxDecoration(color: Theme.of(context).drawerTheme.backgroundColor),
     child: BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -53,7 +54,7 @@ Widget buildDrawerWidget({required context}) {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: 'SF Pro Display',
-                                  color: const Color(0xff1A1B2D)),
+                                  color: MyColors.mainColor),
                             ),
                             const SizedBox(
                               height: 2,
@@ -64,7 +65,9 @@ Widget buildDrawerWidget({required context}) {
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: 'SF Pro Display',
-                                  color: const Color(0xff535763)),
+                                  color: Theme.of(context)
+                                      .bottomNavigationBarTheme
+                                      .unselectedItemColor),
                             ),
                           ],
                         ),
@@ -84,7 +87,7 @@ Widget buildDrawerWidget({required context}) {
                 title: 'Dashboard',
                 color: (AppCubit.get(context).color == 'Dashboard')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 image: 'assets/images/dash2.png',
                 onPress: () {
                   AppCubit.get(context).changeColor('Dashboard');
@@ -100,7 +103,7 @@ Widget buildDrawerWidget({required context}) {
                 title: 'Admins',
                 color: (AppCubit.get(context).color == 'Admins')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 image: 'assets/images/Vector (1).png',
                 onPress: () {
                   AppCubit.get(context).changeColor('Admins');
@@ -118,7 +121,7 @@ Widget buildDrawerWidget({required context}) {
                 title: 'Branches',
                 color: (AppCubit.get(context).color == 'Branches')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 image: 'assets/images/branches.png',
                 onPress: () {
                   AppCubit.get(context).changeColor('Branches');
@@ -137,7 +140,7 @@ Widget buildDrawerWidget({required context}) {
                     : Color(0xff535763),
                 color: (AppCubit.get(context).color == 'Sections')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 title: 'Sections',
                 image: 'assets/images/sections.png',
                 onPress: () {
@@ -158,7 +161,7 @@ Widget buildDrawerWidget({required context}) {
                 title: 'Users',
                 color: (AppCubit.get(context).color == 'Users')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 image: 'assets/images/admins.png',
                 onPress: () {
                   print('rrrrrrrrrr');
@@ -181,7 +184,7 @@ Widget buildDrawerWidget({required context}) {
                     : Color(0xff535763),
                 color: (AppCubit.get(context).color == 'Complaints')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 image: 'assets/images/comp.png',
                 onPress: () {
                   AppCubit.get(context).changeColor('Complaints');
@@ -202,7 +205,7 @@ Widget buildDrawerWidget({required context}) {
                 title: 'Requirements',
                 color: (AppCubit.get(context).color == 'Requirements')
                     ? MyColors.mainColor
-                    : Colors.white,
+                    : Theme.of(context).scaffoldBackgroundColor,
                 image: 'assets/images/requ.png',
                 onPress: () {
                   AppCubit.get(context).changeColor('Requirements');
@@ -212,7 +215,7 @@ Widget buildDrawerWidget({required context}) {
                           builder: (context) => RequirementsScreen()));
                 }),
             SizedBox(
-              height: h * 0.17,
+              height: h * 0.03,
             ),
 
             Padding(
@@ -484,7 +487,7 @@ AppBar csutomAppBarInDrawers({
             )),
       ],
       elevation: 0.0,
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       title: Center(
         child: Text(
           text,

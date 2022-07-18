@@ -44,69 +44,67 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: scaffoldKey,
       drawer: buildDrawerWidget(context: context),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: csutomAppBar(
+          context: context,
           onTap: () => scaffoldKey.currentState!.openDrawer(),
           image: 'assets/images/carbon_notification-new.png',
           image2: 'assets/images/eva_menu-outline.png',
           onTap1: () => Navigator.push(context,
               MaterialPageRoute(builder: (conext) => NotificationScreen())),
           text: 'Dashboard'),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: SizedBox(
-          height: h,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // SizedBox(
-              //   height: h * 0.03,
-              // ),
-              Text(
-                ' Projects',
-                textAlign: TextAlign.center,
-                style: headingStyle.copyWith(
-                    color: Color(0xff435971),
-                    fontSize: w * 0.065,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'SF Pro Display'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(
-                      titles.length,
-                      (index) => buildDot(
-                          index: index, h: h, w: w, text: titles[index]),
-                      growable: true),
-                ),
-              ),
-              SizedBox(
-                height: h * 0.03,
-              ),
-              SizedBox(
-                width: w,
-                height: h * .643,
-                child: PageView.builder(
-                    controller: pageController,
-                    itemCount: titles.length,
-                    onPageChanged: (val) {
-                      setState(() {
-                        currentIndex = val;
-                      });
-                    },
-                    itemBuilder: (context, index) {
-                      return buildHomeGrid(context);
-                    }),
-              ),
-            ],
+        children: [
+          SizedBox(
+            height: h * 0.01,
           ),
-        ),
+          Text(
+            ' Projects',
+            textAlign: TextAlign.start,
+            style: headingStyle.copyWith(
+                color: MyColors.mainColor,
+                fontSize: w * 0.065,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'SF Pro Display'),
+          ),
+          SizedBox(
+            height: h * 0.03,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(
+                  titles.length,
+                  (index) =>
+                      buildDot(index: index, h: h, w: w, text: titles[index]),
+                  growable: true),
+            ),
+          ),
+          SizedBox(
+            height: h * 0.025,
+          ),
+          SizedBox(
+            width: w,
+            height: h * .643,
+            child: PageView.builder(
+                controller: pageController,
+                itemCount: titles.length,
+                onPageChanged: (val) {
+                  setState(() {
+                    currentIndex = val;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return buildHomeGrid(context);
+                }),
+          ),
+          // SizedBox(
+          //   height: 30,
+          // )
+        ],
       ),
     );
   }
@@ -118,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
       required String text}) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      color: Color(0xffFAFAFA),
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: EdgeInsets.symmetric(horizontal: w * 0.01),
       child: InkWell(
         onTap: () {
@@ -136,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                   color: (currentIndex == index)
                       ? MyColors.mainColor
-                      : Color(0xffFAFAFA),
+                      : Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(7)),
               child: Center(
                 child: Text(
@@ -147,7 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.w400,
                       color: (currentIndex == index)
                           ? Colors.white
-                          : MyColors.unselectedIconColor),
+                          : Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor),
                 ),
               ),
             ),

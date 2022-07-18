@@ -39,7 +39,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -165,11 +165,10 @@ class SplashContent extends StatelessWidget {
             text,
             maxLines: 1,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: w * 0.042,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                fontFamily: 'SourceSansPro'),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(fontSize: w * 0.04),
           ),
         ),
         SizedBox(height: h * 0.022),
@@ -179,10 +178,10 @@ class SplashContent extends StatelessWidget {
             subTitle,
             maxLines: 4,
             textAlign: TextAlign.center,
-            style: headingStyle.copyWith(
-                fontSize: 14.5,
-                fontFamily: 'SourceSansPro',
-                color: const Color(0xff4A4646)),
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(fontSize: w * 0.034),
           ),
         ),
       ],

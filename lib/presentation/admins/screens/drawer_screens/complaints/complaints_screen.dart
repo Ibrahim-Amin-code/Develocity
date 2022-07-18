@@ -17,7 +17,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
@@ -27,7 +27,9 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
           },
           onTap1: () {}),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 15),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 13,
+        ),
         child: Column(
           children: [
             Row(
@@ -47,7 +49,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                   'Recently added',
                   style: headingStyle.copyWith(
                       fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.25),
+                      color: const Color(0xff435971).withOpacity(0.5),
                       fontSize: 20,
                       fontWeight: FontWeight.w500),
                 ),
@@ -87,7 +89,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
         ),
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
@@ -131,7 +133,9 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                     Text(
                       'Ui/Ux Designer',
                       style: headingStyle.copyWith(
-                        color: const Color(0xffC4C4C4),
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor,
                         fontFamily: 'SF Pro Display',
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -143,7 +147,9 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                 Text(
                   ' Today 11.30 Am',
                   style: headingStyle.copyWith(
-                    color: const Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontFamily: 'Roboto',
                     fontSize: 10,
                     fontWeight: FontWeight.w400,
@@ -173,7 +179,9 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                           'Sir, I am Samaa samir, ui/ux desginer I am writing to bring to your notice the poor maintenance ',
                       style: headingStyle.copyWith(
                           fontFamily: 'Roboto',
-                          color: Color(0xff333333).withOpacity(0.6),
+                          color: Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
                       children: <InlineSpan>[

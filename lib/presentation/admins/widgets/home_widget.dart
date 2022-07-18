@@ -11,9 +11,9 @@ Widget buildHomeGrid(context) {
   return GridView.builder(
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
-      childAspectRatio: 0.8,
+      childAspectRatio: 0.83,
       crossAxisSpacing: 10,
-      mainAxisSpacing: 15,
+      mainAxisSpacing: 0,
     ),
     shrinkWrap: true,
     primary: true,
@@ -38,12 +38,15 @@ Widget buildHomeGrid(context) {
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.025, vertical: h * 0.013),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
-                          offset: Offset(0, 4),
-                          color: MyColors.backgroundColor,
+                          offset: Offset(0, 5),
+                          color: Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor!
+                              .withOpacity(0.1),
                           spreadRadius: 3,
                           blurRadius: 5)
                     ],
@@ -68,7 +71,7 @@ Widget buildHomeGrid(context) {
                               fontFamily: 'SF Pro Display',
                               fontSize: w * 0.04,
                               fontWeight: FontWeight.w400,
-                              color: const Color(0xff435971)),
+                              color: MyColors.mainColor),
                         ),
                         SizedBox(
                           height: h * 0.008,
@@ -79,7 +82,9 @@ Widget buildHomeGrid(context) {
                               fontFamily: 'SF Pro Display',
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
-                              color: const Color(0xff888888)),
+                              color: Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedItemColor),
                         ),
                         SizedBox(
                           height: h * 0.012,
@@ -116,15 +121,15 @@ Widget buildHomeGrid(context) {
                                   fontFamily: 'SF Pro Display',
                                   fontSize: w * 0.035,
                                   fontWeight: FontWeight.w400,
-                                  color: const Color(0xff435971)),
+                                  color: MyColors.mainColor),
                             ),
                             Text(
-                              '45%',
+                              '70%',
                               style: headingStyle.copyWith(
                                   fontFamily: 'SF Pro Display',
                                   fontSize: w * 0.035,
                                   fontWeight: FontWeight.w400,
-                                  color: const Color(0xff435971)),
+                                  color: MyColors.mainColor),
                             ),
                           ],
                         ),
@@ -134,18 +139,19 @@ Widget buildHomeGrid(context) {
                         LinearPercentIndicator(
                           width: w * 0.38,
                           lineHeight: 12.0,
-                          percent: 0.5,
-                          backgroundColor: const Color(0xffD9D9D9),
+                          percent: 0.7,
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                           progressColor: MyColors.mainColor,
                         ),
                         SizedBox(
-                          height: h * 0.01,
+                          height: h * 0.012,
                         ),
                         Align(
                           alignment: Alignment.bottomRight,
                           child: Container(
                             margin: const EdgeInsets.only(right: 3),
-                            width: w * 0.17,
+                            width: w * 0.19,
                             height: h * 0.025,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),

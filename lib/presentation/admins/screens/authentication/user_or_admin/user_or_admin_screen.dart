@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../business_logic/app_cubit/app_cubit.dart';
+import '../../bottom_nav/layout.dart';
 import '../otp/otp_screen.dart';
 
 class UserOrAdminScreen extends StatefulWidget {
@@ -25,13 +26,14 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
     bool click = false;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
               SizedBox(
-                height: h * 0.08,
+                height: h * 0.09,
               ),
               Align(
                 alignment: Alignment.topLeft,
@@ -54,7 +56,7 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                 ),
               ),
               SizedBox(
-                height: h * 0.01,
+                height: h * 0.09,
               ),
               Text(
                 'Develocity',
@@ -95,7 +97,9 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                     fontSize: 14,
                     fontFamily: 'SF Pro Display',
                     fontWeight: FontWeight.w400,
-                    color: const Color(0xff435971)),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor),
               ),
               SizedBox(
                 height: h * 0.06,
@@ -111,14 +115,15 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                           text: 'User',
                           cardColor: (AppCubit.get(context).isUser == true)
                               ? MyColors.mainColor.withOpacity(0.25)
-                              : Colors.white,
+                              : Theme.of(context).cardColor,
                           onTap: () {
                             AppCubit.get(context).userOrAdmin(
                                 isUserClicked: true, isAdminClicked: false);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => UserHomeLayoutScreen()));
+                                    builder: (context) =>
+                                        UserHomeLayoutScreen()));
                           },
                           imageColor: (AppCubit.get(context).isUser == true)
                               ? MyColors.mainColor
@@ -131,7 +136,7 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                           text: 'Admin',
                           cardColor: (AppCubit.get(context).isAdmin == true)
                               ? MyColors.mainColor.withOpacity(0.25)
-                              : Colors.white,
+                              : Theme.of(context).cardColor,
                           onTap: () {
                             AppCubit.get(context).userOrAdmin(
                                 isUserClicked: false, isAdminClicked: true);
@@ -147,17 +152,32 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                 },
               ),
               Spacer(),
-              defaultButton(
-                  title: 'Confirm',
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => OtpScreen()));
-                  },
-                  fontSize: 14,
-                  height: h * 0.063,
-                  width: w * 0.95,
-                  color: MyColors.mainColor,
-                  textColor: Colors.white),
+              BlocConsumer<AppCubit, AppState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return defaultButton(
+                      title: 'Go to Dashboard',
+                      onPressed: () {
+                        (AppCubit.get(context).isAdmin)
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LayoutScreen(
+                                          index: 0,
+                                        )))
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        UserHomeLayoutScreen()));
+                      },
+                      fontSize: 14,
+                      height: h * 0.06,
+                      width: w * 0.95,
+                      color: MyColors.mainColor,
+                      textColor: Colors.white);
+                },
+              ),
               SizedBox(
                 height: h * 0.026,
               ),
@@ -168,7 +188,6 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
     );
   }
 

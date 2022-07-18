@@ -147,10 +147,22 @@ assets/images/admins.png',
             FABBottomAppBarItem(
                 iconData: "assets/images/user11.png", text: 'Profile'),
           ],
-          backgroundColor: Colors.white,
+
+          /** backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
+            centerItemText: '',
+            color:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
+            selectedColor:
+                Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+           */
+          backgroundColor:
+              Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
           centerItemText: '',
-          color: const Color(0xff80535763),
-          selectedColor: Color(0xff696CFF),
+          color:
+              Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
+          selectedColor:
+              Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
         ),
         body: screens[currentIndex],
       ),
@@ -161,6 +173,8 @@ assets/images/admins.png',
     var w = MediaQuery.of(context).size.width;
 
     return showModalBottomSheet(
+      backgroundColor:
+          Theme.of(context).bottomNavigationBarTheme.backgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(w * 0.07),

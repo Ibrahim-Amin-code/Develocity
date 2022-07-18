@@ -55,8 +55,8 @@ class UserComplaintsScreen extends StatelessWidget {
                                   .textTheme
                                   .bodySmall!
                                   .copyWith(
-                                    color: MyColors.unselectedIconColor,
-                                  ),
+                                      // color: MyColors.unselectedIconColor,
+                                      ),
                               textAlign: TextAlign.center,
                             ),
                             SizedBox(

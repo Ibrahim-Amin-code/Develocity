@@ -32,7 +32,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
@@ -49,7 +49,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
             style: headingStyle.copyWith(
                 fontFamily: 'SF Pro Display',
                 fontSize: 20,
-                color: Color(0xff435971),
+                color: MyColors.mainColor,
                 fontWeight: FontWeight.w500),
           ),
           SizedBox(

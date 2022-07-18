@@ -86,7 +86,7 @@ class _TasksScreenState extends State<TasksScreen> {
       appBar: customTaskAppBar(h: h, w: w, title: 'Add Task', context: context),
       body: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(w * 0.06),
               topRight: Radius.circular(w * 0.06),

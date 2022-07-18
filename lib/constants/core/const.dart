@@ -53,6 +53,7 @@ Future<bool> showTaskPopup({context, required String title}) async {
 }
 
 AppBar csutomAppBar({
+  context,
   required String image,
   required String image2,
   required String text,
@@ -64,7 +65,7 @@ AppBar csutomAppBar({
         InkWell(onTap: onTap1, child: Image.asset(image)),
       ],
       elevation: 0.0,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: Center(
         child: Text(
           text,
@@ -130,7 +131,7 @@ class CustomDropDown extends StatefulWidget {
       {Key? key,
       this.items,
       this.text = '',
-      this.fillColor = Colors.white,
+      this.fillColor,
       this.onSave,
       this.borderColor,
       this.validator})
@@ -156,10 +157,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        border: (widget.borderColor == null)
-            ? Border.all(color: Color(0xff05006EE9))
-            : Border.all(color: widget.borderColor!),
-        color: widget.fillColor!,
+        border: Border.all(color: Theme.of(context).cardColor),
+        color: widget.fillColor,
       ),
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: DropdownButtonFormField(

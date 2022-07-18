@@ -89,7 +89,9 @@ class UserHomeScreen extends StatelessWidget {
                 SizedBox(
                   width: width * 0.02,
                 ),
-                MyDivider(width: width*0.64,),
+                MyDivider(
+                  width: width * 0.64,
+                ),
               ],
             ),
             SizedBox(

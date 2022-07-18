@@ -9,14 +9,8 @@ class CardProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -30,11 +24,10 @@ class CardProfileInfo extends StatelessWidget {
         ),
         Text(
           text,
-          style: Theme
-              .of(context)
+          style: Theme.of(context)
               .textTheme
               .bodySmall!
-              .copyWith(color: Colors.black),
+              .copyWith(color: Theme.of(context).drawerTheme.backgroundColor),
         ),
       ],
     );
@@ -54,14 +47,8 @@ class MenuProfileItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return MaterialButton(
       height: height * 0.07,
       onPressed: () {
@@ -80,8 +67,7 @@ class MenuProfileItems extends StatelessWidget {
             ),
             Text(
               text,
-              style: Theme
-                  .of(context)
+              style: Theme.of(context)
                   .textTheme
                   .bodySmall!
                   .copyWith(color: MyColors.mainColor),
@@ -144,13 +130,15 @@ class CustomTextFormField extends StatelessWidget {
   String hint;
   int? maxLine;
 
-  CustomTextFormField(this.controller,
-      this.inputType,
-      this.validate,
-      this.label,
-      this.hint,
-      this.onTap,
-      this.maxLine,);
+  CustomTextFormField(
+    this.controller,
+    this.inputType,
+    this.validate,
+    this.label,
+    this.hint,
+    this.onTap,
+    this.maxLine,
+  );
 
   // CustomTextFormField(this.controller, this.inputType, this.validate,
   //     this.label, this.hint, this.onTap, this.maxLine);
@@ -194,8 +182,8 @@ class CustomTextFormField extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(
-                color: Color(0xff0F006EE9),
+              borderSide: BorderSide(
+                color: Theme.of(context).cardColor,
                 width: 1.0,
               ),
             ),
@@ -235,23 +223,19 @@ class LogoutAlertDialog extends StatelessWidget {
   String cancelText;
   Function cancelOnPressed;
 
-  LogoutAlertDialog(this.title,
-      this.bodyText,
-      this.buttonText,
-      this.buttonOnPressed,
-      this.cancelText,
-      this.cancelOnPressed,);
+  LogoutAlertDialog(
+    this.title,
+    this.bodyText,
+    this.buttonText,
+    this.buttonOnPressed,
+    this.cancelText,
+    this.cancelOnPressed,
+  );
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return AlertDialog(
       elevation: 0.0,
       scrollable: true,
@@ -261,10 +245,7 @@ class LogoutAlertDialog extends StatelessWidget {
       title: Center(
         child: Text(
           title,
-          style: Theme
-              .of(context)
-              .textTheme
-              .titleMedium,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
       content: Column(
@@ -278,10 +259,7 @@ class LogoutAlertDialog extends StatelessWidget {
               Checkbox(value: true, onChanged: (s) {}),
               Text(
                 bodyText,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .bodySmall,
+                style: Theme.of(context).textTheme.bodySmall,
               )
             ],
           ),
@@ -313,16 +291,10 @@ class UserHomeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Card(
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       elevation: 3.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -346,7 +318,13 @@ class UserHomeItem extends StatelessWidget {
                 SizedBox(
                   width: width * 0.02,
                 ),
-                const Text('UI Element Design'),
+                Text(
+                  'UI Element Design',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontSize: width * 0.04),
+                ),
                 SizedBox(
                   width: width * 0.02,
                 ),
@@ -373,8 +351,7 @@ class UserHomeItem extends StatelessWidget {
             ),
             Text(
               '4 New Updates',
-              style: Theme
-                  .of(context)
+              style: Theme.of(context)
                   .textTheme
                   .bodySmall!
                   .copyWith(color: MyColors.mainColor),
@@ -448,14 +425,8 @@ class IconsOnTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double w = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
         onTap();
@@ -466,7 +437,7 @@ class IconsOnTap extends StatelessWidget {
           height: height ?? h * 0.05,
           width: width ?? w * 0.1,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             image: DecorationImage(image: AssetImage(icon)),
             borderRadius: BorderRadius.circular(raduis ?? 10.0),
           ),
@@ -477,27 +448,21 @@ class IconsOnTap extends StatelessWidget {
 }
 
 class MyDivider extends StatelessWidget {
-
   double? height;
   double? width;
   Color? color;
 
-  MyDivider({this.height,this.width,this.color});
+  MyDivider({this.height, this.width, this.color});
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double w = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      height:height ?? h*0.001,
-      width: width?? w*0.52,
-      color: color?? Colors.black45,
+      height: height ?? h * 0.001,
+      width: width ?? w * 0.52,
+      color: color ??
+          Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
     );
   }
 }

@@ -20,7 +20,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
@@ -50,7 +50,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
                   'Recently added',
                   style: headingStyle.copyWith(
                       fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.25),
+                      color: const Color(0xff435971).withOpacity(0.5),
                       fontSize: 20,
                       fontWeight: FontWeight.w500),
                 ),
@@ -136,7 +136,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
   Widget buildUsersRow() => Container(
         height: 35,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             border: Border.all(color: Color(0xff696CFF).withOpacity(0.03))),
         child: SizedBox(
           height: 30,
@@ -147,7 +147,9 @@ class _UsersScreeenState extends State<UsersScreeen> {
                 'Samaa Samir',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
-                    color: Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontSize: 12,
                     fontWeight: FontWeight.w400),
               ),
@@ -155,7 +157,9 @@ class _UsersScreeenState extends State<UsersScreeen> {
                 'ui/ux desginer',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
-                    color: Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontSize: 12,
                     fontWeight: FontWeight.w400),
               ),
@@ -163,7 +167,9 @@ class _UsersScreeenState extends State<UsersScreeen> {
                 'Cairo',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
-                    color: Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontSize: 13,
                     fontWeight: FontWeight.w400),
               ),

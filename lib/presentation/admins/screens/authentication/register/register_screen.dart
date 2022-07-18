@@ -33,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // ignore: unused_local_variable
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -41,196 +42,173 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: h * 0.06,
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            width: w * 0.095,
-                            height: h * 0.05,
-                            decoration: BoxDecoration(
-                                color: MyColors.mainColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                                child: Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                            )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: h * 0.01,
-                      ),
-                      Text(
-                        'Develocity',
-                        textAlign: TextAlign.center,
-                        style: headingStyle.copyWith(
-                            fontSize: 30,
+                  // SizedBox(
+                  //   height: h * 0.06,
+                  // ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: h * 0.07),
+                        width: w * 0.095,
+                        height: h * 0.05,
+                        decoration: BoxDecoration(
                             color: MyColors.mainColor,
-                            fontWeight: FontWeight.w400),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                            child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        )),
                       ),
-                      SizedBox(
-                        height: h * 0.005,
-                      ),
-                      Text(
-                        'Management  App',
-                        style: headingStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Poppins',
-                            color: const Color(0xff9A9A9A)),
-                      ),
-                      SizedBox(
-                        height: h * 0.07,
-                      ),
-                      Text(
-                        'Create your account',
-                        style: headingStyle.copyWith(
-                            fontSize: 14,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xff474747)),
-                      ),
-                      SizedBox(
-                        height: h * 0.04,
-                      ),
-                      textFormField(
-                        controller: nameController,
-                        obscureText: false,
-                        hintText: 'Username',
-                        image: 'assets/images/msg.png',
-                        keyboardType: TextInputType.name,
-                        focusNode: nameFocus,
-                        onEditingComplete: () {
-                          nameFocus.unfocus();
-                          FocusScope.of(context).requestFocus(emailFocus);
-                        },
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Username Is Requried';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: h * 0.02,
-                      ),
-                      textFormField(
-                        controller: emailController,
-                        obscureText: false,
-                        hintText: 'Email',
-                        image: 'assets/images/msg.png',
-                        keyboardType: TextInputType.emailAddress,
-                        focusNode: emailFocus,
-                        onEditingComplete: () {
-                          emailFocus.unfocus();
-                          FocusScope.of(context).requestFocus(passFocus);
-                        },
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Email Is Requried';
-                          } else if (!val.contains("@") ||
-                              !val.contains(".com")) {
-                            return 'Email Is Validate';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: h * 0.02,
-                      ),
-                      textFormField(
-                        controller: passController,
-                        obscureText: true,
-                        hintText: 'Password',
-                        image: 'assets/images/lock.png',
-                        keyboardType: TextInputType.visiblePassword,
-                        focusNode: passFocus,
-                        onEditingComplete: () {
-                          passFocus.unfocus();
-                          FocusScope.of(context).requestFocus(confirmPassFocus);
-                        },
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Password Is Requried';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: h * 0.02,
-                      ),
-                      textFormField(
-                        controller: passController,
-                        obscureText: true,
-                        hintText: 'Password',
-                        image: 'assets/images/lock.png',
-                        keyboardType: TextInputType.visiblePassword,
-                        focusNode: confirmPassFocus,
-                        onEditingComplete: () {
-                          confirmPassFocus.unfocus();
-                          // FocusScope.of(context).requestFocus(passFocus);
-                        },
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Confirm Password Is Requried';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: h * 0.02,
-                      ),
-                      defaultButton(
-                          title: 'Register',
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserOrAdminScreen()));
-                          },
-                          fontSize: 14,
-                          height: h * 0.063,
-                          width: w * 0.95,
-                          color: MyColors.mainColor,
-                          textColor: Colors.white),
-                      SizedBox(
-                        height: h * 0.026,
-                      ),
-                      Text(
-                        '- Or Register With -',
-                        style: headingStyle.copyWith(
-                            color: Color(0xff474747),
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: h * 0.025,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          socialCard(
-                              image: 'assets/images/google.png', onTap: () {}),
-                          socialCardSvg(
-                              imageSvg: 'assets/images/fb.svg', onTap: () {}),
-                          socialCardSvg(
-                              imageSvg: 'assets/images/twe.svg', onTap: () {}),
-                        ],
-                      ),
-                      SizedBox(
-                        height: h * 0.025,
-                      ),
-                    ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: h * 0.01,
+                  ),
+                  Text(
+                    'Develocity',
+                    textAlign: TextAlign.center,
+                    style: headingStyle.copyWith(
+                        fontSize: 30,
+                        color: MyColors.mainColor,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    height: h * 0.005,
+                  ),
+                  Text(
+                    'Management  App',
+                    style: headingStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppins',
+                        color: const Color(0xff9A9A9A)),
+                  ),
+                  SizedBox(
+                    height: h * 0.07,
+                  ),
+                  Text(
+                    'Create your account',
+                    style: headingStyle.copyWith(
+                        fontSize: 14,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor),
+                  ),
+                  SizedBox(
+                    height: h * 0.04,
+                  ),
+                  textFormField(
+                    context: context,
+                    controller: nameController,
+                    obscureText: false,
+                    hintText: 'Username',
+                    image: 'assets/images/msg.png',
+                    keyboardType: TextInputType.name,
+                    focusNode: nameFocus,
+                    onEditingComplete: () {
+                      nameFocus.unfocus();
+                      FocusScope.of(context).requestFocus(emailFocus);
+                    },
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return 'Username Is Requried';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: h * 0.02,
+                  ),
+                  textFormField(
+                    context: context,
+                    controller: emailController,
+                    obscureText: false,
+                    hintText: 'Email',
+                    image: 'assets/images/msg.png',
+                    keyboardType: TextInputType.emailAddress,
+                    focusNode: emailFocus,
+                    onEditingComplete: () {
+                      emailFocus.unfocus();
+                      FocusScope.of(context).requestFocus(passFocus);
+                    },
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return 'Email Is Requried';
+                      } else if (!val.contains("@") || !val.contains(".com")) {
+                        return 'Email Is Validate';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: h * 0.02,
+                  ),
+                  textFormField(
+                    context: context,
+                    controller: passController,
+                    obscureText: true,
+                    hintText: 'Password',
+                    image: 'assets/images/lock.png',
+                    keyboardType: TextInputType.visiblePassword,
+                    focusNode: passFocus,
+                    onEditingComplete: () {
+                      passFocus.unfocus();
+                      FocusScope.of(context).requestFocus(confirmPassFocus);
+                    },
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return 'Password Is Requried';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: h * 0.02,
+                  ),
+                  textFormField(
+                    context: context,
+                    controller: passController,
+                    obscureText: true,
+                    hintText: 'Password',
+                    image: 'assets/images/lock.png',
+                    keyboardType: TextInputType.visiblePassword,
+                    focusNode: confirmPassFocus,
+                    onEditingComplete: () {
+                      confirmPassFocus.unfocus();
+                      // FocusScope.of(context).requestFocus(passFocus);
+                    },
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return 'Confirm Password Is Requried';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: h * 0.04,
+                  ),
+                  defaultButton(
+                      title: 'Register',
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserOrAdminScreen()));
+                      },
+                      fontSize: 14,
+                      height: h * 0.063,
+                      width: w * 0.95,
+                      color: MyColors.mainColor,
+                      textColor: Colors.white),
+                  SizedBox(
+                    height: h * 0.026,
                   ),
                 ],
               ),
@@ -238,7 +216,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
     );
   }
 }

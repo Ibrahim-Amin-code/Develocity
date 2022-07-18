@@ -14,12 +14,9 @@ class UserHomeLayoutScreen extends StatefulWidget {
 }
 
 class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
-
-  final  _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     var cubit = UserCubit.get(context);
     return BlocConsumer<UserCubit, UserStates>(
       listener: (context, state) {},
@@ -81,10 +78,13 @@ class _UserHomeLayoutScreenState extends State<UserHomeLayoutScreen> {
               });
             },
             items: cubit.bottomNavItems,
-            backgroundColor: Colors.white,
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
             centerItemText: '',
-            color: const Color(0xff80535763),
-            selectedColor: MyColors.mainColor,
+            color:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
+            selectedColor:
+                Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
           ),
           body: cubit.screens[cubit.currentIndex],
         );

@@ -10,10 +10,11 @@ class NotificationScreen extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 10,
         elevation: 0,
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
       ),
       body: Column(children: [
         Row(
@@ -51,54 +52,58 @@ class NotificationScreen extends StatelessWidget {
           height: h * 0.015,
         ),
         buildNotificationCard(
-            h: h,
-            w: w,
-            image: 'assets/images/trend.png',
-            text: 'See your statistic!',
-            subText:
-                'Hello Phillip, lets see your progress in 2020, and fix it',
-            cardColor: const Color(0xffF1F7FE)),
+          context: context,
+          h: h,
+          w: w,
+          image: 'assets/images/trend.png',
+          text: 'See your statistic!',
+          subText: 'Hello Phillip, lets see your progress in 2020, and fix it',
+        ),
         SizedBox(
           height: h * 0.015,
         ),
         buildNotificationCard(
-            h: h,
-            w: w,
-            image: 'assets/images/right.png',
-            text: 'UI Task less than 8 days',
-            subText:
-                'Phillip, your assignment is less than 8 days away from reaching',
-            cardColor: Colors.white),
+          context: context,
+          h: h,
+          w: w,
+          image: 'assets/images/right.png',
+          text: 'UI Task less than 8 days',
+          subText:
+              'Phillip, your assignment is less than 8 days away from reaching',
+        ),
         SizedBox(
           height: h * 0.015,
         ),
         buildNotificationCard(
-            h: h,
-            w: w,
-            image: 'assets/images/alert-outline (1).png',
-            text: 'Edit Task less than 12 days',
-            subText: 'Phillip, your assignment is less than 12 days away from ',
-            cardColor: Color(0xffF1F7FE)),
+          context: context,
+          h: h,
+          w: w,
+          image: 'assets/images/alert-outline (1).png',
+          text: 'Edit Task less than 12 days',
+          subText: 'Phillip, your assignment is less than 12 days away from ',
+        ),
         SizedBox(
           height: h * 0.015,
         ),
         buildNotificationCard(
-            h: h,
-            w: w,
-            image: 'assets/images/alert-outline (1).png',
-            text: 'Edit Task less than 12 days',
-            subText: 'Phillip, your assignment is less than 12 days away from ',
-            cardColor: Colors.white),
+          context: context,
+          h: h,
+          w: w,
+          image: 'assets/images/alert-outline (1).png',
+          text: 'Edit Task less than 12 days',
+          subText: 'Phillip, your assignment is less than 12 days away from ',
+        ),
         SizedBox(
           height: h * 0.015,
         ),
         buildNotificationCard(
-            h: h,
-            w: w,
-            image: 'assets/images/alert-outline (1).png',
-            text: 'Edit Task less than 12 days',
-            subText: 'Phillip, your assignment is less than 12 days away from ',
-            cardColor: Colors.white),
+          context: context,
+          h: h,
+          w: w,
+          image: 'assets/images/alert-outline (1).png',
+          text: 'Edit Task less than 12 days',
+          subText: 'Phillip, your assignment is less than 12 days away from ',
+        ),
         SizedBox(
           height: h * 0.015,
         ),
@@ -106,19 +111,18 @@ class NotificationScreen extends StatelessWidget {
     );
   }
 
-  Widget buildNotificationCard({
-    required double h,
-    required double w,
-    required String image,
-    required String text,
-    required String subText,
-    required Color cardColor,
-  }) =>
+  Widget buildNotificationCard(
+          {required double h,
+          required double w,
+          required String image,
+          required String text,
+          required String subText,
+          context}) =>
       Container(
         padding: const EdgeInsets.only(left: 20),
         height: h * 0.06,
         width: double.infinity,
-        color: cardColor,
+        color: Theme.of(context).drawerTheme.backgroundColor,
         child: Row(
           children: [
             Image.asset(
@@ -136,7 +140,7 @@ class NotificationScreen extends StatelessWidget {
                 Text(text,
                     style: headingStyle.copyWith(
                         fontFamily: 'Poppins',
-                        color: Color(0xff435971),
+                        color: MyColors.mainColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w500)),
                 const SizedBox(
@@ -146,7 +150,9 @@ class NotificationScreen extends StatelessWidget {
                   subText,
                   style: headingStyle.copyWith(
                       fontFamily: 'Poppins',
-                      color: const Color(0xff474747),
+                      color: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor,
                       fontSize: 10,
                       fontWeight: FontWeight.w400),
                 )

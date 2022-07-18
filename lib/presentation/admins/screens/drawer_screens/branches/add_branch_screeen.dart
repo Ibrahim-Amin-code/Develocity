@@ -25,7 +25,7 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
@@ -44,7 +44,7 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
               style: headingStyle.copyWith(
                   fontFamily: 'SF Pro Display',
                   fontSize: 20,
-                  color: Color(0xff435971),
+                  color: MyColors.mainColor,
                   fontWeight: FontWeight.w500),
             ),
             SizedBox(
@@ -57,6 +57,9 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
                 () {}, 'Location *', 'Enter Location', () {}, 1),
+            SizedBox(
+              height: h * 0.02,
+            ),
             CustomTextFormField(nameController, TextInputType.name, () {},
                 'Section Name *', 'Enter name', () {}, 1),
             SizedBox(

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 Widget textFormField(
         {required TextEditingController? controller,
         FormFieldValidator<String>? validator,
+        context,
         required bool obscureText,
         required String hintText,
         required String image,
@@ -17,7 +18,12 @@ Widget textFormField(
     TextFormField(
       focusNode: focusNode,
       decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Theme.of(context).cardColor),
+          borderRadius: BorderRadius.circular(15),
+        ),
         border: OutlineInputBorder(
+          borderSide: BorderSide(color: Theme.of(context).cardColor),
           borderRadius: BorderRadius.circular(15),
         ),
         hintText: hintText,

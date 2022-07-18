@@ -48,7 +48,7 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
@@ -67,31 +67,13 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
               style: headingStyle.copyWith(
                   fontFamily: 'SF Pro Display',
                   fontSize: 20,
-                  color: Color(0xff435971),
+                  color: MyColors.mainColor,
                   fontWeight: FontWeight.w500),
             ),
             SizedBox(
               height: h * 0.04,
             ),
 
-            CustomTextFormField(nameController, TextInputType.name, () {},
-                'User Name *', 'Enter name', () {}, 1),
-            SizedBox(
-              height: h * 0.02,
-            ),
-            CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Email *', 'Enter Email', () {}, 1),
-            SizedBox(
-              height: h * 0.02,
-            ),
-            CustomTextFormField(
-                passwordController,
-                TextInputType.visiblePassword,
-                () {},
-                'Password *',
-                'Enter Password',
-                () {},
-                1),
             CustomTextFormField(nameController, TextInputType.name, () {},
                 'User Name *', 'Enter name', () {}, 1),
             SizedBox(

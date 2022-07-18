@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // ignore: unused_local_variable
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -74,12 +75,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 14,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: const Color(0xff474747)),
+                            color: Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor),
                       ),
                       SizedBox(
                         height: h * 0.04,
                       ),
                       textFormField(
+                        context: context,
                         controller: emailController,
                         obscureText: false,
                         hintText: 'Email',
@@ -104,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: h * 0.025,
                       ),
                       textFormField(
+                        context: context,
                         controller: passController,
                         obscureText: true,
                         hintText: 'Password',
@@ -121,27 +126,27 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(
-                        height: h * 0.01,
-                      ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: InkWell(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ForgetPasswordScreen())),
-                          child: Text(
-                            'Forgot password?  ',
-                            style: headingStyle.copyWith(
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                                color: const Color(0xff87ADF4)),
-                          ),
-                        ),
-                      ),
+                      // SizedBox(
+                      //   height: h * 0.01,
+                      // ),
+                      // Align(
+                      //   alignment: Alignment.topRight,
+                      //   child: InkWell(
+                      //     onTap: () => Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) =>
+                      //                 ForgetPasswordScreen())),
+                      //     child: Text(
+                      //       'Forgot password?  ',
+                      //       style: headingStyle.copyWith(
+                      //           fontSize: 12,
+                      //           fontFamily: 'Poppins',
+                      //           fontWeight: FontWeight.w500,
+                      //           color: const Color(0xff87ADF4)),
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(
                         height: h * 0.03,
                       ),
@@ -163,31 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: h * 0.03,
                       ),
-                      Text(
-                        '- Or Login With -',
-                        style: headingStyle.copyWith(
-                            color: const Color(0xff474747),
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: h * 0.03,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          socialCard(
-                              image: 'assets/images/google.png', onTap: () {}),
-                          socialCardSvg(
-                              imageSvg: 'assets/images/fb.svg', onTap: () {}),
-                          socialCardSvg(
-                              imageSvg: 'assets/images/twe.svg', onTap: () {}),
-                        ],
-                      ),
-                      SizedBox(
-                        height: h * 0.03,
-                      ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -229,7 +210,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
     );
   }
 }

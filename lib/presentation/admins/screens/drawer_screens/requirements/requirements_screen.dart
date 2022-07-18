@@ -17,7 +17,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
     double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
@@ -47,7 +47,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                   'Recently added',
                   style: headingStyle.copyWith(
                       fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.25),
+                      color: const Color(0xff435971).withOpacity(0.5),
                       fontSize: 20,
                       fontWeight: FontWeight.w500),
                 ),
@@ -137,7 +137,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
 
   Widget buildUsersRequirmemtsRow() => Container(
         height: 30,
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: SizedBox(
           height: 30,
           child: Row(
@@ -164,7 +164,9 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                 'Backend',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
-                    color: Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontSize: 13,
                     fontWeight: FontWeight.w400),
               ),
@@ -172,7 +174,9 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                 '180 LE',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
-                    color: Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontSize: 13,
                     fontWeight: FontWeight.w400),
               ),
@@ -180,7 +184,9 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                 'Hema',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
-                    color: Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontSize: 13,
                     fontWeight: FontWeight.w400),
               ),

@@ -17,19 +17,15 @@ class _TeamScreenState extends State<TeamScreen> {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     // int? group;
-    // bool? checkValue = false;
-    // int selected = 0;
-    // bool _value = false;
-
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 10,
+        leading: const SizedBox(),
         elevation: 0.0,
-        backgroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -89,7 +85,9 @@ class _TeamScreenState extends State<TeamScreen> {
                     style: headingStyle.copyWith(
                         fontFamily: 'SF Pro Display',
                         fontSize: 14,
-                        color: const Color(0xff435971),
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor,
                         fontWeight: FontWeight.w500),
                   ),
                   const Spacer(),
@@ -98,7 +96,9 @@ class _TeamScreenState extends State<TeamScreen> {
                     style: headingStyle.copyWith(
                         fontFamily: 'SF Pro Display',
                         fontSize: 14,
-                        color: Color(0xff435971),
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor,
                         fontWeight: FontWeight.w500),
                   ),
                 ],
@@ -113,7 +113,9 @@ class _TeamScreenState extends State<TeamScreen> {
                     style: headingStyle.copyWith(
                         fontFamily: 'SF Pro Display',
                         fontSize: 12,
-                        color: Color(0xff435971),
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor,
                         fontWeight: FontWeight.w400),
                   ),
                   Spacer(),
@@ -122,7 +124,9 @@ class _TeamScreenState extends State<TeamScreen> {
                     style: headingStyle.copyWith(
                         fontFamily: 'SF Pro Display',
                         fontSize: 12,
-                        color: Color(0xff435971),
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor,
                         fontWeight: FontWeight.w400),
                   ),
                 ],
@@ -138,13 +142,15 @@ class _TeamScreenState extends State<TeamScreen> {
                   buildTimerCard(time: '18', h: h, w: w, text: 'hours'),
                 ],
               ),
-              // SizedBox(
-              //   height: h * 0.03,
-              // ),
+              SizedBox(
+                height: h * 0.03,
+              ),
               Text(
                 'Description',
                 style: headingStyle.copyWith(
-                    color: const Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     fontFamily: 'SF Pro Display',
                     fontSize: 14,
                     fontWeight: FontWeight.w500),
@@ -155,7 +161,9 @@ class _TeamScreenState extends State<TeamScreen> {
               Text(
                 'user interface (UI) is anything a user may interact with to use a digital product or service. This includes everything from screens and touchscreens, keyboards, sounds, and even lights. To understand the evolution of UI, however, it’s helpful to learn a bit more about its history and how it has evolved into best practices and a profession.',
                 style: headingStyle.copyWith(
-                    color: const Color(0xff435971),
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                     height: 1.2,
                     fontFamily: 'SF Pro Display',
                     fontSize: 14,

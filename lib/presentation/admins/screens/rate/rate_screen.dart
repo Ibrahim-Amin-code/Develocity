@@ -52,7 +52,6 @@ class _RateAdminScreeenState extends State<RateAdminScreeen> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData lightTheme = ThemeData(
-  primarySwatch: const MaterialColor(0xff696CFF,{
-    50:  Color(0xff696CF0),
+  primarySwatch: const MaterialColor(0xff696CFF, {
+    50: Color(0xff696CF0),
     100: Color(0xff696CF1),
     200: Color(0xff696CF2),
     300: Color(0xff696CF3),
@@ -32,6 +32,7 @@ ThemeData lightTheme = ThemeData(
     titleLarge: headingStyle.copyWith(color: MyColors.unselectedIconColor),
   ),
   cardColor: MyColors.backgroundColor,
+  drawerTheme: const DrawerThemeData(backgroundColor: Colors.white),
   backgroundColor: Colors.white,
   iconTheme: IconThemeData(color: MyColors.unselectedIconColor),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -55,17 +56,42 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  scaffoldBackgroundColor: Colors.black,
+  scaffoldBackgroundColor: Colors.black45,
   backgroundColor: Colors.grey,
+  drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
   cardColor: Colors.grey.withOpacity(0.4),
   textTheme: TextTheme(
     titleLarge: headingStyle.copyWith(color: Colors.white),
+    bodySmall: const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'SF Pro Display',
+      fontSize: 12.0,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16.0,
+      fontFamily: 'SF Pro Display',
+      fontWeight: FontWeight.w500,
+      color: MyColors.mainColor,
+    ),
   ),
   iconTheme: const IconThemeData(color: Colors.white),
-  appBarTheme: const AppBarTheme(backgroundColor: Colors.black,
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: MyColors.mainColor,
+    selectedIconTheme: const IconThemeData(
+      size: 30,
+    ),
+    elevation: 20.0,
+    backgroundColor: Colors.black,
+    unselectedItemColor: Colors.white70,
+  ),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.black,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Color(0xff696CFF),
-      statusBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: Color(0xff696CFF),
-    ),),
+    ),
+  ),
 );
