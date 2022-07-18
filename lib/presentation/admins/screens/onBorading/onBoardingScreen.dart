@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, unused_local_variable
 
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/authentication/user_or_admin/user_or_admin_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../authentication/loign/loign_screen.dart';
@@ -48,7 +49,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  MaterialPageRoute(builder: (context) => const UserOrAdminScreen()));
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -101,7 +102,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             textColor: Colors.white,
             onPressed: () async {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  MaterialPageRoute(builder: (context) => const UserOrAdminScreen()));
 
               // SharedPreferences prefs =
               //     await SharedPreferences.getInstance();

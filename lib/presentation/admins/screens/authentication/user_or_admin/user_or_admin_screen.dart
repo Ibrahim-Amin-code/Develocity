@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable, duplicate_ignore
 
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/authentication/loign/loign_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,7 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        UserHomeLayoutScreen()));
+                                        LoginScreen(true)));
                           },
                           imageColor: (AppCubit.get(context).isUser == true)
                               ? MyColors.mainColor
@@ -140,6 +141,12 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                           onTap: () {
                             AppCubit.get(context).userOrAdmin(
                                 isUserClicked: false, isAdminClicked: true);
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        LoginScreen(false)));
                           },
                           imageColor: (AppCubit.get(context).isAdmin == true)
                               ? MyColors.mainColor

@@ -1,5 +1,7 @@
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:develocity/constants/theme/themes.dart';
+import 'package:develocity/presentation/admins/screens/authentication/loign/login_cubit/login_cubit.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 
@@ -13,19 +15,21 @@ import 'business_logic/app_cubit/app_cubit.dart';
 import 'constants/network/bloc_observer.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DioHelper.init();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: MyColors.mainColor,
       statusBarBrightness: Brightness.dark,
     ),
   );
-
   BlocOverrides.runZoned(
     () {
-      runApp(MyApp());
+      runApp(const MyApp());
     },
     blocObserver: MyBlocObserver(),
   );
+
 }
 
 class MyApp extends StatelessWidget {
@@ -38,6 +42,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
         BlocProvider(create: (BuildContext context) => AppCubit()),
         BlocProvider(create: (BuildContext context) => UserCubit()),
+        BlocProvider(create: (BuildContext context) => LoginCubit()),
       ],
       child: BlocConsumer<UserCubit, UserStates>(
         listener: (context, state) {},
