@@ -42,14 +42,7 @@
 //     super.dispose();
 //   }
 
-//   snackBar(String? message) {
-//     return ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(
-//         content: Text(message!),
-//         duration: Duration(seconds: 2),
-//       ),
-//     );
-//   }
+ 
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -256,10 +249,10 @@
 //                     ));
 //                   });
 //                 }
-//                 Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                         builder: (context) => const OtpSuccessScreen()));
+//                 // Navigator.push(
+//                 //     context,
+//                 //     MaterialPageRoute(
+//                 //         builder: (context) => const OtpSuccessScreen()));
 //               },
 //               fontSize: 14,
 //               height: h * 0.06,

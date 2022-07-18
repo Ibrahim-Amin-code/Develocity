@@ -3,8 +3,7 @@
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/authentication/user_or_admin/user_or_admin_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../authentication/loign/loign_screen.dart';
+import '../../../../constants/core/const.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   @override
@@ -12,6 +11,8 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  PageController? pageController;
+
   int currentPage = 0;
 
   List<Map<String, String>> splashData = [
@@ -34,6 +35,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           "The advantage of this application is that it also provides reminders for you so you don't forget to keep doing your assignments well and according to the time you have set",
     },
   ];
+
+  @override
+  void initState() {
+    pageController = PageController(initialPage: 0);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -48,8 +56,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           SizedBox(height: h * 0.1),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const UserOrAdminScreen()));
+              prefs.setBool('onBoarding', true);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserOrAdminScreen()));
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -70,6 +81,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Expanded(
             flex: 3,
             child: PageView.builder(
+              controller: pageController,
               physics: const BouncingScrollPhysics(),
               onPageChanged: (value) {
                 setState(() {
@@ -101,8 +113,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             title: 'Next',
             textColor: Colors.white,
             onPressed: () async {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const UserOrAdminScreen()));
+              if (currentPage != splashData.length - 1) {
+                setState(() {
+                  currentPage = currentPage;
+                });
+                pageController!.animateToPage(currentPage + 1,
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.fastLinearToSlowEaseIn);
+              } else if (currentPage == splashData.length - 1) {
+                prefs.setBool('onBoarding', true);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserOrAdminScreen()));
+              }
+
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => const UserOrAdminScreen()));
 
               // SharedPreferences prefs =
               //     await SharedPreferences.getInstance();

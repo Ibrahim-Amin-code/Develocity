@@ -1,3 +1,5 @@
+import 'package:develocity/constants/core/const.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -54,5 +56,19 @@ class AppCubit extends Cubit<AppState> {
     isRecentlyAdmins = admminAdded;
     isAllAdmins = alladmmins;
     emit(ChangeRecentlyAdminsState());
+  }
+
+  bool isDark = false;
+  void changeAppMode({required bool dark}) {
+    bool fromShared = prefs.getBool('isDark') ?? false;
+    if (fromShared) {
+      isDark = fromShared;
+      emit(ChangeThemeState());
+    } else {
+      isDark = dark;
+      prefs.setBool('isDark', isDark).then((value) {
+        emit(ChangeThemeState());
+      });
+    }
   }
 }

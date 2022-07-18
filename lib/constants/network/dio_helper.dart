@@ -1,3 +1,4 @@
+import 'package:develocity/constants/network/network_services.dart';
 import 'package:dio/dio.dart';
 
 class DioHelper {
@@ -6,32 +7,31 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://tasks.develocity.app/api/',
+        baseUrl: BaseUrl,
         receiveDataWhenStatusError: true,
       ),
     );
   }
 
-    static Future<Response> getData({
-      required String url,
-      Map<String, dynamic>? query,
-    }) async {
-      dio.options.headers={
-        'Content-Type': 'application/json',
-      };
+  static Future<Response> getData({
+    required String url,
+    Map<String, dynamic>? query,
+  }) async {
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+    };
 
-      return await dio.get(url, queryParameters: query);
-    }
-
-    static Future<Response> postData({
-      required String url,
-      required Map<String,dynamic> data,
-      Map<String,dynamic>? query
-    }) async{
-      dio.options.headers = {
-        'Content-Type': 'application/json',
-      };
-
-      return await dio.post(url, data: data,queryParameters: query);
-    }
+    return await dio.get(url, queryParameters: query);
   }
+
+  static Future<Response> postData(
+      {required String url,
+      required Map<String, dynamic> data,
+      Map<String, dynamic>? query}) async {
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+    };
+
+    return await dio.post(url, data: data, queryParameters: query);
+  }
+}

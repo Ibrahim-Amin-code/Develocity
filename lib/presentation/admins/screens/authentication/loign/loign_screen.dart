@@ -1,19 +1,15 @@
+import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/presentation/admins/screens/authentication/loign/login_cubit/login_cubit.dart';
-import 'package:develocity/presentation/admins/screens/authentication/loign/login_cubit/login_states.dart';
+import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ftoast/ftoast.dart';
+import '../../../../../business_logic/auth_cubit/auth_cubit.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  bool isUser;
-
-  LoginScreen(this.isUser);
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -30,24 +26,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    // ignore: unused_local_variable
-    var cubit = LoginCubit.get(context);
-    return BlocConsumer<LoginCubit, LoginStates>(
+    return BlocConsumer<AuthCubit, AuthState>(
         listener: (BuildContext context, state) {
-      if (state is LoginUserSuccessState && cubit.statusCode == 200) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((context) =>
-                   UserHomeLayoutScreen())));
-      } else {
-        FToast.toast(
-          context,
-          msg: '${cubit.message}',
-          color: Colors.red,
-          msgStyle: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-          duration: 2500,
-        );
+      if (state is AdminLoginSuccessState) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => LayoutScreen(index: 0)));
+      } else if (state is UserLoginSuccessState) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => UserHomeLayoutScreen()));
       }
     }, builder: (BuildContext context, state) {
       return Scaffold(
@@ -135,7 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           focusNode: passFocus,
                           onEditingComplete: () {
                             passFocus.unfocus();
-                            // FocusScope.of(context).requestFocus(passFocus);
                           },
                           validator: (val) {
                             if (val!.isEmpty) {
@@ -144,36 +129,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                         ),
-                        // SizedBox(
-                        //   height: h * 0.01,
-                        // ),
-                        // Align(
-                        //   alignment: Alignment.topRight,
-                        //   child: InkWell(
-                        //     onTap: () => Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //             builder: (context) =>
-                        //                 ForgetPasswordScreen())),
-                        //     child: Text(
-                        //       'Forgot password?  ',
-                        //       style: headingStyle.copyWith(
-                        //           fontSize: 12,
-                        //           fontFamily: 'Poppins',
-                        //           fontWeight: FontWeight.w500,
-                        //           color: const Color(0xff87ADF4)),
-                        //     ),
-                        //   ),
-                        // ),
                         SizedBox(
                           height: h * 0.03,
                         ),
                         defaultButton(
                             title: 'Login',
                             onPressed: () {
-                              if (widget.isUser == true) {
-                                cubit.userLogin(
-                                    emailController.text, passController.text);
+                              if (AppCubit.get(context).isAdmin) {
+                                AuthCubit.get(context).adminLogin(
+                                    context: context,
+                                    email: emailController.text,
+                                    password: passController.text);
+                              } else if (AppCubit.get(context).isUser) {
+                                AuthCubit.get(context).userLogin(
+                                    context: context,
+                                    email: emailController.text,
+                                    password: passController.text);
                               }
                             },
                             fontSize: 14,
@@ -184,7 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: h * 0.03,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

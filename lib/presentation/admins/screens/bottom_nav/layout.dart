@@ -1,13 +1,16 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, unnecessary_null_comparison, file_names, prefer_const_constructors, use_full_hex_values_for_flutter_colors
 
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/fab_buttom.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/admins/add_admins_screeen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/branches/add_branch_screeen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/sections/add_section_screeen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/users/add_user_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
+import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
 import '../rate/rate_screen.dart';
@@ -241,7 +244,13 @@ assets/images/admins.png',
             actions: [
               defaultButton(
                   title: 'Logout',
-                  onPressed: () {},
+                  onPressed: () {
+                    prefs.clear();
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => SplashScreen()),
+                        (route) => false);
+                  },
                   fontSize: 16,
                   height: 40,
                   width: 325,
@@ -249,7 +258,9 @@ assets/images/admins.png',
                   textColor: Colors.white),
               defaultButton(
                   title: 'cancel',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   fontSize: 14,
                   height: 40,
                   width: 325,

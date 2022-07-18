@@ -2,6 +2,8 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'colors.dart';
@@ -202,4 +204,31 @@ class _CustomDropDownState extends State<CustomDropDown> {
       ),
     );
   }
+}
+
+// Future<bool?> toast({
+//   required String msg,
+//   required Color backgroundColor,
+// }) =>
+//     Fluttertoast.showToast(
+//         msg: msg,
+//         toastLength: Toast.LENGTH_LONG,
+//         gravity: ToastGravity.CENTER,
+//         timeInSecForIosWeb: 1,
+//         backgroundColor: backgroundColor,
+//         textColor: Colors.white,
+//         fontSize: 16.0);
+
+snackBar({required String? message, context}) {
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message!),
+      duration: Duration(seconds: 2),
+    ),
+  );
+}
+
+late SharedPreferences prefs;
+Future startShared() async {
+  prefs = await SharedPreferences.getInstance();
 }

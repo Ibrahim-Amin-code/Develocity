@@ -2,8 +2,10 @@
 
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/requirements/requirements_screen.dart';
 import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
+import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -228,72 +230,109 @@ Widget buildDrawerWidget({required context}) {
             ),
             Image.asset('assets/images/Nav item.png'),
 
-            Container(
-              height: h * 0.05,
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  color: const Color(0xffF0F0F0),
-                  borderRadius: BorderRadius.circular(40)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: w * 0.36,
-                    height: h * 0.04,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Icon(
-                            Icons.light_mode,
-                            color: Color(0xff535763),
+            BlocConsumer<AppCubit, AppState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return Container(
+                  height: h * 0.05,
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                      color: const Color(0xffF0F0F0),
+                      borderRadius: BorderRadius.circular(40)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          // Navigator.pop(context);
+                          prefs.setBool('isDark', false).then((value) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SplashScreen()),
+                            );
+                          });
+                          AppCubit.get(context).changeAppMode(dark: false);
+                        },
+                        child: Container(
+                          width: w * 0.36,
+                          height: h * 0.04,
+                          decoration: BoxDecoration(
+                              color: (prefs.getBool('isDark') == false)
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Icon(
+                                  Icons.light_mode,
+                                  color: Color(0xff535763),
+                                ),
+                                Text(
+                                  'Light',
+                                  style: headingStyle.copyWith(
+                                      color: const Color(0xff535763),
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
                           ),
-                          Text(
-                            'Light',
-                            style: headingStyle.copyWith(
-                                color: const Color(0xff535763),
-                                fontFamily: 'SF Pro Display',
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
+                      InkWell(
+                        onTap: () {
+                          // Navigator.pop(context);
+
+                          prefs.setBool('isDark', true).then((value) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SplashScreen()),
+                            );
+                          });
+
+                          AppCubit.get(context).changeAppMode(dark: true);
+                        },
+                        child: Container(
+                          width: w * 0.36,
+                          height: h * 0.04,
+                          decoration: BoxDecoration(
+                              color: (prefs.getBool('isDark') == true)
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Icon(
+                                  Icons.dark_mode_outlined,
+                                  color: Color(0xff535763),
+                                ),
+                                Text(
+                                  'Dark',
+                                  style: headingStyle.copyWith(
+                                      color: const Color(0xff535763),
+                                      fontFamily: 'SF Pro Display',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: w * 0.36,
-                    height: h * 0.04,
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Icon(
-                            Icons.dark_mode_outlined,
-                            color: Color(0xff535763),
-                          ),
-                          Text(
-                            'Light',
-                            style: headingStyle.copyWith(
-                                color: const Color(0xff535763),
-                                fontFamily: 'SF Pro Display',
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                );
+              },
             ),
 
             // (prefs.getBool("is_login") == false)

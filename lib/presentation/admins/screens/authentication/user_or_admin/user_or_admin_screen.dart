@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable, duplicate_ignore
 
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/authentication/loign/loign_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
@@ -120,11 +121,10 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                           onTap: () {
                             AppCubit.get(context).userOrAdmin(
                                 isUserClicked: true, isAdminClicked: false);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        LoginScreen(true)));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => LoginScreen(true)));
                           },
                           imageColor: (AppCubit.get(context).isUser == true)
                               ? MyColors.mainColor
@@ -142,11 +142,10 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                             AppCubit.get(context).userOrAdmin(
                                 isUserClicked: false, isAdminClicked: true);
 
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        LoginScreen(false)));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => LoginScreen(false)));
                           },
                           imageColor: (AppCubit.get(context).isAdmin == true)
                               ? MyColors.mainColor
@@ -165,18 +164,15 @@ class _UserOrAdminScreenState extends State<UserOrAdminScreen> {
                   return defaultButton(
                       title: 'Go to Dashboard',
                       onPressed: () {
-                        (AppCubit.get(context).isAdmin)
-                            ? Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LayoutScreen(
-                                          index: 0,
-                                        )))
+                        (AppCubit.get(context).isAdmin == false &&
+                                AppCubit.get(context).isUser == false)
+                            ? snackBar(
+                                message: 'You Must Choose User Or Admin',
+                                context: context)
                             : Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        UserHomeLayoutScreen()));
+                                    builder: (context) => LoginScreen()));
                       },
                       fontSize: 14,
                       height: h * 0.06,
