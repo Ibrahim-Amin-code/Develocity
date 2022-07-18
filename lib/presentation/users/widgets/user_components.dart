@@ -322,8 +322,8 @@ class UserHomeItem extends StatelessWidget {
                   'UI Element Design',
                   style: Theme.of(context)
                       .textTheme
-                      .titleLarge!
-                      .copyWith(fontSize: width * 0.04),
+                      .bodySmall!
+                      .copyWith(fontSize: 14.0),
                 ),
                 SizedBox(
                   width: width * 0.02,

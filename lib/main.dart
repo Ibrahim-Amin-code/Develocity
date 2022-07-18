@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
-            home: SafeArea(child: SplashScreen()),
+            home: const SafeArea(child: SplashScreen()),
           );
         },
       ),
