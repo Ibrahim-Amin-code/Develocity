@@ -1,5 +1,6 @@
+// ignore_for_file: use_key_in_widget_constructors, avoid_print
+
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/main.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

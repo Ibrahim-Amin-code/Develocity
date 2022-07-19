@@ -1,13 +1,13 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/authentication/user_or_admin/user_or_admin_screen.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
-import '../../../../constants/core/const.dart';
+import 'package:provider/provider.dart';
+import '../../../../business_logic/provider/map.dart';
 import '../../../../constants/network/cache_helper.dart';
 import '../onBorading/onBoardingScreen.dart';
 
@@ -49,6 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    Provider.of<MapProvider>(context, listen: false).start();
     getScreen();
     super.initState();
     Timer(

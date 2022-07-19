@@ -1,9 +1,8 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, unused_local_variable
+// ignore_for_file: file_names, use_key_in_widget_constructors, unused_local_variable, use_full_hex_values_for_flutter_colors, prefer_const_constructors
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/authentication/user_or_admin/user_or_admin_screen.dart';
 import 'package:flutter/material.dart';
-import '../../../../constants/core/const.dart';
 import '../../../../constants/network/cache_helper.dart';
 
 class OnBoardingScreen extends StatefulWidget {

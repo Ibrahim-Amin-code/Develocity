@@ -6,9 +6,6 @@ import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScre
 import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../register/register_screen.dart';
-import '../user_or_admin/user_or_admin_screen.dart';
-
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
 

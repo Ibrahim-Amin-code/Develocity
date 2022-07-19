@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/drawer_widget.dart';
-import 'add_branch_screeen.dart';
 
 class BranchesScreeen extends StatefulWidget {
   const BranchesScreeen({Key? key}) : super(key: key);

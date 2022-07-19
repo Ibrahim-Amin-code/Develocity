@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../constants/core/const.dart';
 import '../../../widgets/drawer_widget.dart';
-import 'add_user_screen.dart';
 
 class AddUsersScreeen extends StatefulWidget {
   const AddUsersScreeen({Key? key}) : super(key: key);

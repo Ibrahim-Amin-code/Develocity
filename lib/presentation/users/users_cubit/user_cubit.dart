@@ -6,7 +6,6 @@ import 'package:develocity/presentation/users/screens/requirements_user/user_req
 import 'package:develocity/presentation/users/users_cubit/user_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc/bloc.dart';
 
 class UserCubit extends Cubit<UserStates> {
   UserCubit() : super(UserInitialState());
@@ -15,10 +14,8 @@ class UserCubit extends Cubit<UserStates> {
 
   var currentIndex = 0;
   List<UserFABBottomAppBarItem> bottomNavItems = [
-    UserFABBottomAppBarItem(
-        iconData: "assets/images/home11.png", text: 'Home'),
-    UserFABBottomAppBarItem(
-        iconData: "assets/images/rates.png", text: 'Rate'),
+    UserFABBottomAppBarItem(iconData: "assets/images/home11.png", text: 'Home'),
+    UserFABBottomAppBarItem(iconData: "assets/images/rates.png", text: 'Rate'),
     UserFABBottomAppBarItem(
         iconData: "assets/images/comp.png", text: 'Complaints'),
     UserFABBottomAppBarItem(
@@ -45,10 +42,9 @@ class UserCubit extends Cubit<UserStates> {
     emit(UserBottomNavState());
   }
 
-
   bool userRecentlyRate = false;
 
-  void changeUserRecentlyRate(){
+  void changeUserRecentlyRate() {
     userRecentlyRate = !userRecentlyRate;
     emit(UserRateRecentlyState());
   }

@@ -29,11 +29,29 @@ class DioHelper {
   static Future<Response> postData(
       {required String url,
       required Map<String, dynamic> data,
+      String? token,
       Map<String, dynamic>? query}) async {
     dio.options.headers = {
       'Content-Type': 'application/json',
+      'Authorization': token,
     };
 
     return await dio.post(url, data: data, queryParameters: query);
+  }
+
+  static Future<Response> postDataWithImage(
+      {required String url,
+      required FormData data,
+      String? token,
+      Map<String, dynamic>? query}) async {
+    dio.options.headers = {
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    };
+    return await dio.post(
+      url,
+      data: data,
+      queryParameters: query,
+    );
   }
 }

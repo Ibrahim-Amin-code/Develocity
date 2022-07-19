@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -83,7 +85,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
   }
 
   Widget buildComplainCard({required double h, required double w}) => Container(
-        height: h*0.19,
+        height: h * 0.19,
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
         ),
@@ -101,7 +103,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top:8.0),
+          padding: const EdgeInsets.only(top: 8.0),
           child: Column(
             children: [
               Row(

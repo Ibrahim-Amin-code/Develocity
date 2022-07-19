@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/notification/notification_screen.dart';
 import 'package:develocity/presentation/admins/widgets/drawer_widget.dart';

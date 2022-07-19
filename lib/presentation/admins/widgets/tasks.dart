@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:flutter/material.dart';
 

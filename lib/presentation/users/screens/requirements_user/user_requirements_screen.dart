@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, unused_local_variable, avoid_print, body_might_complete_normally_nullable
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';

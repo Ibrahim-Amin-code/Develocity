@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors, unused_local_variable
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
 

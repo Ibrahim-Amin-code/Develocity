@@ -1,9 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, duplicate_ignore
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'colors.dart';
@@ -226,4 +225,10 @@ snackBar({required String? message, context}) {
       duration: Duration(seconds: 2),
     ),
   );
+}
+
+late BitmapDescriptor markerImage;
+mapIcon() async {
+  markerImage = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(), 'assets/images/noun-pin.png');
 }

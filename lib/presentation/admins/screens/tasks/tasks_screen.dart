@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, use_full_hex_values_for_flutter_colors, prefer_const_constructors, avoid_print
 
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
@@ -133,12 +133,13 @@ class _TasksScreenState extends State<TasksScreen> {
                         width: w * 0.4,
                         height: h * 0.07,
                         decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xff05006EE9)),
-                            color: Color(0xffEEF5FD),
+                            border:
+                                Border.all(color: const Color(0xff05006EE9)),
+                            color: const Color(0xffEEF5FD),
                             borderRadius: BorderRadius.circular(10)),
                         child: Center(
                             child: datePickerCard(
-                          iconColor: Color(0xffABCEF5),
+                          iconColor: const Color(0xffABCEF5),
                         )),
                       ),
                     ),

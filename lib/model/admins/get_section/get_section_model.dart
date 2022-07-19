@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 class GetSectionModel {
   List<Data>? data;
   int? status;
@@ -9,7 +11,7 @@ class GetSectionModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
     status = json['status'];

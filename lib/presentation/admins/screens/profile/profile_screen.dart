@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/state.dart';

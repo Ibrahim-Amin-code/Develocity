@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 class GetBranchModel {
   List<Data>? data;
   int? status;

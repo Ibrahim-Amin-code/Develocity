@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:develocity/constants/network/network_services.dart';

@@ -4,7 +4,6 @@ import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/drawer_widget.dart';
-import 'add_user_screen.dart';
 
 class UsersScreeen extends StatefulWidget {
   const UsersScreeen({Key? key}) : super(key: key);

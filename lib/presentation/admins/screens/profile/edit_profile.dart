@@ -1,11 +1,10 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/admins/widgets/admin_profile_widget.dart';
-import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AdminEditProfileCard(),
+              const AdminEditProfileCard(),
               SizedBox(
                 height: h * 0.03,
               ),

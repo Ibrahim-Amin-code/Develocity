@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
@@ -10,7 +12,9 @@ import 'package:develocity/presentation/users/users_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
+import 'business_logic/provider/map.dart';
 import 'constants/core/const.dart';
 import 'constants/network/bloc_observer.dart';
 import 'constants/network/cache_helper.dart';
@@ -19,6 +23,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.init();
   await startShared();
+  await mapIcon();
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -54,15 +59,17 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},
         builder: (context, Object? state) {
-          return MaterialApp(
-            // darkTheme: darkTheme,
-            debugShowCheckedModeBanner: false,
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode: (prefs.getBool('isDark') == true)
-                ? ThemeMode.dark
-                : ThemeMode.light,
-            home: const SafeArea(child: SplashScreen()),
+          return ChangeNotifierProvider(
+            create: (context) => MapProvider(),
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: lightTheme,
+              darkTheme: darkTheme,
+              themeMode: (prefs.getBool('isDark') == true)
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
+              home: const SafeArea(child: SplashScreen()),
+            ),
           );
         },
       ),

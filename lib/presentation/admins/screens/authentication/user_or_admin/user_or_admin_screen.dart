@@ -4,13 +4,10 @@ import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/authentication/loign/loign_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
-import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../business_logic/app_cubit/app_cubit.dart';
-import '../../bottom_nav/layout.dart';
-import '../otp/otp_screen.dart';
 
 class UserOrAdminScreen extends StatefulWidget {
   const UserOrAdminScreen({Key? key}) : super(key: key);

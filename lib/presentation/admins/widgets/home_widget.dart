@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:develocity/presentation/admins/screens/teams/team_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -12,8 +14,8 @@ Widget buildHomeGrid(context) {
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       childAspectRatio: 0.83,
-      crossAxisSpacing: w*0.01,
-      mainAxisSpacing: h*0.02,
+      crossAxisSpacing: w * 0.01,
+      mainAxisSpacing: h * 0.02,
     ),
     shrinkWrap: true,
     primary: true,
@@ -22,8 +24,8 @@ Widget buildHomeGrid(context) {
     itemBuilder: ((ctx, index) {
       return InkWell(
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => TeamScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const TeamScreen()));
         },
         child: Column(
           children: [

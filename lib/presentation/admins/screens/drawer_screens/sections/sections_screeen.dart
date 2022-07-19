@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/drawer_widget.dart';
-import 'add_section_screeen.dart';
 
 class SectionsScreeen extends StatefulWidget {
   const SectionsScreeen({Key? key}) : super(key: key);
@@ -22,9 +21,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
     double w = MediaQuery.of(context).size.width;
 
     return BlocConsumer<SectionCubit, SectionState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           // backgroundColor: Colors.white,
