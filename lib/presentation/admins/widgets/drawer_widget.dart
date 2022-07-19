@@ -52,14 +52,14 @@ Widget buildDrawerWidget({required context}) {
                           children: [
                             Text(
                               'Abdelaziz Bin Fahd',
-                              style: headingStyle.copyWith(
+                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: 'SF Pro Display',
                                   color: MyColors.mainColor),
                             ),
-                            const SizedBox(
-                              height: 2,
+                             SizedBox(
+                              height: h*0.02,
                             ),
                             Text(
                               'ashfaksayem@gmail.com',
@@ -80,7 +80,7 @@ Widget buildDrawerWidget({required context}) {
               ),
             ),
             SizedBox(
-              height: h * 0.025,
+              height: h * 0.05,
             ),
             buildRowInDrawer(
                 imageColor: (AppCubit.get(context).color == 'Dashboard')
@@ -247,13 +247,9 @@ Widget buildDrawerWidget({required context}) {
                         onTap: () {
                           // Navigator.pop(context);
                           prefs.setBool('isDark', false).then((value) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SplashScreen()),
-                            );
+                            AppCubit.get(context).changeAppMode(fromShared: false);
                           });
-                          AppCubit.get(context).changeAppMode(dark: false);
+
                         },
                         child: Container(
                           width: w * 0.36,
@@ -290,14 +286,8 @@ Widget buildDrawerWidget({required context}) {
                           // Navigator.pop(context);
 
                           prefs.setBool('isDark', true).then((value) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SplashScreen()),
-                            );
+                            AppCubit.get(context).changeAppMode(fromShared: true);
                           });
-
-                          AppCubit.get(context).changeAppMode(dark: true);
                         },
                         child: Container(
                           width: w * 0.36,

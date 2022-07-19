@@ -16,6 +16,7 @@ ThemeData lightTheme = ThemeData(
     900: Color(0xff696CF9),
   }),
   scaffoldBackgroundColor: Colors.white,
+  brightness: Brightness.light,
   textTheme: TextTheme(
     bodySmall: const TextStyle(
       color: Colors.black,
@@ -56,7 +57,20 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
+  primarySwatch: const MaterialColor(0xff696CFF, {
+    50: Color(0xff696CF0),
+    100: Color(0xff696CF1),
+    200: Color(0xff696CF2),
+    300: Color(0xff696CF3),
+    400: Color(0xff696CF4),
+    500: Color(0xff696CFF),
+    600: Color(0xff696CF6),
+    700: Color(0xff696CF7),
+    800: Color(0xff696CF8),
+    900: Color(0xff696CF9),
+  }),
   scaffoldBackgroundColor: Colors.black45,
+  brightness: Brightness.dark,
   backgroundColor: Colors.grey,
   drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
   cardColor: Colors.grey.withOpacity(0.4),

@@ -58,14 +58,14 @@ class AppCubit extends Cubit<AppState> {
     emit(ChangeRecentlyAdminsState());
   }
 
-  bool isDark = false;
-  void changeAppMode({required bool dark}) {
-    bool fromShared = prefs.getBool('isDark') ?? false;
+  bool isDark = true;
+  void changeAppMode({required bool fromShared}) {
+        fromShared = prefs.getBool('isDark') ?? false;
     if (fromShared) {
       isDark = fromShared;
       emit(ChangeThemeState());
     } else {
-      isDark = dark;
+      isDark = !isDark;
       prefs.setBool('isDark', isDark).then((value) {
         emit(ChangeThemeState());
       });
