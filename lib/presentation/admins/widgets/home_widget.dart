@@ -9,11 +9,11 @@ Widget buildHomeGrid(context) {
   double w = MediaQuery.of(context).size.width;
 
   return GridView.builder(
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       childAspectRatio: 0.83,
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 0,
+      crossAxisSpacing: w*0.01,
+      mainAxisSpacing: h*0.02,
     ),
     shrinkWrap: true,
     primary: true,

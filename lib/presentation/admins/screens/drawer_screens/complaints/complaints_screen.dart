@@ -83,7 +83,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
   }
 
   Widget buildComplainCard({required double h, required double w}) => Container(
-        height: 125,
+        height: h*0.19,
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
         ),
@@ -100,152 +100,155 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                 blurRadius: 2)
           ],
         ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Image.asset(
-                  'assets/images/avatars.png',
-                  fit: BoxFit.contain,
-                  width: w * 0.08,
-                  height: h * 0.06,
-                ),
-                SizedBox(
-                  width: w * 0.02,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      child: Text(
-                        'From: Samaa Samir',
-                        style: headingStyle.copyWith(
-                          color: MyColors.mainColor,
-                          fontFamily: 'SF Pro Display',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: h * 0.005,
-                    ),
-                    Text(
-                      'Ui/Ux Designer',
-                      style: headingStyle.copyWith(
-                        color: Theme.of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedItemColor,
-                        fontFamily: 'SF Pro Display',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
-                const Spacer(),
-                Text(
-                  ' Today 11.30 Am',
-                  style: headingStyle.copyWith(
-                    color: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .unselectedItemColor,
-                    fontFamily: 'Roboto',
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
+        child: Padding(
+          padding: const EdgeInsets.only(top:8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/images/avatars.png',
+                    fit: BoxFit.contain,
+                    width: w * 0.08,
+                    height: h * 0.06,
                   ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Icon(
-                  Icons.close,
-                  color: Color(
-                    0xff888888,
+                  SizedBox(
+                    width: w * 0.02,
                   ),
-                  size: 22,
-                )
-              ],
-            ),
-            SizedBox(
-              height: h * 0.025,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: w * .51,
-                  child: Text.rich(TextSpan(
-                      text:
-                          'Sir, I am Samaa samir, ui/ux desginer I am writing to bring to your notice the poor maintenance ',
-                      style: headingStyle.copyWith(
-                          fontFamily: 'Roboto',
-                          color: Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400),
-                      children: <InlineSpan>[
-                        TextSpan(
-                          text: '.. see more',
-                          style: headingStyle.copyWith(
-                              fontFamily: 'Roboto',
-                              color: Color(0xff696CFF),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
-                        )
-                      ])),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: h * 0.03, left: w * 0.04),
-                  child: Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: w * 0.14,
-                        height: h * 0.032,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
+                      SizedBox(
+                        child: Text(
+                          'From: Samaa Samir',
+                          style: headingStyle.copyWith(
                             color: MyColors.mainColor,
-                            border: Border.all(color: MyColors.mainColor)),
-                        child: Center(
-                          child: Text(
-                            'Respone',
-                            style: headingStyle.copyWith(
-                              color: Colors.white,
-                              fontFamily: 'Roboto',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            fontFamily: 'SF Pro Display',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
                       SizedBox(
-                        width: w * 0.025,
+                        height: h * 0.005,
                       ),
-                      Container(
-                        width: w * 0.14,
-                        height: h * 0.032,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: Colors.white,
-                            border: Border.all(color: MyColors.mainColor)),
-                        child: Center(
-                          child: Text(
-                            'reject',
+                      Text(
+                        'Ui/Ux Designer',
+                        style: headingStyle.copyWith(
+                          color: Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor,
+                          fontFamily: 'SF Pro Display',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      )
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    ' Today 11.30 Am',
+                    style: headingStyle.copyWith(
+                      color: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor,
+                      fontFamily: 'Roboto',
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Icon(
+                    Icons.close,
+                    color: Color(
+                      0xff888888,
+                    ),
+                    size: 22,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: h * 0.025,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: w * .51,
+                    child: Text.rich(TextSpan(
+                        text:
+                            'Sir, I am Samaa samir, ui/ux desginer I am writing to bring to your notice the poor maintenance ',
+                        style: headingStyle.copyWith(
+                            fontFamily: 'Roboto',
+                            color: Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400),
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: '.. see more',
                             style: headingStyle.copyWith(
+                                fontFamily: 'Roboto',
+                                color: Color(0xff696CFF),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
+                          )
+                        ])),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: h * 0.03, left: w * 0.04),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: w * 0.14,
+                          height: h * 0.032,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
                               color: MyColors.mainColor,
-                              fontFamily: 'Roboto',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                              border: Border.all(color: MyColors.mainColor)),
+                          child: Center(
+                            child: Text(
+                              'Respone',
+                              style: headingStyle.copyWith(
+                                color: Colors.white,
+                                fontFamily: 'Roboto',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
+                        SizedBox(
+                          width: w * 0.025,
+                        ),
+                        Container(
+                          width: w * 0.14,
+                          height: h * 0.032,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: Colors.white,
+                              border: Border.all(color: MyColors.mainColor)),
+                          child: Center(
+                            child: Text(
+                              'reject',
+                              style: headingStyle.copyWith(
+                                color: MyColors.mainColor,
+                                fontFamily: 'Roboto',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       );
 }
