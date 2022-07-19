@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/drawer_widget.dart';
 import 'add_section_screeen.dart';
@@ -19,74 +21,97 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      // backgroundColor: Colors.white,
-      appBar: csutomAppBarInDrawers(
-          image: 'assets/images/arrow.png',
-          image2: 'assets/images/search.png',
-          text: 'Sections',
-          onTap: () {
-            Navigator.pop(context);
-          },
-          onTap1: () {}),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: Column(
-          children: [
-            Row(
+    return BlocConsumer<SectionCubit, SectionState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          // backgroundColor: Colors.white,
+          appBar: csutomAppBarInDrawers(
+              image: 'assets/images/arrow.png',
+              image2: 'assets/images/search.png',
+              text: 'Sections',
+              onTap: () {
+                Navigator.pop(context);
+              },
+              onTap1: () {}),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: Column(
               children: [
-                Text(
-                  'All',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff696CFF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  width: w * 0.05,
-                ),
-                Text(
-                  'Recently added',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.5),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'assets/images/filter.png',
-                    width: w * 0.1,
-                    height: h * 0.07,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    children: [
+                      Text(
+                        'All',
+                        style: headingStyle.copyWith(
+                            fontFamily: 'SF Pro Display',
+                            color: const Color(0xff696CFF),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        width: w * 0.05,
+                      ),
+                      Text(
+                        'Recently added',
+                        style: headingStyle.copyWith(
+                            fontFamily: 'SF Pro Display',
+                            color: const Color(0xff435971).withOpacity(0.5),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {},
+                        child: Image.asset(
+                          'assets/images/filter.png',
+                          width: w * 0.1,
+                          height: h * 0.07,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: h * 0.01,
-            ),
-            buildSectionRow(),
-            SizedBox(
-              height: h * 0.03,
-            ),
-            SizedBox(
-              height: h * .65,
-              child: ListView.separated(
-                shrinkWrap: true,
-                primary: true,
-                itemBuilder: (context, index) => buildSectionDataRow(),
-                separatorBuilder: (context, index) => SizedBox(
+                SizedBox(
                   height: h * 0.01,
                 ),
-                itemCount: 11,
-              ),
-            )
-          ],
-        ),
-      ),
+                buildSectionRow(),
+                SizedBox(
+                  height: h * 0.03,
+                ),
+                SizedBox(
+                  height: h * .65,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    primary: true,
+                    itemBuilder: (context, index) => buildSectionDataRow(
+                      sctionName: SectionCubit.get(context)
+                          .sectionModel
+                          .data![index]
+                          .name
+                          .toString(),
+                      branchName: SectionCubit.get(context)
+                          .sectionModel
+                          .data![index]
+                          .branch!
+                          .name
+                          .toString(),
+                    ),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: h * 0.01,
+                    ),
+                    itemCount:
+                        SectionCubit.get(context).sectionModel.data!.length,
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -106,7 +131,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                   fontWeight: FontWeight.w500),
             ),
             Text(
-              'Location',
+              'Branch Name',
               style: headingStyle.copyWith(
                   fontFamily: 'SF Pro Display',
                   color: Colors.white,
@@ -125,18 +150,43 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
         ),
       );
 
-  Widget buildSectionDataRow() => Container(
-        height: 35,
-        decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            border: Border.all(color: Color(0xff696CFF).withOpacity(0.03))),
-        child: SizedBox(
-          height: 30,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                'Develocity',
+  Widget buildSectionDataRow({
+    required String sctionName,
+    required String branchName,
+  }) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+    return Container(
+      height: 35,
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          border: Border.all(color: Color(0xff696CFF).withOpacity(0.03))),
+      child: SizedBox(
+        height: 30,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              width: 1,
+            ),
+            Text(
+              sctionName,
+              style: headingStyle.copyWith(
+                  fontFamily: 'SF Pro Display',
+                  color: Theme.of(context)
+                      .bottomNavigationBarTheme
+                      .unselectedItemColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400),
+            ),
+            SizedBox(
+              width: w * 0.09,
+            ),
+            SizedBox(
+              width: w * 0.25,
+              child: Text(
+                branchName,
+                textAlign: TextAlign.center,
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
                     color: Theme.of(context)
@@ -145,24 +195,13 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                     fontSize: 12,
                     fontWeight: FontWeight.w400),
               ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(
-                'Heliopolis-Cairio',
-                style: headingStyle.copyWith(
-                    fontFamily: 'SF Pro Display',
-                    color: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .unselectedItemColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400),
-              ),
-              buildSectionRowCard()
-            ],
-          ),
+            ),
+            buildSectionRowCard()
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   Widget buildSectionRowCard() => Row(
         children: [

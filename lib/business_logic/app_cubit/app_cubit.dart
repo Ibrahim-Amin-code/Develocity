@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../constants/network/cache_helper.dart';
+
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -60,7 +62,7 @@ class AppCubit extends Cubit<AppState> {
 
   bool isDark = true;
   void changeAppMode({required bool fromShared}) {
-        fromShared = prefs.getBool('isDark') ?? false;
+    fromShared = prefs.getBool('isDark') ?? false;
     if (fromShared) {
       isDark = fromShared;
       emit(ChangeThemeState());

@@ -227,8 +227,3 @@ snackBar({required String? message, context}) {
     ),
   );
 }
-
-late SharedPreferences prefs;
-Future startShared() async {
-  prefs = await SharedPreferences.getInstance();
-}

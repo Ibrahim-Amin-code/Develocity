@@ -2,10 +2,12 @@
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/core/const.dart';
+import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/requirements/requirements_screen.dart';
 import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../constants/network/cache_helper.dart';
 import '../screens/drawer_screens/admins/admins_screeen.dart';
 import '../screens/drawer_screens/branches/branches_screen.dart';
 import '../screens/drawer_screens/complaints/complaints_screen.dart';
@@ -27,12 +29,12 @@ Widget buildDrawerWidget({required context}) {
         return ListView(
           children: [
             InkWell(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ProfileScreen())),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+              },
               child: SizedBox(
-                height: h * 0.15,
+                height: h * 0.14,
                 child: DrawerHeader(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,21 +45,26 @@ Widget buildDrawerWidget({required context}) {
                           margin: EdgeInsets.only(right: w * 0.02),
                           child: Image.asset('assets/images/81.png')),
                       Container(
-                        margin:EdgeInsets.only(top: 15.0),
+                        margin: EdgeInsets.only(top: 15.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: h*0.02,),
+                            SizedBox(
+                              height: h * 0.01,
+                            ),
                             Text(
                               'Abdelaziz Bin Fahd',
-                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'SF Pro Display',
-                                  color: MyColors.mainColor),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'SF Pro Display',
+                                      color: MyColors.mainColor),
                             ),
-                             SizedBox(
-                              height: h*0.02,
+                            SizedBox(
+                              height: h * 0.01,
                             ),
                             Text(
                               'ashfaksayem@gmail.com',
@@ -78,7 +85,7 @@ Widget buildDrawerWidget({required context}) {
               ),
             ),
             SizedBox(
-              height: h * 0.03,
+              height: h * 0.02,
             ),
             buildRowInDrawer(
                 imageColor: (AppCubit.get(context).color == 'Dashboard')
@@ -245,9 +252,9 @@ Widget buildDrawerWidget({required context}) {
                         onTap: () {
                           // Navigator.pop(context);
                           prefs.setBool('isDark', false).then((value) {
-                            AppCubit.get(context).changeAppMode(fromShared: false);
+                            AppCubit.get(context)
+                                .changeAppMode(fromShared: false);
                           });
-
                         },
                         child: Container(
                           width: w * 0.36,
@@ -284,7 +291,8 @@ Widget buildDrawerWidget({required context}) {
                           // Navigator.pop(context);
 
                           prefs.setBool('isDark', true).then((value) {
-                            AppCubit.get(context).changeAppMode(fromShared: true);
+                            AppCubit.get(context)
+                                .changeAppMode(fromShared: true);
                           });
                         },
                         child: Container(

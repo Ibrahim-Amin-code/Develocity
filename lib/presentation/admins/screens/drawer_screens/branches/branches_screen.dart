@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/drawer_widget.dart';
 import 'add_branch_screeen.dart';
@@ -19,74 +21,91 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      // backgroundColor: Colors.white,
-      appBar: csutomAppBarInDrawers(
-          image: 'assets/images/arrow.png',
-          image2: 'assets/images/search.png',
-          text: 'Branches',
-          onTap: () {
-            Navigator.pop(context);
-          },
-          onTap1: () {}),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: Column(
-          children: [
-            Row(
+    return BlocConsumer<BranchCubit, BranchState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          // backgroundColor: Colors.white,
+          appBar: csutomAppBarInDrawers(
+              image: 'assets/images/arrow.png',
+              image2: 'assets/images/search.png',
+              text: 'Branches',
+              onTap: () {
+                Navigator.pop(context);
+              },
+              onTap1: () {}),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: Column(
               children: [
-                Text(
-                  'All',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff696CFF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
+                Row(
+                  children: [
+                    Text(
+                      'All',
+                      style: headingStyle.copyWith(
+                          fontFamily: 'SF Pro Display',
+                          color: const Color(0xff696CFF),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      width: w * 0.05,
+                    ),
+                    Text(
+                      'Recently added',
+                      style: headingStyle.copyWith(
+                          fontFamily: 'SF Pro Display',
+                          color: const Color(0xff435971).withOpacity(0.5),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {},
+                      child: Image.asset(
+                        'assets/images/filter.png',
+                        width: w * 0.1,
+                        height: h * 0.07,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  width: w * 0.05,
-                ),
-                Text(
-                  'Recently added',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.5),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'assets/images/filter.png',
-                    width: w * 0.1,
-                    height: h * 0.07,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: h * 0.01,
-            ),
-            buildBranchRow(),
-            SizedBox(
-              height: h * 0.03,
-            ),
-            SizedBox(
-              height: h * .65,
-              child: ListView.separated(
-                shrinkWrap: true,
-                primary: true,
-                itemBuilder: (context, index) => buildBranchDataRow(),
-                separatorBuilder: (context, index) => SizedBox(
                   height: h * 0.01,
                 ),
-                itemCount: 11,
-              ),
-            )
-          ],
-        ),
-      ),
+                buildBranchRow(),
+                SizedBox(
+                  height: h * 0.03,
+                ),
+                SizedBox(
+                  height: h * .65,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    primary: true,
+                    itemBuilder: (context, index) => buildBranchDataRow(
+                      branchLoaction: BranchCubit.get(context)
+                          .branchModel
+                          .data![index]
+                          .location
+                          .toString(),
+                      branchName: BranchCubit.get(context)
+                          .branchModel
+                          .data![index]
+                          .name
+                          .toString(),
+                    ),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: h * 0.01,
+                    ),
+                    itemCount:
+                        BranchCubit.get(context).branchModel.data!.length,
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -125,45 +144,62 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
         ),
       );
 
-  Widget buildBranchDataRow() => Container(
-        // padding: EdgeInsets.symmetric(horizontal: 10),
-        height: 35,
-        decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            border: Border.all(color: Color(0xff696CFF).withOpacity(0.03))),
-        child: SizedBox(
-          height: 30,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                'Develocity',
-                style: headingStyle.copyWith(
-                    fontFamily: 'SF Pro Display',
-                    color: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .unselectedItemColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400),
+  Widget buildBranchDataRow({
+    required String branchName,
+    required String branchLoaction,
+  }) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+
+    return Container(
+      height: 35,
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          border: Border.all(color: Color(0xff696CFF).withOpacity(0.03))),
+      child: SizedBox(
+        height: 30,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              branchName,
+              style: headingStyle.copyWith(
+                  fontFamily: 'SF Pro Display',
+                  color: Theme.of(context)
+                      .bottomNavigationBarTheme
+                      .unselectedItemColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Center(
+              child: SizedBox(
+                width: w * 0.4,
+                child: Text(
+                  branchLoaction,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: headingStyle.copyWith(
+                      fontFamily: 'SF Pro Display',
+                      color: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400),
+                ),
               ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(
-                'Heliopolis-Cairio',
-                style: headingStyle.copyWith(
-                    fontFamily: 'SF Pro Display',
-                    color: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .unselectedItemColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400),
-              ),
-              buildUserRowCard()
-            ],
-          ),
+            ),
+            buildUserRowCard()
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   Widget buildUserRowCard() => Row(
         children: [

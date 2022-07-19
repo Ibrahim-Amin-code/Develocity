@@ -24,10 +24,9 @@ class CardProfileInfo extends StatelessWidget {
         ),
         Text(
           text,
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall!
-              .copyWith(color: Theme.of(context).drawerTheme.backgroundColor),
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                color: MyColors.mainColor,
+              ),
         ),
       ],
     );

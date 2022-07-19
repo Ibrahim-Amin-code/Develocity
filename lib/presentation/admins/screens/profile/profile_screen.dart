@@ -117,10 +117,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         .textTheme
                                                         .bodySmall!
                                                         .copyWith(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .drawerTheme
-                                                                .backgroundColor),
+                                                          color: MyColors
+                                                              .mainColor,
+                                                        ),
                                                   ),
                                                 ],
                                               )

@@ -1,4 +1,6 @@
 import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
+import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
+import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:develocity/constants/theme/themes.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
 import 'constants/core/const.dart';
 import 'constants/network/bloc_observer.dart';
+import 'constants/network/cache_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +36,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -44,6 +46,10 @@ class MyApp extends StatelessWidget {
               ..changeAppMode(fromShared: prefs.getBool('isDark') ?? false)),
         BlocProvider(create: (BuildContext context) => UserCubit()),
         BlocProvider(create: (BuildContext context) => AuthCubit()),
+        BlocProvider(
+            create: (BuildContext context) => BranchCubit()..getBranches()),
+        BlocProvider(
+            create: (BuildContext context) => SectionCubit()..getSections()),
       ],
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},

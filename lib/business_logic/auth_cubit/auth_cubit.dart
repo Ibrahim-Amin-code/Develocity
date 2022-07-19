@@ -4,6 +4,8 @@ import 'package:develocity/constants/network/network_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../constants/network/cache_helper.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
