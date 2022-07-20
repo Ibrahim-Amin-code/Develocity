@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/branches/update_branch_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../widgets/drawer_widget.dart';
 
 class BranchesScreeen extends StatefulWidget {
@@ -76,29 +77,39 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                 SizedBox(
                   height: h * 0.03,
                 ),
-                SizedBox(
-                  height: h * .65,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    primary: true,
-                    itemBuilder: (context, index) => buildBranchDataRow(
-                      branchLoaction: BranchCubit.get(context)
-                          .branchModel
-                          .data![index]
-                          .location
-                          .toString(),
-                      branchName: BranchCubit.get(context)
-                          .branchModel
-                          .data![index]
-                          .name
-                          .toString(),
+                ConditionalBuilder(
+                  condition: state is! GetBranchLoadingState,
+                  builder: (context) => SizedBox(
+                    height: h * .65,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      primary: true,
+                      itemBuilder: (context, index) => buildBranchDataRow(
+                        id: BranchCubit.get(context)
+                            .branchModel
+                            .data![index]
+                            .id
+                            .toString(),
+                        branchLoaction: BranchCubit.get(context)
+                            .branchModel
+                            .data![index]
+                            .location
+                            .toString(),
+                        branchName: BranchCubit.get(context)
+                            .branchModel
+                            .data![index]
+                            .name
+                            .toString(),
+                      ),
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: h * 0.01,
+                      ),
+                      itemCount:
+                          BranchCubit.get(context).branchModel.data!.length,
                     ),
-                    separatorBuilder: (context, index) => SizedBox(
-                      height: h * 0.01,
-                    ),
-                    itemCount:
-                        BranchCubit.get(context).branchModel.data!.length,
                   ),
+                  fallback: (context) =>
+                      Center(child: CircularProgressIndicator()),
                 )
               ],
             ),
@@ -146,6 +157,7 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
   Widget buildBranchDataRow({
     required String branchName,
     required String branchLoaction,
+    required String id,
   }) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
@@ -193,46 +205,71 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                 ),
               ),
             ),
-            buildUserRowCard()
+            buildUserRowCard(updateId: id)
           ],
         ),
       ),
     );
   }
 
-  Widget buildUserRowCard() => Row(
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            width: 40,
-            decoration: const BoxDecoration(
-                color: Color(0xffE7E7FF),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5))),
-            child: Center(
-              child: Image.asset(
-                'assets/images/edit-line.png',
-                width: 18,
-                height: 25,
+  Widget buildUserRowCard({required String updateId}) =>
+      BlocConsumer<BranchCubit, BranchState>(
+        listener: (context, state) {
+          if (state is DeleteBranchSuccessState) {
+            BranchCubit.get(context).getBranches();
+          }
+        },
+        builder: (context, state) {
+          return Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UpdateBranchScreeen(
+                                updateId: updateId,
+                              )));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 10),
+                  width: 40,
+                  decoration: const BoxDecoration(
+                      color: Color(0xffE7E7FF),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          topLeft: Radius.circular(5))),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/edit-line.png',
+                      width: 18,
+                      height: 25,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-          Container(
-            width: 40,
-            decoration: BoxDecoration(
-                color: Color(0xffFF3E1D).withOpacity(0.3),
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5))),
-            child: Center(
-              child: Image.asset(
-                'assets/images/delete-out.png',
-                width: 18,
-                height: 25,
+              InkWell(
+                onTap: () {
+                  BranchCubit.get(context).deleteBranch(updateId);
+                },
+                child: Container(
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Color(0xffFF3E1D).withOpacity(0.3),
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(5),
+                          topRight: Radius.circular(5))),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/delete-out.png',
+                      width: 18,
+                      height: 25,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       );
 }

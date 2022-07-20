@@ -51,12 +51,12 @@ class _AddAdminsScreeenState extends State<AddAdminsScreeen> {
               height: h * 0.04,
             ),
             CustomTextFormField(nameController, TextInputType.name, () {},
-                'Admin Name *', 'Enter name', () {}, 1),
+                'Admin Name *', 'Enter name', 1),
             SizedBox(
               height: h * 0.02,
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Email *', 'Enter Email', () {}, 1),
+                () {}, 'Email *', 'Enter Email', 1),
             SizedBox(
               height: h * 0.02,
             ),
@@ -66,18 +66,17 @@ class _AddAdminsScreeenState extends State<AddAdminsScreeen> {
                 () {},
                 'Password *',
                 'Enter Password',
-                () {},
                 1),
             SizedBox(
               height: h * 0.02,
             ),
             CustomTextFormField(nameController, TextInputType.name, () {},
-                'Section Name *', 'Enter name', () {}, 1),
+                'Section Name *', 'Enter name', 1),
             SizedBox(
               height: h * 0.02,
             ),
             CustomTextFormField(emailController, TextInputType.emailAddress,
-                () {}, 'Email *', 'Enter Email', () {}, 1),
+                () {}, 'Email *', 'Enter Email', 1),
             SizedBox(
               height: h * 0.02,
             ),
@@ -87,7 +86,6 @@ class _AddAdminsScreeenState extends State<AddAdminsScreeen> {
                 () {},
                 'Password *',
                 'Enter Password',
-                () {},
                 11),
             SizedBox(
               height: h * 0.04,

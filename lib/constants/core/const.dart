@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, duplicate_ignore
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:develocity/constants/network/cache_helper.dart';
+import 'package:develocity/model/admins/get_branch/get_branch_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -137,7 +139,7 @@ class CustomDropDown extends StatefulWidget {
       this.borderColor,
       this.validator})
       : super(key: key);
-  final List<String>? items;
+  final List? items;
   final String text;
   final Color? fillColor;
   final Color? borderColor;
@@ -149,7 +151,7 @@ class CustomDropDown extends StatefulWidget {
 }
 
 class _CustomDropDownState extends State<CustomDropDown> {
-  String? _chosenValue;
+  var chosenValue;
 
   // List<String>? categories = widget.items;
 
@@ -172,12 +174,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
         decoration: const InputDecoration(
           border: InputBorder.none,
         ),
-        value: _chosenValue,
-        items: widget.items?.map<DropdownMenuItem<String>>((String value) {
+        value: chosenValue,
+        items: widget.items?.map<DropdownMenuItem<Data>>((value) {
           return DropdownMenuItem(
             value: value,
             child: Text(
-              value,
+              value.name.toString(),
               style: headingStyle.copyWith(
                   color: Color(0xffC4C4C4),
                   fontFamily: 'SF Pro Display',
@@ -192,14 +194,16 @@ class _CustomDropDownState extends State<CustomDropDown> {
               fontFamily: 'SF Pro Display',
               fontSize: 14),
         ),
-        onChanged: (String? value) {
+        onChanged: (dynamic value) {
           setState(() {
-            _chosenValue = value;
+            chosenValue = value;
+            print(chosenValue.id.toString());
+            prefs.setString('branchId', chosenValue.id.toString());
           });
-          // _chosenValue = value;
+          // _chosenValue = value;.id
         },
-        onSaved: widget.onSave,
-        validator: widget.validator,
+        // onSaved: widget.onSave,
+        // validator: widget.validator,
       ),
     );
   }

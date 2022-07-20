@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, unnecessary_null_comparison, file_names, prefer_const_constructors, use_full_hex_values_for_flutter_colors
 
+import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/fab_buttom.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/admins/add_admins_screeen.dart';
@@ -9,6 +10,7 @@ import 'package:develocity/presentation/admins/screens/drawer_screens/users/add_
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../constants/network/cache_helper.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
@@ -241,20 +243,30 @@ assets/images/admins.png',
             ),
             elevation: 0.0,
             actions: [
-              defaultButton(
-                  title: 'Logout',
-                  onPressed: () {
+              BlocConsumer<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AdminLogoutSuccessState) {
                     prefs.clear();
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => SplashScreen()),
                         (route) => false);
-                  },
-                  fontSize: 16,
-                  height: 40,
-                  width: 325,
-                  color: MyColors.mainColor,
-                  textColor: Colors.white),
+                  }
+                },
+                builder: (context, state) {
+                  return defaultButton(
+                      title: 'Logout',
+                      onPressed: () {
+                        AuthCubit.get(context).out();
+                        print('oooooooooooooooo');
+                      },
+                      fontSize: 16,
+                      height: 40,
+                      width: 325,
+                      color: MyColors.mainColor,
+                      textColor: Colors.white);
+                },
+              ),
               defaultButton(
                   title: 'cancel',
                   onPressed: () {

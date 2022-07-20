@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new
-
 class GetBranchModel {
   List<Data>? data;
   int? status;
@@ -22,8 +20,8 @@ class GetBranchModel {
 class Data {
   int? id;
   String? name;
-  double? lat;
-  double? lng;
+  String? lat;
+  String? lng;
   String? location;
   String? img;
 

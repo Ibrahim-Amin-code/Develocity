@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/presentation/admins/screens/drawer_screens/branches/branches_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +14,18 @@ import 'package:provider/provider.dart';
 
 import '../../../../../business_logic/provider/map.dart';
 import '../../../widgets/drawer_widget.dart';
+import 'branches_screen.dart';
 
-class AddBranchScreeen extends StatefulWidget {
-  const AddBranchScreeen({Key? key}) : super(key: key);
+class UpdateBranchScreeen extends StatefulWidget {
+  final String updateId;
 
+  const UpdateBranchScreeen({Key? key, required this.updateId})
+      : super(key: key);
   @override
-  State<AddBranchScreeen> createState() => _AddBranchScreeenState();
+  State<UpdateBranchScreeen> createState() => _UpdateBranchScreeenState();
 }
 
-class _AddBranchScreeenState extends State<AddBranchScreeen> {
+class _UpdateBranchScreeenState extends State<UpdateBranchScreeen> {
   GoogleMapController? _controller;
 
   void _updatePosition(CameraPosition _position, context) {
@@ -67,7 +69,7 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
-          text: 'Branches',
+          text: 'Update Branche',
           onTap: () {
             Navigator.pop(context);
           },
@@ -197,22 +199,24 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             ),
             BlocConsumer<BranchCubit, BranchState>(
               listener: (context, state) {
-                if (state is AddBranchSuccessState) {
+                if (state is UpdateBranchSuccessState) {
                   BranchCubit.get(context).getBranches();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => BranchesScreeen()),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BranchesScreeen()),
+                      (route) => false);
                 }
               },
               builder: (context, state) {
-                return (state is! AddBranchLoadingState)
+                return (state is! UpdateBranchLoadingState)
                     ? defaultButton(
-                        title: 'Submit',
+                        title: 'Submit Update',
                         onPressed: () {
                           // print(map.latLng!.toString().split(',').first);
                           // print(map.latLng!.toString().split(',').last);
-                          BranchCubit.get(context).addBranch(
+                          BranchCubit.get(context).updateBranch(
+                              id: widget.updateId,
                               context: context,
                               name: nameController.text,
                               lat: map.latLng!

@@ -126,7 +126,7 @@ class CustomTextFormField extends StatelessWidget {
   TextEditingController controller;
   TextInputType inputType;
   Function? validate;
-  Function onTap;
+  // Function onTap;
   String label;
   String hint;
   int? maxLine;
@@ -137,7 +137,7 @@ class CustomTextFormField extends StatelessWidget {
     this.validate,
     this.label,
     this.hint,
-    this.onTap,
+    // this.onTap,
     this.maxLine,
   );
 
@@ -168,10 +168,11 @@ class CustomTextFormField extends StatelessWidget {
           validator: (s) {
             return validate!(s);
           },
-          onTap: () {
-            onTap();
-          },
-          // maxLength: maxLine,
+
+          // onTap: () {
+          //   onTap();
+          // },
+          // // maxLength: maxLine,
 
           decoration: InputDecoration(
             hintText: hint,

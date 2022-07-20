@@ -41,7 +41,7 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                 if (value.isEmpty) {
                   return 'Enter user name, please.';
                 }
-              }, 'User Name *', 'Enter name', () {}, 1),
+              }, 'User Name *', 'Enter name', 1),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -50,7 +50,7 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                 if (value.isEmpty) {
                   return 'Enter cost, please.';
                 }
-              }, 'Cost *', 'Enter cost', () {}, 1),
+              }, 'Cost *', 'Enter cost', 1),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -132,7 +132,7 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                 if (value.isEmpty) {
                   return 'type requirements which you need';
                 }
-              }, 'Task *', 'type requirements which you need', () {}, 9),
+              }, 'Task *', 'type requirements which you need', 9),
               SizedBox(
                 height: height * 0.03,
               ),

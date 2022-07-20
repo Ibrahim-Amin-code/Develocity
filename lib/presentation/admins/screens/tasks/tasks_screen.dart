@@ -284,7 +284,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   height: h * 0.03,
                 ),
                 CustomTextFormField(descriptionController, TextInputType.text,
-                    () {}, 'Description', 'Type Description', () {}, 5),
+                    () {}, 'Description', 'Type Description', 5),
                 SizedBox(
                   height: h * 0.02,
                 ),

@@ -25,14 +25,18 @@ class AdminLoginLoadingState extends AuthState {}
 
 class AdminLoginSuccessState extends AuthState {}
 
-class AdminLoginStatusCode extends AuthState {
-  final String error;
-
-  AdminLoginStatusCode(this.error);
-}
-
 class AdminLoginErrorState extends AuthState {
   final String error;
 
   AdminLoginErrorState(this.error);
+}
+
+class AdminLogoutLoadingState extends AuthState {}
+
+class AdminLogoutSuccessState extends AuthState {}
+
+class AdminLogoutErrorState extends AuthState {
+  final String error;
+
+  AdminLogoutErrorState(this.error);
 }

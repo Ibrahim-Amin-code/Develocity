@@ -45,25 +45,89 @@ class BranchCubit extends Cubit<BranchState> {
       required context}) async {
     emit(AddBranchLoadingState());
     final String token = prefs.getString('token').toString();
+    try {
+      Map<String, String> headers = {
+        "Authorization": "Bearer $token",
+      };
+      FormData formData = FormData.fromMap({
+        "img": await MultipartFile.fromFile(img),
+        "name": name,
+        "lat": lat,
+        "lng": lng,
+        "location": location,
+      });
 
-    FormData formData = FormData.fromMap({
-      "img": await MultipartFile.fromFile(img),
-      "name": name,
-      "lng": lng,
-      "lat": lat,
-      "location": location,
-    });
-    DioHelper.postDataWithImage(
-      url: CreateBranch,
-      data: formData,
-      token: 'Bearer $token',
-    ).then((value) {
-      print(value.data);
-      emit(AddBranchSuccessState());
-    }).catchError((error) {
+      Response response = await Dio().post(BaseUrl + CreateBranch,
+          data: formData, options: Options(headers: headers));
+      if (response.statusCode == 200) {
+        print(response.data);
+        emit(AddBranchSuccessState());
+      } else {
+        print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+      }
+    } catch (error) {
       print(error.toString());
-      snackBar(message: 'Error', context: context);
       emit(AddBranchErrorState(error.toString()));
-    });
+    }
+  }
+
+  ////////////////////////////////////////////////////
+  void updateBranch(
+      {required String name,
+      required String lat,
+      required String lng,
+      required String location,
+      required String img,
+      required String id,
+      required context}) async {
+    emit(UpdateBranchLoadingState());
+    final String token = prefs.getString('token').toString();
+    try {
+      Map<String, String> headers = {
+        "Authorization": "Bearer $token",
+      };
+      FormData formData = FormData.fromMap({
+        "img": await MultipartFile.fromFile(img),
+        "name": name,
+        "lat": lat,
+        "lng": lng,
+        "location": location,
+      });
+
+      Response response = await Dio().post(BaseUrl + 'branches/update/$id',
+          data: formData, options: Options(headers: headers));
+      if (response.statusCode == 200) {
+        print(response.data);
+        emit(UpdateBranchSuccessState());
+      } else {
+        print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+      }
+    } catch (error) {
+      print(error.toString());
+      emit(UpdateBranchErrorState(error.toString()));
+    }
+  }
+
+////////////////////////////////////////////////////
+  void deleteBranch(String id) async {
+    emit(DeleteBranchLoadingState());
+    final String token = prefs.getString('token').toString();
+    try {
+      Map<String, String> headers = {
+        "Authorization": "Bearer $token",
+      };
+      Response response = await Dio().post(BaseUrl + 'branches/delete/$id',
+          options: Options(headers: headers));
+      if (response.statusCode == 200) {
+        print(response.data);
+        print('deleeeeeeeeeeeeeeeeeeeeet');
+        emit(DeleteBranchSuccessState());
+      } else {
+        print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+      }
+    } catch (error) {
+      print(error.toString());
+      emit(DeleteBranchErrorState(error.toString()));
+    }
   }
 }

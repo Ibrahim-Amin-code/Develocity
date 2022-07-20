@@ -251,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     if (value.isEmpty) {
                                       return 'Please Enter your name!';
                                     }
-                                  }, 'Name *', 'Type Name', () {}, 1),
+                                  }, 'Name *', 'Type Name', 1),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
@@ -261,7 +261,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     if (value.isEmpty) {
                                       return 'Please Enter your email!';
                                     }
-                                  }, 'Email *', 'Enter Email', () {}, 1),
+                                  }, 'Email *', 'Enter Email', 1),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
@@ -271,7 +271,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     if (value.isEmpty) {
                                       return 'Please Enter your phone!';
                                     }
-                                  }, 'Phone Number *', 'Type Number', () {}, 1),
+                                  }, 'Phone Number *', 'Type Number', 1),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
@@ -281,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     if (value.isEmpty) {
                                       return 'Please Enter your password!';
                                     }
-                                  }, 'Password *', 'Type Password', () {}, 1),
+                                  }, 'Password *', 'Type Password', 1),
                                   SizedBox(
                                     height: height * 0.05,
                                   ),

@@ -5,6 +5,7 @@ import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:develocity/constants/network/network_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:dio/dio.dart';
 
 import '../../constants/network/cache_helper.dart';
 
@@ -15,6 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
+  ///admin/logout
   String msgAdmin = '';
 
   void adminLogin(
@@ -28,6 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
       prefs.setBool('isLogin', true);
 
       prefs.setString('user_type', "admin");
+
       print(value.data);
       print(value.data['data']['token']);
       msgAdmin = value.data['message'];
@@ -39,6 +42,29 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AdminLoginErrorState(error.toString()));
     });
   }
+  //////////////////////////////////////////////////// /admin/logout
+
+  void out() async {
+    emit(AdminLogoutLoadingState());
+    final String token = prefs.getString('token').toString();
+    try {
+      Map<String, String> headers = {
+        "Authorization": "Bearer $token",
+      };
+      Response response = await Dio()
+          .post(BaseUrl + 'admin/logout', options: Options(headers: headers));
+      if (response.statusCode == 200) {
+        print(response.data);
+        emit(AdminLogoutSuccessState());
+      } else {
+        print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+      }
+    } catch (error) {
+      print(error.toString());
+      emit(AdminLogoutErrorState(error.toString()));
+    }
+  }
+//////////////////////////////////////////////
 
   String msgUser = '';
   void userLogin(

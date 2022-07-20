@@ -12,14 +12,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/drawer_widget.dart';
 
-class AddSectionScreeen extends StatefulWidget {
-  const AddSectionScreeen({Key? key}) : super(key: key);
+class UpdateSectionScreeen extends StatefulWidget {
+  final String id;
+
+  const UpdateSectionScreeen({Key? key, required this.id}) : super(key: key);
 
   @override
-  State<AddSectionScreeen> createState() => _AddSectionScreeenState();
+  State<UpdateSectionScreeen> createState() => _UpdateSectionScreeenState();
 }
 
-class _AddSectionScreeenState extends State<AddSectionScreeen> {
+class _UpdateSectionScreeenState extends State<UpdateSectionScreeen> {
   TextEditingController nameController = TextEditingController();
   final _keyForm = GlobalKey<FormState>();
 
@@ -33,7 +35,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
-          text: 'Section',
+          text: 'Update Section',
           onTap: () {
             Navigator.pop(context);
           },
@@ -42,7 +44,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
-            'Add new Section',
+            'Update Section',
             style: headingStyle.copyWith(
                 fontFamily: 'SF Pro Display',
                 fontSize: 20,
@@ -74,7 +76,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
             },
             builder: (context, state) {
               return CustomDropDown(
-                items: BranchCubit.get(context).branchModel.data,
+                items: BranchCubit.get(context).branchModel.data!,
                 text: 'Select company',
               );
             },
@@ -84,7 +86,7 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
           ),
           BlocConsumer<SectionCubit, SectionState>(
             listener: (context, state) {
-              if (state is AddSectionSuccessState) {
+              if (state is UpdateSectionSuccessState) {
                 SectionCubit.get(context).getSections();
                 Navigator.pushReplacement(
                   context,
@@ -93,11 +95,12 @@ class _AddSectionScreeenState extends State<AddSectionScreeen> {
               }
             },
             builder: (context, state) {
-              return (state is! AddSectionLoadingState)
+              return (state is! UpdateSectionLoadingState)
                   ? defaultButton(
                       title: 'Submit',
                       onPressed: () {
-                        SectionCubit.get(context).addSection(
+                        SectionCubit.get(context).updateSection(
+                            id: widget.id,
                             name: nameController.text,
                             branchId: prefs.getString('branchId').toString());
                       },
