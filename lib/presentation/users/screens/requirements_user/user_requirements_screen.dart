@@ -15,7 +15,7 @@ class UserRequirementsScreen extends StatefulWidget {
 class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _costController = TextEditingController();
-  final TextEditingController _adminController = TextEditingController();
+  TextEditingController _adminController = TextEditingController();
   final TextEditingController _taskNameController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -65,13 +65,14 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                 ),
               ),
               DropdownButtonFormField2(
+
                 validator: (value) {
                   if (value == null) {
                     return 'Please select an admin';
                   }
                 },
-                onChanged: (value) {
-                  //Do something when changing the item if you want.
+                onChanged: (String? value) {
+                 _adminController.text = value!;
                 },
                 hint: Text(
                   'Select Admin',

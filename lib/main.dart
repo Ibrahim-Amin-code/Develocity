@@ -1,5 +1,6 @@
 import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
+import 'package:develocity/business_logic/complaint_cubit/complaint_cubit.dart';
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
 import 'package:develocity/business_logic/users_cubit/user_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
               ..changeAppMode(fromShared: prefs.getBool('isDark') ?? false)),
         BlocProvider(create: (BuildContext context) => UserCubit()),
         BlocProvider(create: (BuildContext context) => AuthCubit()),
+        BlocProvider(create: (BuildContext context) => ComplaintsCubit()),
         BlocProvider(
             create: (BuildContext context) => BranchCubit()..getBranches()),
         BlocProvider(

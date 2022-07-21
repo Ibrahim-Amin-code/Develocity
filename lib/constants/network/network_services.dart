@@ -6,6 +6,7 @@ const String GetSections = 'sections';
 const String CreateBranch = 'branches/create';
 const String CreateSections = 'sections/create';
 const String UserComplainForAdmin = 'user-complaints';
+const String addComplaint = 'complaints/create';
 
 
 

@@ -6,13 +6,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ComplaintsCubit extends Cubit<ComplaintsStates> {
   ComplaintsCubit() : super(ComplaintsInitialState());
 
-  void addCompliant() {
+  static ComplaintsCubit get(context) => BlocProvider.of(context);
+
+  void addCompliant(
+      {required String title,
+      required String message,
+      required String type,
+      required String taskId}) {
     emit(ComplaintsAddLoadingState());
-  /*  DioHelper.postData(url: AddComplaint, data: {
-      'title': ,
-      'message': ,
-      'type': ,
-      'task_id': ,
-    });*/
+    DioHelper.postData(url: addComplaint, data: {
+      'title': title,
+      'message': message,
+      'type': type,
+      'task_id': taskId,
+    }).then((value) {
+      print(value.data);
+      emit(ComplaintsAddSuccessState());
+    }).catchError((error) {
+      emit(ComplaintsAddErrorsState(error.toString()));
+      print(error.toString());
+    });
   }
 }

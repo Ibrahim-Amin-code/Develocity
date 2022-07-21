@@ -222,10 +222,11 @@ class _CustomDropDownState extends State<CustomDropDown> {
 //         textColor: Colors.white,
 //         fontSize: 16.0);
 
-snackBar({required String? message, context}) {
+snackBar({required String? message, context ,Color? color}) {
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(message!),
+      backgroundColor: color,
       duration: Duration(seconds: 2),
     ),
   );
