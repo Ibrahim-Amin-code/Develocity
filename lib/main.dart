@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
 import 'business_logic/provider/map.dart';
+import 'business_logic/user_complain_for_admin_cubit/user_complain_for_admin_cubit.dart';
 import 'constants/core/const.dart';
 import 'constants/network/bloc_observer.dart';
 import 'constants/network/cache_helper.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => BranchCubit()..getBranches()),
         BlocProvider(
             create: (BuildContext context) => SectionCubit()..getSections()),
+        BlocProvider(
+            create: (BuildContext context) =>
+                UserComplainForAdminCubit()..userComplainForAdmin()),
       ],
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},
