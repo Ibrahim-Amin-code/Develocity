@@ -1,6 +1,6 @@
+import 'package:develocity/business_logic/users_cubit/user_cubit.dart';
+import 'package:develocity/business_logic/users_cubit/user_state.dart';
 import 'package:develocity/constants/core/colors.dart';
-import 'package:develocity/presentation/users/users_cubit/user_cubit.dart';
-import 'package:develocity/presentation/users/users_cubit/user_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

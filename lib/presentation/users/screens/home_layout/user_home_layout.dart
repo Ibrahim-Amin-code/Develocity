@@ -1,11 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:develocity/business_logic/users_cubit/user_cubit.dart';
+import 'package:develocity/business_logic/users_cubit/user_state.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/notification/notification_screen.dart';
 import 'package:develocity/presentation/admins/widgets/drawer_widget.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_fab_buttom.dart';
-import 'package:develocity/presentation/users/users_cubit/user_cubit.dart';
-import 'package:develocity/presentation/users/users_cubit/user_state.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

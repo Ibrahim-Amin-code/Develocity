@@ -1,12 +1,12 @@
 import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
+import 'package:develocity/business_logic/users_cubit/user_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:develocity/constants/theme/themes.dart';
 import 'package:develocity/presentation/admins/screens/profile/cubit/cubit.dart';
 import 'package:develocity/presentation/admins/screens/splash/splash.dart';
-import 'package:develocity/presentation/users/users_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
