@@ -46,12 +46,11 @@ class _LayoutScreenState extends State<LayoutScreen> {
     }
   }
 
-  // @override
-  // void initState() {
-  //   gatScreen();
-  //   UserprofileCubit.get(context).getUserProfile();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    gatScreen();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,42 +1,40 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_field, use_full_hex_values_for_flutter_colors, avoid_print, void_checks
+// ignore_for_file: prefer_const_constructors, unused_local_variable, use_full_hex_values_for_flutter_colors, void_checks, unnecessary_null_comparison
 
 import 'dart:io';
 
-import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
+import 'package:develocity/business_logic/admin_cubit/admin_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/core/const.dart';
-import 'package:develocity/presentation/admins/screens/drawer_screens/branches/branches_screen.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../../business_logic/provider/map.dart';
 import '../../../widgets/drawer_widget.dart';
 
-class AddBranchScreeen extends StatefulWidget {
-  const AddBranchScreeen({Key? key}) : super(key: key);
+class UpdateAdminsScreeen extends StatefulWidget {
+  final String updateId;
+  final String name;
+  final String email;
+
+  const UpdateAdminsScreeen(
+      {Key? key,
+      required this.updateId,
+      required this.name,
+      required this.email})
+      : super(key: key);
 
   @override
-  State<AddBranchScreeen> createState() => _AddBranchScreeenState();
+  State<UpdateAdminsScreeen> createState() => _UpdateAdminsScreeenState();
 }
 
-class _AddBranchScreeenState extends State<AddBranchScreeen> {
-  GoogleMapController? _controller;
-
-  void _updatePosition(CameraPosition _position, context) {
-    _controller!.animateCamera(CameraUpdate.newCameraPosition(_position));
-    Provider.of<MapProvider>(context, listen: false)
-        .updateLat(_position.target);
-  }
-
+class _UpdateAdminsScreeenState extends State<UpdateAdminsScreeen> {
   TextEditingController nameController = TextEditingController();
-  final _keyForm = GlobalKey<FormState>();
-  final TextEditingController locationController = TextEditingController();
-
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController jobController = TextEditingController();
   File? image;
   String image1 = "";
 
@@ -58,17 +56,26 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
     });
   }
 
+  final _keyForm = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    emailController.text = widget.email;
+    nameController.text = widget.name;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    MapProvider map = Provider.of<MapProvider>(context, listen: true);
-    locationController.text = map.street.toString();
+
     return Scaffold(
+      // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
           image: 'assets/images/arrow.png',
           image2: 'assets/images/search.png',
-          text: 'Branches',
+          text: 'Update Admin',
           onTap: () {
             Navigator.pop(context);
           },
@@ -81,7 +88,7 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                'Add new Branch',
+                'Update Admin',
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
                     fontSize: 20,
@@ -98,11 +105,48 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
                 } else {
                   return null;
                 }
-              }, 'Company Name *', 'Enter name', 1),
+              }, 'Admin Name *', 'Enter name', 1),
               SizedBox(
                 height: h * 0.02,
               ),
-              Text('Branch Image *',
+              CustomTextFormField(emailController, TextInputType.emailAddress,
+                  (String val) {
+                if (val.isEmpty) {
+                  return 'This Felid Is Required';
+                } else if (!val.contains("@") || !val.contains(".com")) {
+                  return 'INVALID EMAIL';
+                }
+                return null;
+              }, 'Email *', 'Enter Email', 1),
+              SizedBox(
+                height: h * 0.02,
+              ),
+              CustomTextFormField(
+                  passwordController, TextInputType.visiblePassword,
+                  (String? val) {
+                if (val!.length < 8) {
+                  return 'Password Length Short than 8 chars';
+                } else if (passwordController.text.isEmpty) {
+                  return 'This Felid Is Required';
+                } else {
+                  return null;
+                }
+              }, 'Password *', 'Enter Password', 1),
+              SizedBox(
+                height: h * 0.02,
+              ),
+              CustomTextFormField(jobController, TextInputType.name,
+                  (String? val) {
+                if (val!.isEmpty) {
+                  return 'This Felid Is Required';
+                } else {
+                  return null;
+                }
+              }, 'Job Title *', 'Enter Job Title', 1),
+              SizedBox(
+                height: h * 0.02,
+              ),
+              Text('Admin Image *',
                   style: headingStyle.copyWith(
                       color: MyColors.mainColor,
                       fontFamily: 'SF Pro Display',
@@ -161,86 +205,40 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
                 ),
               ),
               SizedBox(
-                height: h * 0.02,
+                height: h * 0.01,
               ),
-              CustomTextFormField(
-                  locationController,
-                  TextInputType.streetAddress,
-                  () {},
-                  'Location *',
-                  "Enter location",
-                  1),
-              SizedBox(
-                height: h * 0.02,
-              ),
-              SizedBox(
-                height: h * 0.4,
-                width: w,
-                child: map.latLng == null
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          color: MyColors.mainColor,
-                        ),
-                      )
-                    : GoogleMap(
-                        onMapCreated: (controller) {
-                          _controller = controller;
-                          map.info();
-                        },
-                        initialCameraPosition:
-                            CameraPosition(target: map.latLng!, zoom: 18),
-                        onCameraIdle: () async {
-                          await map.info();
-                        },
-                        markers: <Marker>{
-                          Marker(
-                            draggable: true,
-                            markerId: const MarkerId('Marker'),
-                            position: map.latLng!,
-                            icon: map.icon != null
-                                ? map.icon!
-                                : BitmapDescriptor.defaultMarker,
-                          )
-                        },
-                        onCameraMove: ((_position) =>
-                            _updatePosition(_position, context)),
-                      ),
+              Text(
+                'Image with should be jpg , jpeg , png',
+                style: headingStyle.copyWith(
+                  fontFamily: 'SF Pro Display',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: MyColors.mainColor,
+                ),
               ),
               SizedBox(
                 height: h * 0.04,
               ),
-              BlocConsumer<BranchCubit, BranchState>(
+              BlocConsumer<AdminCubit, AdminState>(
                 listener: (context, state) {
-                  if (state is AddBranchSuccessState) {
-                    BranchCubit.get(context).getBranches();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BranchesScreeen()),
-                    );
+                  if (state is UpdateAdminSuccessState) {
+                    AdminCubit.get(context).getAllAdmins();
+                    Navigator.pop(context);
                   }
                 },
                 builder: (context, state) {
-                  return (state is! AddBranchLoadingState)
+                  return (state is! UpdateAdminLoadingState)
                       ? defaultButton(
-                          title: 'Submit',
+                          title: 'Update',
                           onPressed: () {
                             if (_keyForm.currentState!.validate()) {
                               if (image1 != '') {
-                                BranchCubit.get(context).addBranch(
-                                    context: context,
+                                AdminCubit.get(context).updateAdmin(
+                                    id: widget.updateId,
                                     name: nameController.text,
-                                    lat: map.latLng!
-                                        .toString()
-                                        .split(',')
-                                        .first
-                                        .toString(),
-                                    lng: map.latLng!
-                                        .toString()
-                                        .split(',')
-                                        .last
-                                        .toString(),
-                                    location: locationController.text,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    jobTitle: jobController.text,
                                     img: image1);
                               } else {
                                 return snackBar(
@@ -254,7 +252,9 @@ class _AddBranchScreeenState extends State<AddBranchScreeen> {
                           width: w * 0.9,
                           color: MyColors.mainColor,
                           textColor: Colors.white)
-                      : Center(child: CircularProgressIndicator());
+                      : Center(
+                          child: CircularProgressIndicator(),
+                        );
                 },
               )
             ]),

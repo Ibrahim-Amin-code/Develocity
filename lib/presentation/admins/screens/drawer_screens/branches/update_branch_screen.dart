@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_field, use_full_hex_values_for_flutter_colors, avoid_print
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_field, use_full_hex_values_for_flutter_colors, avoid_print, void_checks
 
 import 'dart:io';
 
@@ -13,13 +13,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../business_logic/provider/map.dart';
+import '../../../../../constants/core/const.dart';
 import '../../../widgets/drawer_widget.dart';
 import 'branches_screen.dart';
 
 class UpdateBranchScreeen extends StatefulWidget {
   final String updateId;
+  final String updateCompanyName;
 
-  const UpdateBranchScreeen({Key? key, required this.updateId})
+  const UpdateBranchScreeen(
+      {Key? key, required this.updateId, required this.updateCompanyName})
       : super(key: key);
   @override
   State<UpdateBranchScreeen> createState() => _UpdateBranchScreeenState();
@@ -60,6 +63,12 @@ class _UpdateBranchScreeenState extends State<UpdateBranchScreeen> {
   }
 
   @override
+  void initState() {
+    nameController.text = widget.updateCompanyName;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
@@ -90,8 +99,14 @@ class _UpdateBranchScreeenState extends State<UpdateBranchScreeen> {
             SizedBox(
               height: h * 0.04,
             ),
-            CustomTextFormField(nameController, TextInputType.name, () {},
-                'Company Name *', 'Enter name', 1),
+            CustomTextFormField(nameController, TextInputType.name,
+                (String? val) {
+              if (val!.isEmpty) {
+                return 'This Felid Is Required';
+              } else {
+                return null;
+              }
+            }, 'Company Name *', 'Enter name', 1),
             SizedBox(
               height: h * 0.02,
             ),
@@ -213,24 +228,30 @@ class _UpdateBranchScreeenState extends State<UpdateBranchScreeen> {
                     ? defaultButton(
                         title: 'Submit Update',
                         onPressed: () {
-                          // print(map.latLng!.toString().split(',').first);
-                          // print(map.latLng!.toString().split(',').last);
-                          BranchCubit.get(context).updateBranch(
-                              id: widget.updateId,
-                              context: context,
-                              name: nameController.text,
-                              lat: map.latLng!
-                                  .toString()
-                                  .split(',')
-                                  .first
-                                  .toString(),
-                              lng: map.latLng!
-                                  .toString()
-                                  .split(',')
-                                  .last
-                                  .toString(),
-                              location: locationController.text,
-                              img: image1);
+                          if (_keyForm.currentState!.validate()) {
+                            if (image1 != '') {
+                              BranchCubit.get(context).updateBranch(
+                                  id: widget.updateId,
+                                  context: context,
+                                  name: nameController.text,
+                                  lat: map.latLng!
+                                      .toString()
+                                      .split(',')
+                                      .first
+                                      .toString(),
+                                  lng: map.latLng!
+                                      .toString()
+                                      .split(',')
+                                      .last
+                                      .toString(),
+                                  location: locationController.text,
+                                  img: image1);
+                            } else {
+                              return snackBar(
+                                  message: 'You Must Choose Image',
+                                  context: context);
+                            }
+                          }
                         },
                         fontSize: 16,
                         height: h * 0.06,

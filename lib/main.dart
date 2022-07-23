@@ -2,6 +2,7 @@ import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/business_logic/complaint_cubit/complaint_cubit.dart';
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
+import 'package:develocity/business_logic/task_cubit/task_cubit.dart';
 import 'package:develocity/business_logic/users_cubit/user_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
@@ -12,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'business_logic/add_user/add_user_cubit.dart';
+import 'business_logic/admin_cubit/admin_cubit.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
 import 'business_logic/provider/map.dart';
 import 'business_logic/user_complain_for_admin_cubit/user_complain_for_admin_cubit.dart';
@@ -50,7 +53,14 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => AppCubit()
               ..changeAppMode(fromShared: prefs.getBool('isDark') ?? false)),
         BlocProvider(create: (BuildContext context) => UserCubit()),
+        BlocProvider(
+            create: (BuildContext context) => AddUserCubit()..getAdminUser()),
         BlocProvider(create: (BuildContext context) => AuthCubit()),
+        BlocProvider(
+            create: (BuildContext context) =>
+                TaskAdmiUserCubit()..getTasksAdminUser()),
+        BlocProvider(
+            create: (BuildContext context) => AdminCubit()..getAllAdmins()),
         BlocProvider(create: (BuildContext context) => ComplaintsCubit()),
         BlocProvider(
             create: (BuildContext context) => BranchCubit()..getBranches()),

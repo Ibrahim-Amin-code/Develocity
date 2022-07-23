@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 class GetSectionModel {
-  List<Data>? data;
+  List<SectionData>? data;
   int? status;
   String? message;
 
@@ -9,9 +9,9 @@ class GetSectionModel {
 
   GetSectionModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <SectionData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(SectionData.fromJson(v));
       });
     }
     status = json['status'];
@@ -19,15 +19,15 @@ class GetSectionModel {
   }
 }
 
-class Data {
+class SectionData {
   int? id;
   String? name;
   int? branchId;
   Branch? branch;
 
-  Data({this.id, this.name, this.branchId, this.branch});
+  SectionData({this.id, this.name, this.branchId, this.branch});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  SectionData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     branchId = json['branch_id'];

@@ -205,14 +205,14 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                 ),
               ),
             ),
-            buildUserRowCard(updateId: id)
+            buildUserRowCard(updateId: id, name: branchName)
           ],
         ),
       ),
     );
   }
 
-  Widget buildUserRowCard({required String updateId}) =>
+  Widget buildUserRowCard({required String updateId, required String name}) =>
       BlocConsumer<BranchCubit, BranchState>(
         listener: (context, state) {
           if (state is DeleteBranchSuccessState) {
@@ -229,6 +229,7 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                       MaterialPageRoute(
                           builder: (context) => UpdateBranchScreeen(
                                 updateId: updateId,
+                                updateCompanyName: name,
                               )));
                 },
                 child: Container(

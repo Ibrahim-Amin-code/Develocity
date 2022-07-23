@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, avoid_print
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:develocity/constants/network/cache_helper.dart';
 import 'package:develocity/model/admins/get_branch/get_branch_model.dart';
+import 'package:develocity/model/admins/get_section/get_section_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -175,6 +176,86 @@ class _CustomDropDownState extends State<CustomDropDown> {
           border: InputBorder.none,
         ),
         value: chosenValue,
+        items: widget.items?.map<DropdownMenuItem<String>>((value) {
+          return DropdownMenuItem(
+            value: value,
+            child: Text(
+              'value.name.toString()',
+              style: headingStyle.copyWith(
+                  color: Color(0xffC4C4C4),
+                  fontFamily: 'SF Pro Display',
+                  fontSize: 14),
+            ),
+          );
+        }).toList(),
+        hint: Text(
+          widget.text,
+          style: headingStyle.copyWith(
+              color: Color(0xffC4C4C4),
+              fontFamily: 'SF Pro Display',
+              fontSize: 14),
+        ),
+        onChanged: (dynamic value) {
+          setState(() {
+            chosenValue = value;
+            print(chosenValue.id.toString());
+            // prefs.setString('branchId', chosenValue.id.toString());
+          });
+          // _chosenValue = value;.id
+        },
+        // onSaved: widget.onSave,
+        // validator: widget.validator,
+      ),
+    );
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+class CustomDropDownBranch extends StatefulWidget {
+  static var chosenValue;
+  const CustomDropDownBranch(
+      {Key? key,
+      this.items,
+      this.text = '',
+      this.fillColor,
+      this.onSave,
+      this.borderColor,
+      this.validator})
+      : super(key: key);
+  final List? items;
+  final String text;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Function(String?)? onSave;
+  final String? Function(String?)? validator;
+
+  @override
+  _CustomDropDownBranchState createState() => _CustomDropDownBranchState();
+}
+
+class _CustomDropDownBranchState extends State<CustomDropDownBranch> {
+  // List<String>? categories = widget.items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Theme.of(context).cardColor),
+        color: widget.fillColor,
+      ),
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: DropdownButtonFormField(
+        icon: Icon(
+          Icons.keyboard_arrow_down,
+          color: MyColors.mainColor,
+          size: 28,
+        ),
+        iconEnabledColor: const Color.fromRGBO(148, 148, 148, 1),
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+        ),
+        value: CustomDropDownBranch.chosenValue,
         items: widget.items?.map<DropdownMenuItem<Data>>((value) {
           return DropdownMenuItem(
             value: value,
@@ -196,9 +277,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
         ),
         onChanged: (dynamic value) {
           setState(() {
-            chosenValue = value;
-            print(chosenValue.id.toString());
-            prefs.setString('branchId', chosenValue.id.toString());
+            CustomDropDownBranch.chosenValue = value;
+            print(CustomDropDownBranch.chosenValue.id.toString());
+            prefs.setString(
+                'branchId', CustomDropDownBranch.chosenValue.id.toString());
           });
           // _chosenValue = value;.id
         },
@@ -209,20 +291,87 @@ class _CustomDropDownState extends State<CustomDropDown> {
   }
 }
 
-// Future<bool?> toast({
-//   required String msg,
-//   required Color backgroundColor,
-// }) =>
-//     Fluttertoast.showToast(
-//         msg: msg,
-//         toastLength: Toast.LENGTH_LONG,
-//         gravity: ToastGravity.CENTER,
-//         timeInSecForIosWeb: 1,
-//         backgroundColor: backgroundColor,
-//         textColor: Colors.white,
-//         fontSize: 16.0);
+//////////////////////////////////////////////////////////////////////////////////
 
-snackBar({required String? message, context ,Color? color}) {
+class CustomDropDownSection extends StatefulWidget {
+  static var chosenValue;
+  const CustomDropDownSection(
+      {Key? key,
+      this.items,
+      this.text = '',
+      this.fillColor,
+      this.onSave,
+      this.borderColor,
+      this.validator})
+      : super(key: key);
+  final List? items;
+  final String text;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Function(String?)? onSave;
+  final String? Function(String?)? validator;
+
+  @override
+  _CustomDropDownSectionState createState() => _CustomDropDownSectionState();
+}
+
+class _CustomDropDownSectionState extends State<CustomDropDownSection> {
+  // List<String>? categories = widget.items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Theme.of(context).cardColor),
+        color: widget.fillColor,
+      ),
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: DropdownButtonFormField(
+        icon: Icon(
+          Icons.keyboard_arrow_down,
+          color: MyColors.mainColor,
+          size: 28,
+        ),
+        iconEnabledColor: const Color.fromRGBO(148, 148, 148, 1),
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+        ),
+        value: CustomDropDownSection.chosenValue,
+        items: widget.items?.map<DropdownMenuItem<SectionData?>>((value) {
+          return DropdownMenuItem(
+            value: value,
+            child: Text(
+              value.name.toString(),
+              style: headingStyle.copyWith(
+                  color: Color(0xffC4C4C4),
+                  fontFamily: 'SF Pro Display',
+                  fontSize: 14),
+            ),
+          );
+        }).toList(),
+        hint: Text(
+          widget.text,
+          style: headingStyle.copyWith(
+              color: Color(0xffC4C4C4),
+              fontFamily: 'SF Pro Display',
+              fontSize: 14),
+        ),
+        onChanged: (dynamic value) {
+          setState(() {
+            CustomDropDownSection.chosenValue = value;
+            print(CustomDropDownSection.chosenValue.id.toString());
+            prefs.setString(
+                'sectionId', CustomDropDownSection.chosenValue.id.toString());
+          });
+        },
+      ),
+    );
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+snackBar({required String? message, context, Color? color}) {
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(message!),
@@ -232,8 +381,10 @@ snackBar({required String? message, context ,Color? color}) {
   );
 }
 
+////////////////////////////////////////////////////////////////////
 late BitmapDescriptor markerImage;
 mapIcon() async {
   markerImage = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(), 'assets/images/noun-pin.png');
 }
+//////////////////////////////////////////////////////////////////////

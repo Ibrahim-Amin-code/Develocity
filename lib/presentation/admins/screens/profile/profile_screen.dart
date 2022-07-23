@@ -32,7 +32,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
         return Scaffold(
-          backgroundColor:(prefs.getBool('isDark') == true)?Colors.black: Colors.white,
+          backgroundColor:
+              (prefs.getBool('isDark') == true) ? Colors.black : Colors.white,
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor: MyColors.mainColor,
@@ -54,19 +55,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
             leading: IconButton(
                 onPressed: () {
-                  _cubit.profileEditing
-                      ? _cubit.profileEdit()
-                      : Navigator.of(context).pop();
+                  _cubit.profileEditing ? _cubit.profileEdit() : null;
                 },
                 icon: const Icon(Icons.arrow_back_outlined)),
           ),
           body: SingleChildScrollView(
             child: Container(
-              color: (prefs.getBool('isDark') == true)?Colors.black:Colors.white,
+              color: (prefs.getBool('isDark') == true)
+                  ? Colors.black
+                  : Colors.white,
               child: Stack(
                 children: [
-                   Image(
-                    image:(prefs.getBool('isDark') == true)?const AssetImage('assets/images/dark0.png') :const AssetImage('assets/images/0.png'),
+                  Image(
+                    image: (prefs.getBool('isDark') == true)
+                        ? const AssetImage('assets/images/dark0.png')
+                        : const AssetImage('assets/images/0.png'),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -181,7 +184,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       },
                                       child: Container(
                                         padding:
-                                            const EdgeInsetsDirectional.all(1.0),
+                                            const EdgeInsetsDirectional.all(
+                                                1.0),
                                         height: height * 0.033,
                                         width: width * 0.07,
                                         decoration: BoxDecoration(
@@ -207,11 +211,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(
                           height: height * 0.03,
-
                         ),
                         !_cubit.profileEditing
                             ? Container(
-                                color:(prefs.getBool('isDark') == true)?Colors.black : Colors.white,
+                                color: (prefs.getBool('isDark') == true)
+                                    ? Colors.black
+                                    : Colors.white,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.max,
@@ -291,7 +296,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     CustomButton(
                                         onPressed: () {
-                                          if (_keyForm.currentState!.validate()) {
+                                          if (_keyForm.currentState!
+                                              .validate()) {
                                             print(_nameController.text);
                                             print(_phoneController.text);
                                             print(_emailController.text);

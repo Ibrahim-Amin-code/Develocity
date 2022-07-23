@@ -209,9 +209,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-            buildSectionRowCard(
-              id: id,
-            )
+            buildSectionRowCard(id: id, secionName: sctionName)
           ],
         ),
       ),
@@ -220,6 +218,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
 
   Widget buildSectionRowCard({
     required String id,
+    required String secionName,
   }) =>
       BlocConsumer<SectionCubit, SectionState>(
         listener: (context, state) {
@@ -235,7 +234,10 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => UpdateSectionScreeen(id: id)));
+                          builder: (context) => UpdateSectionScreeen(
+                                id: id,
+                                sectionName: secionName,
+                              )));
                 },
                 child: Container(
                   margin: EdgeInsets.only(left: 10),
