@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
+import 'package:develocity/model/admins/get_admin_users/get_admin_users.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../constants/network/cache_helper.dart';
 import '../../constants/network/network_services.dart';
-import '../../model/get_admin_users/get_admin_users.dart';
 
 part 'add_user_state.dart';
 
@@ -77,6 +77,7 @@ class AddUserCubit extends Cubit<AddUserState> {
     });
   }
 
+//////////////////////////////////////////////////////////////////////////
   void deleteUser(String id) async {
     emit(DeleteAdminUserLoadingState());
     final String token = prefs.getString('token').toString();

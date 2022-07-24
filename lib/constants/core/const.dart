@@ -7,6 +7,7 @@ import 'package:develocity/model/admins/get_section/get_section_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../model/admins/get_admin_news/get_admin_news_type.dart';
 import '../../presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'colors.dart';
 
@@ -291,6 +292,87 @@ class _CustomDropDownBranchState extends State<CustomDropDownBranch> {
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+class CustomDropDownNewsType extends StatefulWidget {
+  static var chosenValue;
+  const CustomDropDownNewsType(
+      {Key? key,
+      this.items,
+      this.text = '',
+      this.fillColor,
+      this.onSave,
+      this.borderColor,
+      this.validator})
+      : super(key: key);
+  final List? items;
+  final String text;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Function(String?)? onSave;
+  final String? Function(String?)? validator;
+
+  @override
+  _CustomDropDownNewsTypeState createState() => _CustomDropDownNewsTypeState();
+}
+
+class _CustomDropDownNewsTypeState extends State<CustomDropDownNewsType> {
+  // List<String>? categories = widget.items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Theme.of(context).cardColor),
+        color: widget.fillColor,
+      ),
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: DropdownButtonFormField(
+        icon: Icon(
+          Icons.keyboard_arrow_down,
+          color: MyColors.mainColor,
+          size: 28,
+        ),
+        iconEnabledColor: const Color.fromRGBO(148, 148, 148, 1),
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+        ),
+        value: CustomDropDownNewsType.chosenValue,
+        items: widget.items?.map<DropdownMenuItem<DataNewsType>>((value) {
+          return DropdownMenuItem(
+            value: value,
+            child: Text(
+              value.title.toString(),
+              style: headingStyle.copyWith(
+                  color: Color(0xffC4C4C4),
+                  fontFamily: 'SF Pro Display',
+                  fontSize: 14),
+            ),
+          );
+        }).toList(),
+        hint: Text(
+          widget.text,
+          style: headingStyle.copyWith(
+              color: Color(0xffC4C4C4),
+              fontFamily: 'SF Pro Display',
+              fontSize: 14),
+        ),
+        onChanged: (dynamic value) {
+          setState(() {
+            CustomDropDownNewsType.chosenValue = value;
+            print(CustomDropDownNewsType.chosenValue.id.toString());
+            prefs.setString(
+                'newsTypeId', CustomDropDownNewsType.chosenValue.id.toString());
+          });
+          // _chosenValue = value;.id
+        },
+        // onSaved: widget.onSave,
+        // validator: widget.validator,
+      ),
+    );
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 
 class CustomDropDownSection extends StatefulWidget {
@@ -359,6 +441,7 @@ class _CustomDropDownSectionState extends State<CustomDropDownSection> {
         ),
         onChanged: (dynamic value) {
           setState(() {
+            sectionIds.add(value.id);
             CustomDropDownSection.chosenValue = value;
             print(CustomDropDownSection.chosenValue.id.toString());
             prefs.setString(
@@ -370,7 +453,7 @@ class _CustomDropDownSectionState extends State<CustomDropDownSection> {
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 snackBar({required String? message, context, Color? color}) {
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
@@ -388,3 +471,6 @@ mapIcon() async {
       const ImageConfiguration(), 'assets/images/noun-pin.png');
 }
 //////////////////////////////////////////////////////////////////////
+
+List<int> sectionIds = [];
+List<int> usersIds = [];
