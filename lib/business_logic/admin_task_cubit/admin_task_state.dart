@@ -1,4 +1,4 @@
-part of 'task_cubit.dart';
+part of 'admin_task_cubit.dart';
 
 @immutable
 abstract class TaskAdminUserState {}

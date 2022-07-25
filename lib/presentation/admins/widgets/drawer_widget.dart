@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/news/add_admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/requirements/requirements_screen.dart';
 import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -82,9 +83,9 @@ Widget buildDrawerWidget({required context}) {
                 ),
               ),
             ),
-            SizedBox(
-              height: h * 0.02,
-            ),
+            // SizedBox(
+            //   height: h * 0.02,
+            // ),
             buildRowInDrawer(
                 imageColor: (AppCubit.get(context).color == 'Dashboard')
                     ? Colors.white
@@ -218,6 +219,26 @@ Widget buildDrawerWidget({required context}) {
                       context,
                       MaterialPageRoute(
                           builder: (context) => RequirementsScreen()));
+                }),
+
+            SizedBox(
+              height: h * 0.01,
+            ),
+            buildRowInDrawer(
+                imageColor: (AppCubit.get(context).color == 'News')
+                    ? Colors.white
+                    : Color(0xff535763),
+                title: 'News',
+                color: (AppCubit.get(context).color == 'News')
+                    ? MyColors.mainColor
+                    : Theme.of(context).scaffoldBackgroundColor,
+                image: 'assets/images/requ.png',
+                onPress: () {
+                  AppCubit.get(context).changeColor('News');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddNewsScreeen()));
                 }),
             SizedBox(
               height: h * 0.03,
