@@ -9,6 +9,7 @@ import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/network/cache_helper.dart';
+import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -424,41 +425,53 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
                 BlocConsumer<TaskAdminUserCubit, TaskAdminUserState>(
                   listener: (context, state) {
-                    // TODO: implement listener
+                    if (state is AddTaskSuccessState) {
+                      // TaskAdminUserCubit.get(context).getTasksAdminUser();
+                      // showTaskPopup(
+                      //     context: context,
+                      //     title: (AppCubit.get(context).isIndividualTask)
+                      //         ? 'Indivisual  task has been created successfully'
+                      //         : '  Team task has been created successfully  ');
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LayoutScreen(index: 0)));
+                    }
                   },
                   builder: (context, state) {
-                    return defaultButton(
-                        title: 'Create Task',
-                        onPressed: () {
-                          TaskAdminUserCubit.get(context).addTask(
-                              title: titleController.text,
-                              img: image1,
-                              branchId: prefs.getString('branchId').toString(),
-                              sectionId: sectionIds,
-                              userIds: usersIds,
-                              desc: descriptionController.text,
-                              startDate: selectedStartDate.day.toString() +
-                                  "/" +
-                                  selectedStartDate.month.toString() +
-                                  "/" +
-                                  selectedStartDate.year.toString(),
-                              endDate: selectedEndDate.day.toString() +
-                                  "/" +
-                                  selectedEndDate.month.toString() +
-                                  "/" +
-                                  selectedEndDate.year.toString());
-                          print('fffffffffff');
-                          // showTaskPopup(
-                          //     context: context,
-                          //     title: (AppCubit.get(context).isIndividualTask)
-                          //         ? 'Indivisual  task has been created successfully'
-                          //         : '  Team task has been created successfully  ');
-                        },
-                        fontSize: 14,
-                        height: h * 0.06,
-                        width: double.infinity,
-                        color: MyColors.mainColor,
-                        textColor: Colors.white);
+                    return (state is! AddTaskLoadingState)
+                        ? defaultButton(
+                            title: 'Create Task',
+                            onPressed: () {
+                              TaskAdminUserCubit.get(context).addTask(
+                                  title: titleController.text,
+                                  img: image1,
+                                  branchId:
+                                      prefs.getString('branchId').toString(),
+                                  sectionId: sectionIds,
+                                  userIds: usersIds,
+                                  desc: descriptionController.text,
+                                  startDate: selectedStartDate.day.toString() +
+                                      "/" +
+                                      selectedStartDate.month.toString() +
+                                      "/" +
+                                      selectedStartDate.year.toString(),
+                                  endDate: selectedEndDate.day.toString() +
+                                      "/" +
+                                      selectedEndDate.month.toString() +
+                                      "/" +
+                                      selectedEndDate.year.toString());
+                              print('fffffffffff');
+                            },
+                            fontSize: 14,
+                            height: h * 0.06,
+                            width: double.infinity,
+                            color: MyColors.mainColor,
+                            textColor: Colors.white)
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          );
                   },
                 )
               ],

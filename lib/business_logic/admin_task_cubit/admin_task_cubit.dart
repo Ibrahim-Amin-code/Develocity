@@ -27,31 +27,45 @@ class TaskAdminUserCubit extends Cubit<TaskAdminUserState> {
   }) async {
     emit(AddTaskLoadingState());
     final String token = prefs.getString('token').toString();
-    List<Map<String, int>> selectedUsers = [];
-    for (var element in userIds) {
-      selectedUsers.add({"user_ids": element});
-    }
 
-    List<Map<String, int>> selectedSections = [];
-    for (var element in sectionId) {
-      selectedSections.add({"section_ids": element});
-    }
-    print(selectedSections);
+    // List<Map<String, int>> selectedUsers = [];
+    // List<Map<String, int>> selectedSections = [];
+
+    // for (int element in userIds) {
+    //   selectedUsers.add({"user_ids": element});
+    // }
+
+    // for (int element in sectionId) {
+    //   selectedSections.add({"section_ids": element});
+    // }
+    // print(selectedSections);
+    // List<int> section_ids = [13, 14];
+    // List<int> section_ids = [13, 14];
+
+    // var section_ids = [13, 14];
+    // var users_ids = [18, 16];
+
     try {
       Map<String, String> headers = {
         "Authorization": "Bearer $token",
       };
-      var formData = FormData.fromMap({
+      FormData formData = FormData.fromMap({
         "img": await MultipartFile.fromFile(img),
         "title": title,
         "branch_id": branchId,
         "desc": desc,
         "start_date": startDate,
         "end_date": endDate,
-        "section_ids": selectedSections,
-        "user_ids": selectedUsers,
+        "section_ids[]": sectionIds,
+        "user_ids[]": usersIds,
       });
-      print(formData);
+
+      print('section_ids');
+      print(sectionIds);
+      // print(formData.fields);
+      print('users_ids');
+      print(usersIds);
+
       Response response = await Dio().post(BaseUrl + AddTask,
           data: formData,
           options: Options(
@@ -60,10 +74,16 @@ class TaskAdminUserCubit extends Cubit<TaskAdminUserState> {
             validateStatus: (status) => true,
           ));
       if (response.statusCode == 200) {
+        print('response.data');
         print(response.data);
+
+        print(response.statusCode);
+        print('response.data');
+
         emit(AddTaskSuccessState());
       } else {
-        print(response.statusCode);
+        print(response.data);
+
         print('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
       }
     } catch (error) {

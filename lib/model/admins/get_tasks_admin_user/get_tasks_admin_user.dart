@@ -1,12 +1,17 @@
 class TasksAdminUserModel {
-  Data? data;
+  List<Data>? data;
   int? status;
   String? message;
 
   TasksAdminUserModel({this.data, this.status, this.message});
 
   TasksAdminUserModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    if (json['data'] != null) {
+      data = <Data>[];
+      json['data'].forEach((v) {
+        data!.add(Data.fromJson(v));
+      });
+    }
     status = json['status'];
     message = json['message'];
   }
@@ -15,7 +20,7 @@ class TasksAdminUserModel {
 class Data {
   int? id;
   String? title;
-  String? branchId;
+  int? branchId;
   Branch? branch;
   int? adminId;
   Admin? admin;
@@ -23,9 +28,10 @@ class Data {
   List<Users>? users;
   String? desc;
   String? img;
-  dynamic status;
+  String? status;
   String? startDate;
   String? endDate;
+  String? createdAt;
 
   Data(
       {this.id,
@@ -40,26 +46,26 @@ class Data {
       this.img,
       this.status,
       this.startDate,
-      this.endDate});
+      this.endDate,
+      this.createdAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     branchId = json['branch_id'];
-    branch =
-        json['branch'] != null ? new Branch.fromJson(json['branch']) : null;
+    branch = json['branch'] != null ? Branch.fromJson(json['branch']) : null;
     adminId = json['admin_id'];
-    admin = json['admin'] != null ? new Admin.fromJson(json['admin']) : null;
+    admin = json['admin'] != null ? Admin.fromJson(json['admin']) : null;
     if (json['sections'] != null) {
       sections = <Sections>[];
       json['sections'].forEach((v) {
-        sections!.add(new Sections.fromJson(v));
+        sections!.add(Sections.fromJson(v));
       });
     }
     if (json['users'] != null) {
       users = <Users>[];
       json['users'].forEach((v) {
-        users!.add(new Users.fromJson(v));
+        users!.add(Users.fromJson(v));
       });
     }
     desc = json['desc'];
@@ -67,6 +73,7 @@ class Data {
     status = json['status'];
     startDate = json['start_date'];
     endDate = json['end_date'];
+    createdAt = json['created_at'];
   }
 }
 
@@ -112,28 +119,15 @@ class Sections {
   int? id;
   String? name;
   int? branchId;
-  BranchData? branchData;
+  Branch? branch;
 
-  Sections({this.id, this.name, this.branchId, this.branchData});
+  Sections({this.id, this.name, this.branchId, this.branch});
 
   Sections.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     branchId = json['branch_id'];
-    branchData =
-        json['branch'] != null ? new BranchData.fromJson(json['branch']) : null;
-  }
-}
-
-class BranchData {
-  int? id;
-  String? name;
-
-  BranchData({this.id, this.name});
-
-  BranchData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
+    branch = json['branch'] != null ? Branch.fromJson(json['branch']) : null;
   }
 }
 
@@ -146,7 +140,9 @@ class Users {
   String? jobDesc;
   String? kpis;
   int? branchId;
+  Branch? branch;
   int? sectionId;
+  dynamic section;
   String? userType;
 
   Users(
@@ -158,7 +154,9 @@ class Users {
       this.jobDesc,
       this.kpis,
       this.branchId,
+      this.branch,
       this.sectionId,
+      this.section,
       this.userType});
 
   Users.fromJson(Map<String, dynamic> json) {
@@ -170,7 +168,9 @@ class Users {
     jobDesc = json['job_desc'];
     kpis = json['kpis'];
     branchId = json['branch_id'];
+    branch = json['branch'] != null ? Branch.fromJson(json['branch']) : null;
     sectionId = json['section_id'];
+    section = json['section'];
     userType = json['user_type'];
   }
 }
