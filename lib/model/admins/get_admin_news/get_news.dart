@@ -1,12 +1,19 @@
+// ignore_for_file: unnecessary_new, prefer_collection_literals
+
 class GetAdminNewsModel {
-  Data? data;
+  List<Data>? data;
   int? status;
   String? message;
 
   GetAdminNewsModel({this.data, this.status, this.message});
 
   GetAdminNewsModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    if (json['data'] != null) {
+      data = <Data>[];
+      json['data'].forEach((v) {
+        data!.add(Data.fromJson(v));
+      });
+    }
     status = json['status'];
     message = json['message'];
   }
@@ -17,9 +24,9 @@ class Data {
   String? title;
   String? desc;
   String? img;
-  String? typeId;
+  int? typeId;
   dynamic type;
-  String? branchId;
+  int? branchId;
   Branch? branch;
 
   Data(

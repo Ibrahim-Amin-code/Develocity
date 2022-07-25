@@ -9,6 +9,7 @@ import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/business_logic/section_cubit/section_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/network/cache_helper.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/news/admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/users/users_screeens.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
@@ -322,10 +323,10 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
                 listener: (context, state) {
                   if (state is AddNewsSuccessState) {
                     AdminNewsCubit.get(context).getNews();
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => UsersScreeen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AdminNewsScreen()));
                   }
                 },
                 builder: (context, state) {
@@ -333,23 +334,23 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
                       ? defaultButton(
                           title: 'Add News',
                           onPressed: () {
-                            if (_keyForm.currentState!.validate()) {
-                              if (image1 != '') {
-                                AdminNewsCubit.get(context).addNews(
-                                  desc: descController.text,
-                                  title: titleController.text,
-                                  typeId:
-                                      prefs.getString('newsTypeId').toString(),
-                                  img: image1,
-                                  branchId:
-                                      prefs.getString('branchId').toString(),
-                                );
-                              } else {
-                                return snackBar(
-                                    message: 'You Must Choose Image',
-                                    context: context);
-                              }
+                            // if (_keyForm.currentState!.validate()) {
+                            if (image1 != '') {
+                              AdminNewsCubit.get(context).addNews(
+                                desc: descController.text,
+                                title: titleController.text,
+                                typeId:
+                                    prefs.getString('newsTypeId').toString(),
+                                img: image1,
+                                branchId:
+                                    prefs.getString('branchId').toString(),
+                              );
+                            } else {
+                              return snackBar(
+                                  message: 'You Must Choose Image',
+                                  context: context);
                             }
+                            // }
                           },
                           fontSize: 16,
                           height: h * 0.06,

@@ -2,6 +2,7 @@
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/news/add_admin_news_screen.dart';
+import 'package:develocity/presentation/admins/screens/drawer_screens/news/admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/requirements/requirements_screen.dart';
 import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -238,7 +239,7 @@ Widget buildDrawerWidget({required context}) {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AddNewsScreeen()));
+                          builder: (context) => AdminNewsScreen()));
                 }),
             SizedBox(
               height: h * 0.03,

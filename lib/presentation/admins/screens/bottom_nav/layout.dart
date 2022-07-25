@@ -12,6 +12,7 @@ import 'package:develocity/presentation/admins/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../constants/network/cache_helper.dart';
+import '../drawer_screens/news/add_admin_news_screen.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
 import '../rate/rate_screen.dart';
@@ -122,6 +123,15 @@ assets/images/admins.png',
                                     builder: (context) => LayoutScreen(
                                           index: 1,
                                         )));
+                          }),
+                      buildListTileBottomSheet(
+                          title: 'Add News',
+                          image: 'assets/images/tasks.png',
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddNewsScreeen()));
                           }),
                     ],
                   ),

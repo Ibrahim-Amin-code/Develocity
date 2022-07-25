@@ -63,6 +63,7 @@ class AdminNewsCubit extends Cubit<AdminNewsState> {
 
   void updateAdminNewsType({
     required String id,
+    required String titleType,
   }) async {
     emit(UpdateAdminNewsTypeLoadingState());
 
@@ -71,10 +72,9 @@ class AdminNewsCubit extends Cubit<AdminNewsState> {
       Map<String, String> headers = {
         "Authorization": "Bearer $token",
       };
-      // FormData formData = FormData.fromMap({
-      //   "name": name,
-      //   "branch_id": branchId,
-      // });
+      FormData formData = FormData.fromMap({
+        "title": titleType,
+      });
 
       Response response = await Dio().post(BaseUrl + 'news-type/update/$id',
           options: Options(headers: headers));
@@ -151,7 +151,7 @@ class AdminNewsCubit extends Cubit<AdminNewsState> {
   }
 
 ////////////////////////////////////////////////////////////
-
+//GetAdminNewsModel
   GetAdminNewsModel getAdminNewsModel = GetAdminNewsModel();
   void getNews() {
     emit(GetNewsLoadingState());
