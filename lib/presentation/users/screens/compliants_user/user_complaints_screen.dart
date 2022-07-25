@@ -25,12 +25,13 @@ class UserComplaintsScreen extends StatelessWidget {
 
     return BlocConsumer<ComplaintsCubit, ComplaintsStates>(
       listener: (context, state) {
-        if (state is ComplaintsAddSuccessState) {
+        if (state is ComplaintsAddSuccessState && ComplaintsCubit.get(context).status == 200) {
           snackBar(
               message: 'Complaint send successfully',
               context: context,
               color: MyColors.mainColor);
           _titleController.text = '';
+          _typeController.clear();
           _messageController.text = '';
           _taskIdController.text = '';
         } else if (state is ComplaintsAddErrorsState) {
@@ -106,6 +107,7 @@ class UserComplaintsScreen extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomTextFormField(_titleController, TextInputType.text,
                           (String value) {
@@ -115,6 +117,16 @@ class UserComplaintsScreen extends StatelessWidget {
                       }, 'Title *', 'Type title ..', 1),
                       SizedBox(
                         height: height * 0.02,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Text(
+                          'Type *',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 14.0),
+                        ),
                       ),
                       DropdownButtonFormField2(
                         validator: (value) {

@@ -28,3 +28,4 @@ const String GetNews = 'news';
 /////////////////////////////////////////////////////////////////news/create
 // USER APIS
 const String addComplaint = 'complaints/create';
+const String addRequirement = 'requirements/create';
