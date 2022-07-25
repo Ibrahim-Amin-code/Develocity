@@ -22,3 +22,4 @@ const String GetTask = 'tasks';
 /////////////////////////////////////////////////////////////////users/create
 // USER APIS
 const String addComplaint = 'complaints/create';
+const String addRequirement = 'requirements/create';
