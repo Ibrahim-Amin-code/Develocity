@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:develocity/business_logic/user_requirments_for_admin_cubit/user_requirments_for_admin_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/drawer_widget.dart';
 
@@ -28,60 +31,96 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
             Navigator.pop(context);
           },
           onTap1: () {}),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: Column(
-          children: [
-            Row(
+      body: BlocConsumer<UserRequirmentsForAdminCubit,
+          UserRequirmentsForAdminState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: Column(
               children: [
-                Text(
-                  'All',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff696CFF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
+                Row(
+                  children: [
+                    Text(
+                      'All',
+                      style: headingStyle.copyWith(
+                          fontFamily: 'SF Pro Display',
+                          color: const Color(0xff696CFF),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      width: w * 0.05,
+                    ),
+                    Text(
+                      'Recently added',
+                      style: headingStyle.copyWith(
+                          fontFamily: 'SF Pro Display',
+                          color: const Color(0xff435971).withOpacity(0.5),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    const Spacer(),
+                    Image.asset(
+                      'assets/images/filter.png',
+                      width: w * 0.1,
+                      height: h * 0.07,
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  width: w * 0.05,
+                  height: h * 0.01,
                 ),
-                Text(
-                  'Recently added',
-                  style: headingStyle.copyWith(
-                      fontFamily: 'SF Pro Display',
-                      color: const Color(0xff435971).withOpacity(0.5),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500),
+                buildRequirmemtsRow(),
+                SizedBox(
+                  height: h * 0.03,
                 ),
-                const Spacer(),
-                Image.asset(
-                  'assets/images/filter.png',
-                  width: w * 0.1,
-                  height: h * 0.07,
-                ),
+                ConditionalBuilder(
+                  condition: state is! UserRequirmentsForAdminLoadingState,
+                  builder: (context) => SizedBox(
+                    height: h * .65,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      primary: true,
+                      itemBuilder: (context, index) => buildUsersRequirmemtsRow(
+                          jobTitle: UserRequirmentsForAdminCubit.get(context)
+                              .usersRequirementsModelForAdmin
+                              .data![index]
+                              .user!
+                              .jobTitle
+                              .toString(),
+                          price: UserRequirmentsForAdminCubit.get(context)
+                              .usersRequirementsModelForAdmin
+                              .data![index]
+                              .price
+                              .toString(),
+                          user: UserRequirmentsForAdminCubit.get(context)
+                              .usersRequirementsModelForAdmin
+                              .data![index]
+                              .user!
+                              .name
+                              .toString(),
+                          status: UserRequirmentsForAdminCubit.get(context)
+                              .usersRequirementsModelForAdmin
+                              .data![index]
+                              .status
+                              .toString()),
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: h * 0.02,
+                      ),
+                      itemCount: UserRequirmentsForAdminCubit.get(context)
+                          .usersRequirementsModelForAdmin
+                          .data!
+                          .length,
+                    ),
+                  ),
+                  fallback: (context) =>
+                      Center(child: CircularProgressIndicator()),
+                )
               ],
             ),
-            SizedBox(
-              height: h * 0.01,
-            ),
-            buildRequirmemtsRow(),
-            SizedBox(
-              height: h * 0.03,
-            ),
-            SizedBox(
-              height: h * .65,
-              child: ListView.separated(
-                shrinkWrap: true,
-                primary: true,
-                itemBuilder: (context, index) => buildUsersRequirmemtsRow(),
-                separatorBuilder: (context, index) => SizedBox(
-                  height: h * 0.02,
-                ),
-                itemCount: 11,
-              ),
-            )
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -137,7 +176,13 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
         ),
       );
 
-  Widget buildUsersRequirmemtsRow() => Container(
+  Widget buildUsersRequirmemtsRow({
+    required String jobTitle,
+    required String price,
+    required String user,
+    required String status,
+  }) =>
+      Container(
         height: 30,
         color: Theme.of(context).scaffoldBackgroundColor,
         child: SizedBox(
@@ -163,7 +208,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                 ),
               ),
               Text(
-                'Backend',
+                jobTitle,
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
                     color: Theme.of(context)
@@ -173,7 +218,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                '180 LE',
+                price,
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
                     color: Theme.of(context)
@@ -183,7 +228,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                'Hema',
+                user,
                 style: headingStyle.copyWith(
                     fontFamily: 'SF Pro Display',
                     color: Theme.of(context)
@@ -200,7 +245,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                     color: Color(0xff64B429).withOpacity(0.3)),
                 child: Center(
                   child: Text(
-                    'Approve',
+                    status,
                     style: headingStyle.copyWith(
                         fontFamily: 'SF Pro Display',
                         color: Color(0xff64B429),

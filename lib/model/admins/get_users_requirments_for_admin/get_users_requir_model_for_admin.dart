@@ -1,11 +1,11 @@
-class UsersComplaintsModelForAdmin {
+class UsersRequirementsModelForAdmin {
   List<Data>? data;
   int? status;
   String? message;
 
-  UsersComplaintsModelForAdmin({this.data, this.status, this.message});
+  UsersRequirementsModelForAdmin({this.data, this.status, this.message});
 
-  UsersComplaintsModelForAdmin.fromJson(Map<String, dynamic> json) {
+  UsersRequirementsModelForAdmin.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
@@ -20,8 +20,8 @@ class UsersComplaintsModelForAdmin {
 class Data {
   int? id;
   String? title;
-  String? message;
-  String? type;
+  String? price;
+  String? status;
   int? userId;
   User? user;
   int? taskId;
@@ -30,8 +30,8 @@ class Data {
   Data(
       {this.id,
       this.title,
-      this.message,
-      this.type,
+      this.price,
+      this.status,
       this.userId,
       this.user,
       this.taskId,
@@ -40,8 +40,8 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    message = json['message'];
-    type = json['type'];
+    price = json['price'];
+    status = json['status'];
     userId = json['user_id'];
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     taskId = json['task_id'];

@@ -80,28 +80,36 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                       shrinkWrap: true,
                       primary: true,
                       itemBuilder: (context, index) => buildComplainCard(
-                          h: h,
-                          w: w,
-                          title: UserComplainForAdminCubit.get(context)
-                              .usersComplaintsModelForAdmin
-                              .data![index]
-                              .title
-                              .toString(),
-                          message: UserComplainForAdminCubit.get(context)
-                              .usersComplaintsModelForAdmin
-                              .data![index]
-                              .message
-                              .toString(),
-                          type: UserComplainForAdminCubit.get(context)
-                              .usersComplaintsModelForAdmin
-                              .data![index]
-                              .type
-                              .toString(),
-                          userID: UserComplainForAdminCubit.get(context)
-                              .usersComplaintsModelForAdmin
-                              .data![index]
-                              .taskId
-                              .toString()),
+                        h: h,
+                        w: w,
+                        title: UserComplainForAdminCubit.get(context)
+                            .usersComplaintsModelForAdmin
+                            .data![index]
+                            .title
+                            .toString(),
+                        message: UserComplainForAdminCubit.get(context)
+                            .usersComplaintsModelForAdmin
+                            .data![index]
+                            .message
+                            .toString(),
+                        // type: UserComplainForAdminCubit.get(context)
+                        //     .usersComplaintsModelForAdmin
+                        //     .data![index]
+                        //     .type
+                        //     .toString(),
+                        user: UserComplainForAdminCubit.get(context)
+                            .usersComplaintsModelForAdmin
+                            .data![index]
+                            .user!
+                            .name
+                            .toString(),
+                        jobTitle: UserComplainForAdminCubit.get(context)
+                            .usersComplaintsModelForAdmin
+                            .data![index]
+                            .user!
+                            .jobDesc
+                            .toString(),
+                      ),
                       separatorBuilder: (context, index) => SizedBox(
                         height: h * 0.013,
                       ),
@@ -127,11 +135,12 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
     required double w,
     required String title,
     required String message,
-    required String type,
-    required String userID,
+    // required String type,
+    required String user,
+    required String jobTitle,
   }) =>
       Container(
-        height: h * 0.19,
+        height: h * 0.25,
         padding: const EdgeInsets.symmetric(
           horizontal: 8,
         ),
@@ -166,31 +175,69 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          child: Text(
-                            'From User ID: $userID',
+                        Text.rich(TextSpan(
+                            text: 'From : ',
                             style: headingStyle.copyWith(
-                              color: MyColors.mainColor,
-                              fontFamily: 'SF Pro Display',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
+                                fontFamily: 'Roboto',
+                                color: Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .unselectedItemColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                text: user,
+                                style: headingStyle.copyWith(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xff696CFF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            ])),
                         SizedBox(
-                          height: h * 0.005,
+                          height: h * 0.01,
                         ),
-                        Text(
-                          'Type: $type',
-                          style: headingStyle.copyWith(
-                            color: Theme.of(context)
-                                .bottomNavigationBarTheme
-                                .unselectedItemColor,
-                            fontFamily: 'SF Pro Display',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
+                        // Text.rich(TextSpan(
+                        //     text: 'Type : ',
+                        //     style: headingStyle.copyWith(
+                        //         fontFamily: 'Roboto',
+                        //         color: Theme.of(context)
+                        //             .bottomNavigationBarTheme
+                        //             .unselectedItemColor,
+                        //         fontSize: 12,
+                        //         fontWeight: FontWeight.w400),
+                        //     children: <InlineSpan>[
+                        //       TextSpan(
+                        //         text: type,
+                        //         style: headingStyle.copyWith(
+                        //             fontFamily: 'Roboto',
+                        //             color: Color(0xff696CFF),
+                        //             fontSize: 14,
+                        //             fontWeight: FontWeight.w400),
+                        //       )
+                        //     ])),
+                        // SizedBox(
+                        //   height: h * 0.005,
+                        // ),
+                        Text.rich(TextSpan(
+                            text: 'Job : ',
+                            style: headingStyle.copyWith(
+                                fontFamily: 'Roboto',
+                                color: Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .unselectedItemColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                text: jobTitle,
+                                style: headingStyle.copyWith(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xff696CFF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            ])),
                       ],
                     ),
                     const Spacer(),
@@ -218,121 +265,113 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: h * 0.015,
+                  height: h * 0.02,
                 ),
-                Row(children: [
-                  //     SizedBox(
-                  //   width: w * .51,
-                  //   child: Text.rich(TextSpan(
-                  //       text:
-                  //           message,
-                  //       style: headingStyle.copyWith(
-                  //           fontFamily: 'Roboto',
-                  //           color: Theme.of(context)
-                  //               .bottomNavigationBarTheme
-                  //               .unselectedItemColor,
-                  //           fontSize: 12,
-                  //           fontWeight: FontWeight.w400),
-                  //       children: <InlineSpan>[
-                  //         TextSpan(
-                  //           text: '.. see more',
-                  //   style: headingStyle.copyWith(
-                  //       fontFamily: 'Roboto',
-                  //       color: Color(0xff696CFF),
-                  //       fontSize: 12,
-                  //       fontWeight: FontWeight.w400),
-                  // )
-                  //       ])),
-                  // ),
-                  Column(
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'title : $title',
-                        style: headingStyle.copyWith(
-                            fontFamily: 'Roboto',
-                            color: MyColors.mainColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400),
-                      ),
+                      Text.rich(TextSpan(
+                          text: 'Title : ',
+                          style: headingStyle.copyWith(
+                              fontFamily: 'Roboto',
+                              color: Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedItemColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400),
+                          children: <InlineSpan>[
+                            TextSpan(
+                              text: title,
+                              style: headingStyle.copyWith(
+                                  fontFamily: 'Roboto',
+                                  color: Color(0xff696CFF),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ])),
                       SizedBox(
                         height: h * 0.01,
                       ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: w * 0.37,
-                            child: Text(
-                              'message : $message ',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: headingStyle.copyWith(
-                                  height: 1.2,
-                                  fontFamily: 'Roboto',
-                                  color: Color(0xff696CFF),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          SizedBox(
-                            width: w * 0.13,
-                          ),
-                          Container(
-                            margin:
-                                EdgeInsets.only(top: h * 0.02, left: w * 0.04),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: w * 0.14,
-                                  height: h * 0.032,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: MyColors.mainColor,
-                                      border: Border.all(
-                                          color: MyColors.mainColor)),
-                                  child: Center(
-                                    child: Text(
-                                      'Respone',
-                                      style: headingStyle.copyWith(
-                                        color: Colors.white,
-                                        fontFamily: 'Roboto',
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
+                      Container(
+                        // color: Colors.red,
+                        width: w * 0.8,
+                        height: h * 0.08,
+                        child: Text.rich(TextSpan(
+                            text: 'Message : ',
+                            style: headingStyle.copyWith(
+                                overflow: TextOverflow.ellipsis,
+                                fontFamily: 'Roboto',
+                                color: Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .unselectedItemColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                text: message,
+                                style: headingStyle.copyWith(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xff696CFF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            ])),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: w * 0.55, top: 5),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: w * 0.14,
+                              height: h * 0.032,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: MyColors.mainColor,
+                                  border:
+                                      Border.all(color: MyColors.mainColor)),
+                              child: Center(
+                                child: Text(
+                                  'Respone',
+                                  style: headingStyle.copyWith(
+                                    color: Colors.white,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: w * 0.025,
-                                ),
-                                Container(
-                                  width: w * 0.14,
-                                  height: h * 0.032,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: Colors.white,
-                                      border: Border.all(
-                                          color: MyColors.mainColor)),
-                                  child: Center(
-                                    child: Text(
-                                      'reject',
-                                      style: headingStyle.copyWith(
-                                        color: MyColors.mainColor,
-                                        fontFamily: 'Roboto',
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: w * 0.025,
+                            ),
+                            Container(
+                              width: w * 0.14,
+                              height: h * 0.032,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(color: MyColors.mainColor)),
+                              child: Center(
+                                child: Text(
+                                  'reject',
+                                  style: headingStyle.copyWith(
+                                    color: MyColors.mainColor,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ]),
+                ),
               ],
             )),
       );

@@ -14,6 +14,7 @@ const String GetSections = 'sections';
 const String CreateBranch = 'branches/create';
 const String CreateSections = 'sections/create';
 const String UserComplainForAdmin = 'user-complaints';
+const String UserequirementsForAdmin = 'user-requirements';
 const String AddAdmin = 'admins/create';
 const String GetAdmin = 'admins';
 const String AddUser = 'users/create';
