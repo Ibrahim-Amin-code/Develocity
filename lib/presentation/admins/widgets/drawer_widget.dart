@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
+import 'package:develocity/business_logic/admin_profile_cubit/admin_profile_cubit.dart';
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
+import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/news/add_admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/news/admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/requirements/requirements_screen.dart';
@@ -8,6 +10,7 @@ import 'package:develocity/presentation/admins/screens/profile/profile_screen.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/network/cache_helper.dart';
+import '../screens/admin_profile/admin_profile_screen.dart';
 import '../screens/drawer_screens/admins/admins_screeen.dart';
 import '../screens/drawer_screens/branches/branches_screen.dart';
 import '../screens/drawer_screens/complaints/complaints_screen.dart';
@@ -30,56 +33,82 @@ Widget buildDrawerWidget({required context}) {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AdminProfileScreen()));
               },
               child: SizedBox(
                 height: h * 0.14,
                 child: DrawerHeader(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.amber),
-                          margin: EdgeInsets.only(right: w * 0.02),
-                          child: Image.asset('assets/images/81.png')),
-                      Container(
-                        margin: EdgeInsets.only(top: 15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: h * 0.01,
-                            ),
-                            Text(
-                              'Abdelaziz Bin Fahd',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                      fontSize: 15,
+                  child: BlocConsumer<AdminProfileCubit, AdminProfileState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                              width: 70,
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.amber),
+                              margin: EdgeInsets.only(right: w * 0.02),
+                              child: customCachedNetworkImage(
+                                  url: AdminProfileCubit.get(context)
+                                      .getAdminProfileModel
+                                      .data!
+                                      .img
+                                      .toString(),
+                                  context: context,
+                                  fit: BoxFit.cover)),
+                          Container(
+                            margin: EdgeInsets.only(top: 15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: h * 0.01,
+                                ),
+                                Text(
+                                  AdminProfileCubit.get(context)
+                                      .getAdminProfileModel
+                                      .data!
+                                      .name
+                                      .toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'SF Pro Display',
+                                          color: MyColors.mainColor),
+                                ),
+                                SizedBox(
+                                    // height: h * 0.005,
+                                    ),
+                                Text(
+                                  AdminProfileCubit.get(context)
+                                      .getAdminProfileModel
+                                      .data!
+                                      .email
+                                      .toString(),
+                                  style: headingStyle.copyWith(
+                                      fontSize: 13,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: 'SF Pro Display',
-                                      color: MyColors.mainColor),
+                                      color: Theme.of(context)
+                                          .bottomNavigationBarTheme
+                                          .unselectedItemColor),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: h * 0.01,
-                            ),
-                            Text(
-                              'ashfaksayem@gmail.com',
-                              style: headingStyle.copyWith(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'SF Pro Display',
-                                  color: Theme.of(context)
-                                      .bottomNavigationBarTheme
-                                      .unselectedItemColor),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),

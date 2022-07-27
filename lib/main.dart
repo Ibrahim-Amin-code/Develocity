@@ -17,6 +17,7 @@ import 'package:provider/provider.dart';
 import 'business_logic/add_user/add_user_cubit.dart';
 import 'business_logic/admin_cubit/admin_cubit.dart';
 import 'business_logic/admin_news_cubit/admin_news_cubit.dart';
+import 'business_logic/admin_profile_cubit/admin_profile_cubit.dart';
 import 'business_logic/admin_task_cubit/admin_task_cubit.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
 import 'business_logic/provider/map.dart';
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
+        BlocProvider(
+            create: (BuildContext context) =>
+                AdminProfileCubit()..getAdminProfile()),
         BlocProvider(
             create: (BuildContext context) => AppCubit()
               ..changeAppMode(fromShared: prefs.getBool('isDark') ?? false)),

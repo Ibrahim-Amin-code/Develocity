@@ -24,7 +24,8 @@ const String GetTask = 'tasks';
 const String AddAdminNewsType = 'news-type/create';
 const String GetAdminNewsType = 'news-type';
 const String AddNews = 'news/create';
-const String GetNews = 'news';
+const String GetNews = 'news'; //admin/profile
+const String GetAdminProfile = 'admin/profile';
 
 /////////////////////////////////////////////////////////////////news/create
 // USER APIS

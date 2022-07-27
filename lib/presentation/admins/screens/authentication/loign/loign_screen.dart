@@ -134,26 +134,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: h * 0.03,
                         ),
-                        defaultButton(
-                            title: 'Login',
-                            onPressed: () {
-                              if (AppCubit.get(context).isAdmin) {
-                                AuthCubit.get(context).adminLogin(
-                                    context: context,
-                                    email: emailController.text,
-                                    password: passController.text);
-                              } else if (AppCubit.get(context).isUser) {
-                                AuthCubit.get(context).userLogin(
-                                    context: context,
-                                    email: emailController.text,
-                                    password: passController.text);
-                              }
-                            },
-                            fontSize: 14,
-                            height: h * 0.063,
-                            width: w * 0.95,
-                            color: MyColors.mainColor,
-                            textColor: Colors.white),
+                        (state is! AdminLoginLoadingState)
+                            ? defaultButton(
+                                title: 'Login',
+                                onPressed: () {
+                                  if (AppCubit.get(context).isAdmin) {
+                                    AuthCubit.get(context).adminLogin(
+                                        context: context,
+                                        email: emailController.text,
+                                        password: passController.text);
+                                  } else if (AppCubit.get(context).isUser) {
+                                    AuthCubit.get(context).userLogin(
+                                        context: context,
+                                        email: emailController.text,
+                                        password: passController.text);
+                                  }
+                                },
+                                fontSize: 14,
+                                height: h * 0.063,
+                                width: w * 0.95,
+                                color: MyColors.mainColor,
+                                // ignore: prefer_const_constructors
+                                textColor: Colors.white)
+                            : Center(child: CircularProgressIndicator()),
                         SizedBox(
                           height: h * 0.03,
                         ),
