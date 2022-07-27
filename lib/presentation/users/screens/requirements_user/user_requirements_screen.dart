@@ -19,7 +19,7 @@ class UserRequirementsScreen extends StatefulWidget {
 class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _costController = TextEditingController();
-  TextEditingController _adminController = TextEditingController();
+  final TextEditingController _adminController = TextEditingController();
   final TextEditingController _taskIdController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -33,7 +33,8 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
 
     return BlocConsumer<UserRequirementsCubit, UserRequirementsStates>(
       listener: (context, state) {
-        if (state is UserRequirementsSuccessState && UserRequirementsCubit.get(context).status == 200) {
+        if (state is UserRequirementsSuccessState &&
+            UserRequirementsCubit.get(context).status == 200) {
           snackBar(
               message: 'Requirement send successfully',
               context: context,
@@ -92,11 +93,11 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                       }
                     },
                     onChanged: (String? value) {
-                      if(value == 'Ahmed'){
+                      if (value == 'Ahmed') {
                         _adminController.text = '4';
-                      }else if(value == 'Ibrahim'){
+                      } else if (value == 'Ibrahim') {
                         _adminController.text = '4';
-                      }else{
+                      } else {
                         _adminController.text = '4';
                       }
                     },
@@ -163,23 +164,25 @@ class _UserRequirementsScreenState extends State<UserRequirementsScreen> {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  state is UserRequirementsLoadingState? const Center(child: CircularProgressIndicator()) :CustomButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print(_userNameController.text);
-                        print(_costController.text);
-                        print(_adminController.text);
-                        print(_taskIdController.text);
-                        UserRequirementsCubit.get(context).addRequirements(
-                            name: _userNameController.text,
-                            price: _costController.text,
-                            adminId: _adminController.text,
-                            taskId: _taskIdController.text
-                        );
-                      }
-                    },
-                    text: 'Send',
-                  ),
+                  state is UserRequirementsLoadingState
+                      ? const Center(child: CircularProgressIndicator())
+                      : CustomButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              print(_userNameController.text);
+                              print(_costController.text);
+                              print(_adminController.text);
+                              print(_taskIdController.text);
+                              UserRequirementsCubit.get(context)
+                                  .addRequirements(
+                                      name: _userNameController.text,
+                                      price: _costController.text,
+                                      adminId: _adminController.text,
+                                      taskId: _taskIdController.text);
+                            }
+                          },
+                          text: 'Send',
+                        ),
                   SizedBox(
                     height: height * 0.03,
                   ),
