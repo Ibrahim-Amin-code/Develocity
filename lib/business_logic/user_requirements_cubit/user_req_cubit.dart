@@ -1,3 +1,5 @@
+// ignore_for_file: await_only_futures, avoid_print
+
 import 'package:develocity/business_logic/user_requirements_cubit/user_req_states.dart';
 import 'package:develocity/constants/network/cache_helper.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
@@ -12,24 +14,27 @@ class UserRequirementsCubit extends Cubit<UserRequirementsStates> {
   int? status;
 
   void addRequirements({
-  required String name,
-  required String price,
-  required String adminId,
-  required String taskId,
-}) async {
+    required String name,
+    required String price,
+    required String adminId,
+    required String taskId,
+  }) async {
     emit(UserRequirementsLoadingState());
     String token = await prefs.getString('token').toString();
-    DioHelper.postData(url: addRequirement, data: {
-      'name':name,
-      'price':price,
-      'task_id':taskId,
-      'admin_id':adminId,
-    },
-    token: 'Bearer $token').then((value){
+    DioHelper.postData(
+            url: addRequirement,
+            data: {
+              'name': name,
+              'price': price,
+              'task_id': taskId,
+              'admin_id': adminId,
+            },
+            token: 'Bearer $token')
+        .then((value) {
       print(value.data);
-      status= value.data['status'];
+      status = value.data['status'];
       emit(UserRequirementsSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(UserRequirementsErrorsState(error.toString()));
       print(error.toString());
     });

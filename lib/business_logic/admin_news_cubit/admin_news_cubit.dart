@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_local_variable
 
 import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:dio/dio.dart';

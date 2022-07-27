@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore, avoid_print
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, avoid_print, prefer_typing_uninitialized_variables
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:develocity/constants/network/cache_helper.dart';

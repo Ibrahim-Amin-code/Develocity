@@ -294,7 +294,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                       SizedBox(
                         height: h * 0.01,
                       ),
-                      Container(
+                      SizedBox(
                         // color: Colors.red,
                         width: w * 0.8,
                         height: h * 0.08,

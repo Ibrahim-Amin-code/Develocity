@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: MyColors.mainColor,
                                 // ignore: prefer_const_constructors
                                 textColor: Colors.white)
-                            : Center(child: CircularProgressIndicator()),
+                            : const Center(child: CircularProgressIndicator()),
                         SizedBox(
                           height: h * 0.03,
                         ),

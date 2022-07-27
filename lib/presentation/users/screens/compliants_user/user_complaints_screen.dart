@@ -25,7 +25,8 @@ class UserComplaintsScreen extends StatelessWidget {
 
     return BlocConsumer<ComplaintsCubit, ComplaintsStates>(
       listener: (context, state) {
-        if (state is ComplaintsAddSuccessState && ComplaintsCubit.get(context).status == 200) {
+        if (state is ComplaintsAddSuccessState &&
+            ComplaintsCubit.get(context).status == 200) {
           snackBar(
               message: 'Complaint send successfully',
               context: context,
@@ -133,6 +134,7 @@ class UserComplaintsScreen extends StatelessWidget {
                           if (value == null) {
                             return 'Please select type';
                           }
+                          return null;
                         },
                         onChanged: (String? value) {
                           _typeController.text = value!;

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, unused_field, void_checks
+// ignore_for_file: prefer_const_constructors, unused_local_variable, unused_field, void_checks, deprecated_member_use, use_full_hex_values_for_flutter_colors
 
 import 'dart:io';
 

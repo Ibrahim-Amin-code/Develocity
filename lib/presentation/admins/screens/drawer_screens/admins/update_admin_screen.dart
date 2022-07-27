@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, use_full_hex_values_for_flutter_colors, void_checks, unnecessary_null_comparison
+// ignore_for_file: prefer_const_constructors, unused_local_variable, use_full_hex_values_for_flutter_colors, void_checks, unnecessary_null_comparison, deprecated_member_use
 
 import 'dart:io';
 
@@ -8,7 +8,6 @@ import 'package:develocity/constants/core/const.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
 import 'package:develocity/presentation/users/widgets/user_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 

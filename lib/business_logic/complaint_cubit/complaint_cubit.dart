@@ -1,3 +1,5 @@
+// ignore_for_file: await_only_futures, avoid_print
+
 import 'package:develocity/business_logic/complaint_cubit/complaint_state.dart';
 import 'package:develocity/constants/network/cache_helper.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
@@ -17,13 +19,16 @@ class ComplaintsCubit extends Cubit<ComplaintsStates> {
       required String taskId}) async {
     emit(ComplaintsAddLoadingState());
     String token = await prefs.getString('token').toString();
-    DioHelper.postData(url: addComplaint, data: {
-      'title': title,
-      'message': message,
-      'type': type,
-      'task_id': taskId,
-    },
-    token: 'Bearer $token').then((value) {
+    DioHelper.postData(
+            url: addComplaint,
+            data: {
+              'title': title,
+              'message': message,
+              'type': type,
+              'task_id': taskId,
+            },
+            token: 'Bearer $token')
+        .then((value) {
       print(value.data);
       status = value.data['status'];
       emit(ComplaintsAddSuccessState());

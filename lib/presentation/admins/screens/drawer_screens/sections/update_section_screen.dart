@@ -90,9 +90,7 @@ class _UpdateSectionScreeenState extends State<UpdateSectionScreeen> {
               height: h * 0.01,
             ),
             BlocConsumer<BranchCubit, BranchState>(
-              listener: (context, state) {
-                // TODO: implement listener
-              },
+              listener: (context, state) {},
               builder: (context, state) {
                 return ConditionalBuilder(
                   condition: state is! GetBranchLoadingState,

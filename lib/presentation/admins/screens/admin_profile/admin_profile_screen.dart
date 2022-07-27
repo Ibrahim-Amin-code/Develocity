@@ -273,7 +273,6 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                       ),
                                       BlocConsumer<AuthCubit, AuthState>(
                                         listener: (context, state) {
-                                          // TODO: implement listener
                                           if (state
                                               is AdminLogoutSuccessState) {
                                             prefs.clear();

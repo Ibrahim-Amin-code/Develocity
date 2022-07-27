@@ -161,7 +161,6 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
           ],
         ),
       );
-/** */
   Widget buildSectionDataRow({
     required String sctionName,
     required String branchName,

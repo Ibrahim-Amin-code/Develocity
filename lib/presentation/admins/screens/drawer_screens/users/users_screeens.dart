@@ -32,9 +32,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
           },
           onTap1: () {}),
       body: BlocConsumer<AddUserCubit, AddUserState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -172,7 +170,6 @@ class _UsersScreeenState extends State<UsersScreeen> {
     required String id,
     required String branch,
   }) {
-    double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
     return Container(

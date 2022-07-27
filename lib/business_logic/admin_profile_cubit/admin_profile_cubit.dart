@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:develocity/constants/network/network_services.dart';
 import 'package:develocity/model/admins/get_admin_profile/get_admin_profile_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:develocity/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:develocity/business_logic/branch_cubit/branch_cubit.dart';
 import 'package:develocity/business_logic/complaint_cubit/complaint_cubit.dart';

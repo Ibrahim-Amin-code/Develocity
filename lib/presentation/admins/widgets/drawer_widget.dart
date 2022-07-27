@@ -3,10 +3,8 @@ import 'package:develocity/business_logic/admin_profile_cubit/admin_profile_cubi
 import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/core/const.dart';
-import 'package:develocity/presentation/admins/screens/drawer_screens/news/add_admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/news/admin_news_screen.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/requirements/requirements_screen.dart';
-import 'package:develocity/presentation/admins/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/network/cache_helper.dart';
@@ -42,9 +40,7 @@ Widget buildDrawerWidget({required context}) {
                 height: h * 0.14,
                 child: DrawerHeader(
                   child: BlocConsumer<AdminProfileCubit, AdminProfileState>(
-                    listener: (context, state) {
-                      // TODO: implement listener
-                    },
+                    listener: (context, state) {},
                     builder: (context, state) {
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.center,

@@ -9,7 +9,7 @@ class GetAdminUsersModel {
     if (json['data'] != null) {
       data = <AdminUserData>[];
       json['data'].forEach((v) {
-        data!.add(new AdminUserData.fromJson(v));
+        data!.add(AdminUserData.fromJson(v));
       });
     }
     status = json['status'];

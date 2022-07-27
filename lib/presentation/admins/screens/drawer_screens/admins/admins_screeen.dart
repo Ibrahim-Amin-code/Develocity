@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:develocity/business_logic/admin_cubit/admin_cubit.dart';
@@ -7,7 +7,6 @@ import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/drawer_screens/admins/update_admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../widgets/drawer_widget.dart';
 

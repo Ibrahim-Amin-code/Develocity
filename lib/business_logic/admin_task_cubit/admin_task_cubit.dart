@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_typing_uninitialized_variables, prefer_const_constructors
+
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/constants/network/dio_helper.dart';
 import 'package:develocity/model/admins/get_admin_users/get_admin_users.dart';
