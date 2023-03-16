@@ -87,7 +87,38 @@ class _TasksScreenState extends State<TasksScreen> {
     'periority6',
     'periority7',
   ];
-  List<String> section = [];
+
+  final List<String> branch = [
+    'Branch1',
+    'Branch2',
+    'Branch3',
+    'Branch4',
+    'Branch5',
+    'Branch6',
+    'Branch7',
+  ];
+
+  final List<String> sections = [
+    'Sections1',
+    'Sections2',
+    'Sections3',
+    'Sections4',
+    'Sections5',
+    'Sections6',
+    'Sections7',
+  ];
+
+  final List<String> members = [
+    'members1',
+    'members2',
+    'members3',
+    'members4',
+    'members5',
+    'members6',
+    'members7',
+  ];
+
+  // List<String> section = [];
   TextEditingController descriptionController = TextEditingController();
   TextEditingController titleController = TextEditingController();
 
@@ -279,9 +310,10 @@ class _TasksScreenState extends State<TasksScreen> {
                     return ConditionalBuilder(
                         condition: state is! GetAdminUserLoadingState,
                         builder: (context) => CustomDropDownUsers(
-                              items: AddUserCubit.get(context)
-                                  .getAdminUserModel
-                                  .data!,
+                              items: members,
+                              // AddUserCubit.get(context)
+                              //     .getAdminUserModel
+                              //     .data!,
                               text: 'Select Members',
                             ),
                         fallback: (context) => Center(
@@ -309,7 +341,8 @@ class _TasksScreenState extends State<TasksScreen> {
                     return ConditionalBuilder(
                         condition: state is! GetBranchLoadingState,
                         builder: (context) => CustomDropDownBranch(
-                              items: BranchCubit.get(context).branchModel.data!,
+                              items: branch,
+                              // BranchCubit.get(context).branchModel.data!,
                               text: 'Select Branch',
                             ),
                         fallback: (context) => Center(
@@ -337,8 +370,8 @@ class _TasksScreenState extends State<TasksScreen> {
                     return ConditionalBuilder(
                         condition: state is! GetSectionLoadingState,
                         builder: (context) => CustomDropDownSection(
-                              items:
-                                  SectionCubit.get(context).sectionModel.data!,
+                              items: sections,
+                              // SectionCubit.get(context).sectionModel.data!,
                               text: 'Select Section',
                             ),
                         fallback: (context) => Center(
@@ -425,53 +458,55 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
                 BlocConsumer<TaskAdminUserCubit, TaskAdminUserState>(
                   listener: (context, state) {
-                    if (state is AddTaskSuccessState) {
-                      // TaskAdminUserCubit.get(context).getTasksAdminUser();
-                      // showTaskPopup(
-                      //     context: context,
-                      //     title: (AppCubit.get(context).isIndividualTask)
-                      //         ? 'Indivisual  task has been created successfully'
-                      //         : '  Team task has been created successfully  ');
+                    // if (state is AddTaskSuccessState) {
+                    // TaskAdminUserCubit.get(context).getTasksAdminUser();
+                    // showTaskPopup(
+                    //     context: context,
+                    //     title: (AppCubit.get(context).isIndividualTask)
+                    //         ? 'Indivisual  task has been created successfully'
+                    //         : '  Team task has been created successfully  ');
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LayoutScreen(index: 0)));
-                    }
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => LayoutScreen(index: 0)));
+                    // }
                   },
                   builder: (context, state) {
-                    return (state is! AddTaskLoadingState)
-                        ? defaultButton(
+                    return
+                        // (state is! AddTaskLoadingState)
+                        //     ?
+                        defaultButton(
                             title: 'Create Task',
                             onPressed: () {
-                              TaskAdminUserCubit.get(context).addTask(
-                                  title: titleController.text,
-                                  img: image1,
-                                  branchId:
-                                      prefs.getString('branchId').toString(),
-                                  sectionId: sectionIds,
-                                  userIds: usersIds,
-                                  desc: descriptionController.text,
-                                  startDate: selectedStartDate.day.toString() +
-                                      "/" +
-                                      selectedStartDate.month.toString() +
-                                      "/" +
-                                      selectedStartDate.year.toString(),
-                                  endDate: selectedEndDate.day.toString() +
-                                      "/" +
-                                      selectedEndDate.month.toString() +
-                                      "/" +
-                                      selectedEndDate.year.toString());
-                              print('fffffffffff');
+                              // TaskAdminUserCubit.get(context).addTask(
+                              //     title: titleController.text,
+                              //     img: image1,
+                              //     branchId:
+                              //         prefs.getString('branchId').toString(),
+                              //     sectionId: sectionIds,
+                              //     userIds: usersIds,
+                              //     desc: descriptionController.text,
+                              //     startDate: selectedStartDate.day.toString() +
+                              //         "/" +
+                              //         selectedStartDate.month.toString() +
+                              //         "/" +
+                              //         selectedStartDate.year.toString(),
+                              //     endDate: selectedEndDate.day.toString() +
+                              //         "/" +
+                              //         selectedEndDate.month.toString() +
+                              //         "/" +
+                              //         selectedEndDate.year.toString());
+                              // print('fffffffffff');
                             },
                             fontSize: 14,
                             height: h * 0.06,
                             width: double.infinity,
                             color: MyColors.mainColor,
-                            textColor: Colors.white)
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
+                            textColor: Colors.white);
+                    // : Center(
+                    //     child: CircularProgressIndicator(),
+                    //   );
                   },
                 )
               ],

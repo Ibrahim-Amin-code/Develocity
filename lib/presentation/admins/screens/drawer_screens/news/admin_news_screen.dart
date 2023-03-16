@@ -77,64 +77,75 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                   SizedBox(
                     height: h * 0.01,
                   ),
-                  ConditionalBuilder(
-                    condition: state is! GetNewsLoadingState ||
-                        state is! GetAdminNewsTypeLoadingState,
-                    builder: (context) => SizedBox(
-                      height: h * .73,
-                      child: ListView.separated(
-                          shrinkWrap: true,
-                          primary: true,
-                          itemBuilder: (context, index) => buildComplainCard(
-                              h: h,
-                              w: w,
-                              id: AdminNewsCubit.get(context)
-                                  .getAdminNewsModel
-                                  .data![index]
-                                  .id
-                                  .toString(),
-                              typeId: AdminNewsCubit.get(context)
-                                  .getAdminNewsTypeModel
-                                  .data![index]
-                                  .id
-                                  .toString(),
-                              branchName: AdminNewsCubit.get(context)
-                                  .getAdminNewsModel
-                                  .data![index]
-                                  .branch!
-                                  .name
-                                  .toString(),
-                              newsType: AdminNewsCubit.get(context)
-                                  .getAdminNewsTypeModel
-                                  .data![index]
-                                  .title
-                                  .toString(),
-                              desc: AdminNewsCubit.get(context)
-                                  .getAdminNewsModel
-                                  .data![index]
-                                  .desc
-                                  .toString(),
-                              img: AdminNewsCubit.get(context)
-                                  .getAdminNewsModel
-                                  .data![index]
-                                  .img
-                                  .toString(),
-                              title: AdminNewsCubit.get(context)
-                                  .getAdminNewsModel
-                                  .data![index]
-                                  .title
-                                  .toString()),
-                          separatorBuilder: (context, index) => SizedBox(
-                                height: h * 0.013,
-                              ),
-                          itemCount: AdminNewsCubit.get(context)
-                              .getAdminNewsModel
-                              .data!
-                              .length),
-                    ),
-                    fallback: (context) =>
-                        Center(child: CircularProgressIndicator()),
-                  )
+                  SizedBox(
+                    height: h * .73,
+                    child: ListView.separated(
+                        shrinkWrap: true,
+                        primary: true,
+                        itemBuilder: (context, index) => buildComplainCard(
+                            h: h,
+                            w: w,
+                            // id:
+                            // AdminNewsCubit.get(context)
+                            //     .getAdminNewsModel
+                            //     .data![index]
+                            //     .id
+                            //     .toString(),
+                            // typeId: AdminNewsCubit.get(context)
+                            //     .getAdminNewsTypeModel
+                            //     .data![index]
+                            //     .id
+                            //     .toString(),
+                            branchName: 'branchName',
+                            // AdminNewsCubit.get(context)
+                            //     .getAdminNewsModel
+                            //     .data![index]
+                            //     .branch!
+                            //     .name
+                            //     .toString(),
+                            newsType: 'newsType',
+                            // AdminNewsCubit.get(context)
+                            //     .getAdminNewsTypeModel
+                            //     .data![index]
+                            //     .title
+                            //     .toString(),
+                            desc: 'Description',
+                            // AdminNewsCubit.get(context)
+                            //     .getAdminNewsModel
+                            //     .data![index]
+                            //     .desc
+                            //     .toString(),
+                            img: '',
+                            //  AdminNewsCubit.get(context)
+                            //     .getAdminNewsModel
+                            //     .data![index]
+                            //     .img
+                            //     .toString(),
+                            title: 'title'
+                            //  AdminNewsCubit.get(context)
+                            //     .getAdminNewsModel
+                            //     .data![index]
+                            //     .title
+                            //     .toString()),
+                            ),
+                        separatorBuilder: (context, index) => SizedBox(
+                              height: h * 0.013,
+                            ),
+                        itemCount: 6
+                        //  AdminNewsCubit.get(context)
+                        //     .getAdminNewsModel
+                        //     .data!
+                        //     .length
+                        ),
+                  ),
+
+                  // ConditionalBuilder(
+                  //   condition: state is! GetNewsLoadingState ||
+                  //       state is! GetAdminNewsTypeLoadingState,
+                  //   builder: (context) => Container(),
+                  //   fallback: (context) =>
+                  //       Center(child: CircularProgressIndicator()),
+                  // )
                 ],
               ),
               fallback: (context) => Center(child: CircularProgressIndicator()),
@@ -153,8 +164,8 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
     required String branchName,
     required String newsType,
     required String img,
-    required String id,
-    required String typeId,
+    // required String id,
+    // required String typeId,
   }) =>
       Container(
         padding: const EdgeInsets.symmetric(
@@ -191,11 +202,12 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                   ),
                 ),
                 buildEditAndDeleteRowCard(
-                    id: id,
-                    desc: desc,
-                    title: title,
-                    titleType: newsType,
-                    typeId: typeId),
+                  // id: id,
+                  desc: desc,
+                  title: title,
+                  titleType: newsType,
+                  // typeId: typeId
+                ),
               ],
             ),
             SizedBox(
@@ -287,8 +299,8 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
 }
 
 Widget buildEditAndDeleteRowCard({
-  required String id,
-  required String typeId,
+  // required String id,
+  // required String typeId,
   required String desc,
   required String title,
   required String titleType,
@@ -310,8 +322,8 @@ Widget buildEditAndDeleteRowCard({
                     context,
                     MaterialPageRoute(
                         builder: (context) => UpdateNewsScreeen(
-                              typeId: typeId,
-                              id: id,
+                              // typeId: typeId,
+                              // id: id,
                               desc: desc,
                               title: title,
                               titleType: titleType,
@@ -337,7 +349,7 @@ Widget buildEditAndDeleteRowCard({
             InkWell(
               onTap: () {
                 // AdminNewsCubit.get(context).deleteAdminNewsType(typeId);
-                AdminNewsCubit.get(context).deleteNews(id: id);
+                // AdminNewsCubit.get(context).deleteNews(id: id);
               },
               child: Container(
                 width: 40,

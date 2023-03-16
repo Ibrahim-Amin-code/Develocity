@@ -14,11 +14,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/drawer_widget.dart';
 
 class UpdateSectionScreeen extends StatefulWidget {
-  final String id;
+  // final String id;
   final String sectionName;
 
   const UpdateSectionScreeen(
-      {Key? key, required this.id, required this.sectionName})
+      {Key? key,
+      // required this.id,
+      required this.sectionName})
       : super(key: key);
 
   @override
@@ -117,33 +119,35 @@ class _UpdateSectionScreeenState extends State<UpdateSectionScreeen> {
                 }
               },
               builder: (context, state) {
-                return (state is! UpdateSectionLoadingState)
-                    ? defaultButton(
+                return
+                    // (state is! UpdateSectionLoadingState)
+                    //     ?
+                    defaultButton(
                         title: 'Submit',
                         onPressed: () {
-                          if (_keyForm.currentState!.validate()) {
-                            if (CustomDropDownBranch.chosenValue != null) {
-                              SectionCubit.get(context).updateSection(
-                                  id: widget.id,
-                                  name: nameController.text,
-                                  branchId:
-                                      prefs.getString('branchId').toString());
-                            } else {
-                              // ignore: void_checks
-                              return snackBar(
-                                  message: "You Must Choose Company",
-                                  context: context);
-                            }
-                          }
+                          // if (_keyForm.currentState!.validate()) {
+                          //   if (CustomDropDownBranch.chosenValue != null) {
+                          //     SectionCubit.get(context).updateSection(
+                          //         id: widget.id,
+                          //         name: nameController.text,
+                          //         branchId:
+                          //             prefs.getString('branchId').toString());
+                          //   } else {
+                          //     // ignore: void_checks
+                          //     return snackBar(
+                          //         message: "You Must Choose Company",
+                          //         context: context);
+                          //   }
+                          // }
                         },
                         fontSize: 16,
                         height: h * 0.06,
                         width: w * 0.9,
                         color: MyColors.mainColor,
-                        textColor: Colors.white)
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      );
+                        textColor: Colors.white);
+                // : Center(
+                //     child: CircularProgressIndicator(),
+                //   );
               },
             )
           ]),

@@ -70,6 +70,15 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
       'Deveovity7',
     ];
 
+    final List<String> branches = [
+      'branche1',
+      'branche2',
+      'branche3',
+      'branche4',
+      'branche5',
+      'branche6',
+      'branche7',
+    ];
     return Scaffold(
       // backgroundColor: Colors.white,
       appBar: csutomAppBarInDrawers(
@@ -185,7 +194,8 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
                   return ConditionalBuilder(
                       condition: state is! GetBranchLoadingState,
                       builder: (context) => CustomDropDownBranch(
-                            items: BranchCubit.get(context).branchModel.data!,
+                            items: branches,
+                            // BranchCubit.get(context).branchModel.data!,
                             text: 'Select Branch',
                           ),
                       fallback: (context) => Center(
@@ -214,7 +224,8 @@ class _AddUsersScreeenState extends State<AddUsersScreeen> {
                   return ConditionalBuilder(
                     condition: state is! GetSectionLoadingState,
                     builder: (context) => CustomDropDownSection(
-                      items: SectionCubit.get(context).sectionModel.data!,
+                      items: section,
+                      // SectionCubit.get(context).sectionModel.data!,
                       text: 'Select Sections',
                     ),
                     fallback: (context) => Center(

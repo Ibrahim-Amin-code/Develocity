@@ -105,32 +105,36 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
                   builder: (context) => SizedBox(
                     height: h * .65,
                     child: ListView.separated(
-                      shrinkWrap: true,
-                      primary: true,
-                      itemBuilder: (context, index) => buildUsersDataRow(
-                          id: AdminCubit.get(context)
-                              .getAllAdminsModel
-                              .data![index]
-                              .id
-                              .toString(),
-                          adminName: AdminCubit.get(context)
-                              .getAllAdminsModel
-                              .data![index]
-                              .name
-                              .toString(),
-                          email: AdminCubit.get(context)
-                              .getAllAdminsModel
-                              .data![index]
-                              .email
-                              .toString()),
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: h * 0.01,
-                      ),
-                      itemCount: AdminCubit.get(context)
-                          .getAllAdminsModel
-                          .data!
-                          .length,
-                    ),
+                        shrinkWrap: true,
+                        primary: true,
+                        itemBuilder: (context, index) => buildUsersDataRow(
+                              // id: AdminCubit.get(context)
+                              //     .getAllAdminsModel
+                              //     .data![index]
+                              //     .id
+                              //     .toString(),
+                              adminName: 'iibrahim Sherif',
+                              //  AdminCubit.get(context)
+                              //     .getAllAdminsModel
+                              //     .data![index]
+                              //     .name
+                              //     .toString(),
+                              email: 'iibrahimSherif@gmail.com',
+                            ),
+                        //  AdminCubit.get(context)
+                        //     .getAllAdminsModel
+                        //     .data![index]
+                        //     .email
+                        //     .toString()),
+                        separatorBuilder: (context, index) => SizedBox(
+                              height: h * 0.01,
+                            ),
+                        itemCount: 6
+                        //  AdminCubit.get(context)
+                        //     .getAllAdminsModel
+                        //     .data!
+                        //     .length,
+                        ),
                   ),
                   fallback: (context) =>
                       Center(child: CircularProgressIndicator()),
@@ -189,7 +193,7 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
   Widget buildUsersDataRow({
     required String adminName,
     required String email,
-    required String id,
+    // required String id,
   }) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
@@ -243,7 +247,10 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
             //       fontSize: 13,
             //       fontWeight: FontWeight.w400),
             // ),
-            buildUserRowCard(updateId: id, email: email, name: adminName)
+            buildUserRowCard(
+                // updateId: id,
+                email: email,
+                name: adminName)
           ],
         ),
       ),
@@ -251,7 +258,8 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
   }
 
   Widget buildUserRowCard(
-          {required String updateId,
+          {
+          // required String updateId,
           required String name,
           required String email}) =>
       Row(
@@ -264,7 +272,7 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
                       builder: (context) => UpdateAdminsScreeen(
                             email: email,
                             name: name,
-                            updateId: updateId,
+                            // updateId: updateId,
                           )));
             },
             child: Container(
@@ -292,8 +300,8 @@ class _AdminsScreeenState extends State<AdminsScreeen> {
             builder: (context, state) {
               return InkWell(
                 onTap: () {
-                  AdminCubit.get(context)
-                      .deleteAdmin(context: context, id: updateId);
+                  // AdminCubit.get(context)
+                  //     .deleteAdmin(context: context, id: updateId);
                 },
                 child: Container(
                   width: 40,

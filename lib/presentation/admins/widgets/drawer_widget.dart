@@ -52,11 +52,12 @@ Widget buildDrawerWidget({required context}) {
                                   shape: BoxShape.circle, color: Colors.amber),
                               margin: EdgeInsets.only(right: w * 0.02),
                               child: customCachedNetworkImage(
-                                  url: AdminProfileCubit.get(context)
-                                      .getAdminProfileModel
-                                      .data!
-                                      .img
-                                      .toString(),
+                                  url: '',
+                                  // AdminProfileCubit.get(context)
+                                  //     .getAdminProfileModel
+                                  //     .data!
+                                  //     .img
+                                  //     .toString(),
                                   context: context,
                                   fit: BoxFit.cover)),
                           Container(
@@ -68,11 +69,13 @@ Widget buildDrawerWidget({required context}) {
                                   height: h * 0.01,
                                 ),
                                 Text(
-                                  AdminProfileCubit.get(context)
-                                      .getAdminProfileModel
-                                      .data!
-                                      .name
-                                      .toString(),
+                                  // AdminProfileCubit.get(context)
+                                  //     .getAdminProfileModel
+                                  //     .data!
+                                  //     .name
+                                  //     .toString()
+                                  'Ibrahim Bashawat',
+
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -86,11 +89,12 @@ Widget buildDrawerWidget({required context}) {
                                     // height: h * 0.005,
                                     ),
                                 Text(
-                                  AdminProfileCubit.get(context)
-                                      .getAdminProfileModel
-                                      .data!
-                                      .email
-                                      .toString(),
+                                  // AdminProfileCubit.get(context)
+                                  //     .getAdminProfileModel
+                                  //     .data!
+                                  //     .email
+                                  //     .toString(),
+                                  'Ibrahim Bashawat',
                                   style: headingStyle.copyWith(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w500,

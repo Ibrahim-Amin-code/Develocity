@@ -75,48 +75,57 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
                 SizedBox(
                   height: h * 0.03,
                 ),
-                ConditionalBuilder(
-                  condition: state is! UserRequirmentsForAdminLoadingState,
-                  builder: (context) => SizedBox(
-                    height: h * .65,
-                    child: ListView.separated(
+                SizedBox(
+                  height: h * .65,
+                  child: ListView.separated(
                       shrinkWrap: true,
                       primary: true,
                       itemBuilder: (context, index) => buildUsersRequirmemtsRow(
-                          jobTitle: UserRequirmentsForAdminCubit.get(context)
-                              .usersRequirementsModelForAdmin
-                              .data![index]
-                              .user!
-                              .jobTitle
-                              .toString(),
-                          price: UserRequirmentsForAdminCubit.get(context)
-                              .usersRequirementsModelForAdmin
-                              .data![index]
-                              .price
-                              .toString(),
-                          user: UserRequirmentsForAdminCubit.get(context)
-                              .usersRequirementsModelForAdmin
-                              .data![index]
-                              .user!
-                              .name
-                              .toString(),
-                          status: UserRequirmentsForAdminCubit.get(context)
-                              .usersRequirementsModelForAdmin
-                              .data![index]
-                              .status
-                              .toString()),
+                            jobTitle: 'jobTitle',
+                            // UserRequirmentsForAdminCubit.get(context)
+                            //     .usersRequirementsModelForAdmin
+                            //     .data![index]
+                            //     .user!
+                            //     .jobTitle
+                            //     .toString(),
+                            price: 'Price',
+                            // UserRequirmentsForAdminCubit.get(context)
+                            //     .usersRequirementsModelForAdmin
+                            //     .data![index]
+                            //     .price
+                            //     .toString(),
+                            user: 'name',
+                            // UserRequirmentsForAdminCubit.get(context)
+                            //     .usersRequirementsModelForAdmin
+                            //     .data![index]
+                            //     .user!
+                            //     .name
+                            //     .toString(),
+                            status: 'status',
+                            // UserRequirmentsForAdminCubit.get(context)
+                            //     .usersRequirementsModelForAdmin
+                            //     .data![index]
+                            //     .status
+                            //     .toString()
+                          ),
                       separatorBuilder: (context, index) => SizedBox(
-                        height: h * 0.02,
+                            height: h * 0.02,
+                          ),
+                      itemCount: 6
+                      // UserRequirmentsForAdminCubit.get(context)
+                      //     .usersRequirementsModelForAdmin
+                      //     .data!
+                      //     .length,
                       ),
-                      itemCount: UserRequirmentsForAdminCubit.get(context)
-                          .usersRequirementsModelForAdmin
-                          .data!
-                          .length,
-                    ),
-                  ),
-                  fallback: (context) =>
-                      Center(child: CircularProgressIndicator()),
-                )
+                ),
+
+                // ConditionalBuilder(
+                //   condition: state is! UserRequirmentsForAdminLoadingState,
+                //   builder: (context) => Container(),
+
+                //   fallback: (context) =>
+                //       Center(child: CircularProgressIndicator()),
+                // )
               ],
             ),
           );
@@ -127,10 +136,11 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
 
   Widget buildRequirmemtsRow() => Container(
         height: 30,
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: MyColors.mainColor, borderRadius: BorderRadius.circular(6)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               'Requirements',
@@ -188,7 +198,7 @@ class _RequirementsScreenState extends State<RequirementsScreen> {
         child: SizedBox(
           height: 30,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 height: 25,

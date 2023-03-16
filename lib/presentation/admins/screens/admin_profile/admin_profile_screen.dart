@@ -27,21 +27,21 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  @override
-  void initState() {
-    _nameController.text = AdminProfileCubit.get(context)
-        .getAdminProfileModel
-        .data!
-        .name
-        .toString();
-    _emailController.text = AdminProfileCubit.get(context)
-        .getAdminProfileModel
-        .data!
-        .email
-        .toString();
+  // @override
+  // void initState() {
+  //   _nameController.text = AdminProfileCubit.get(context)
+  //       .getAdminProfileModel
+  //       .data!
+  //       .name
+  //       .toString();
+  //   _emailController.text = AdminProfileCubit.get(context)
+  //       .getAdminProfileModel
+  //       .data!
+  //       .email
+  //       .toString();
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -130,12 +130,12 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                                 ? Column(
                                                     children: [
                                                       Text(
-                                                        AdminProfileCubit.get(
-                                                                context)
-                                                            .getAdminProfileModel
-                                                            .data!
-                                                            .name
-                                                            .toString(),
+                                                        // AdminProfileCubit.get(
+                                                        //             context)
+                                                        //         .getAdminProfileModel
+                                                        //         .data!
+                                                        //         .name ??
+                                                        "ibrahim amin",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .titleMedium!
@@ -147,12 +147,12 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                                         height: height * 0.02,
                                                       ),
                                                       Text(
-                                                        AdminProfileCubit.get(
-                                                                context)
-                                                            .getAdminProfileModel
-                                                            .data!
-                                                            .userType
-                                                            .toString(),
+                                                        // AdminProfileCubit.get(
+                                                        //             context)
+                                                        //         .getAdminProfileModel
+                                                        //         .data!
+                                                        //         .userType ??
+                                                        'Admin',
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -177,12 +177,13 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                                   MainAxisAlignment.spaceAround,
                                               children: [
                                                 CardProfileInfo(
-                                                    text: AdminProfileCubit.get(
-                                                            context)
-                                                        .getAdminProfileModel
-                                                        .data!
-                                                        .email
-                                                        .toString(),
+                                                    text:
+                                                        // AdminProfileCubit.get(
+                                                        //             context)
+                                                        //         .getAdminProfileModel
+                                                        //         .data!
+                                                        //         .email ??
+                                                        "ibrahim@admin.com",
                                                     icon: Icons.location_on),
                                                 SizedBox(
                                                   width: width * 0.005,
@@ -211,11 +212,12 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                       width: width * 0.28,
                                       height: height * 0.12,
                                       child: customCachedNetworkImage(
-                                          url: AdminProfileCubit.get(context)
-                                              .getAdminProfileModel
-                                              .data!
-                                              .img
-                                              .toString(),
+                                          url:
+                                              // AdminProfileCubit.get(context)
+                                              //         .getAdminProfileModel
+                                              //         .data!
+                                              //         .img ??
+                                              '',
                                           context: context,
                                           fit: BoxFit.fitHeight),
                                     ),

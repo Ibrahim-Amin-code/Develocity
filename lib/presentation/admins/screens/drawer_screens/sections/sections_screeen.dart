@@ -81,44 +81,47 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                 SizedBox(
                   height: h * 0.03,
                 ),
-                ConditionalBuilder(
-                    condition: state is! GetSectionLoadingState,
-                    builder: (context) => SizedBox(
-                          height: h * .65,
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            primary: true,
-                            itemBuilder: (context, index) =>
-                                buildSectionDataRow(
-                              id: SectionCubit.get(context)
-                                  .sectionModel
-                                  .data![index]
-                                  .id
-                                  .toString(),
-                              sctionName: SectionCubit.get(context)
-                                  .sectionModel
-                                  .data![index]
-                                  .name
-                                  .toString(),
-                              branchName: SectionCubit.get(context)
-                                  .sectionModel
-                                  .data![index]
-                                  .branch!
-                                  .name
-                                  .toString(),
-                            ),
-                            separatorBuilder: (context, index) => SizedBox(
-                              height: h * 0.01,
-                            ),
-                            itemCount: SectionCubit.get(context)
-                                .sectionModel
-                                .data!
-                                .length,
+                SizedBox(
+                  height: h * .65,
+                  child: ListView.separated(
+                      shrinkWrap: true,
+                      primary: true,
+                      itemBuilder: (context, index) => buildSectionDataRow(
+                            // id:
+                            //  SectionCubit.get(context)
+                            //     .sectionModel
+                            //     .data![index]
+                            //     .id
+                            //     .toString(),
+                            sctionName: 'Media Buyer',
+                            //  SectionCubit.get(context)
+                            //     .sectionModel
+                            //     .data![index]
+                            //     .name
+                            //     .toString(),
+                            branchName: 'Degital marketing',
+                            //  SectionCubit.get(context)
+                            //     .sectionModel
+                            //     .data![index]
+                            //     .branch!
+                            //     .name
+                            // .toString(),
                           ),
-                        ),
-                    fallback: (context) => Center(
-                          child: CircularProgressIndicator(),
-                        ))
+                      separatorBuilder: (context, index) => SizedBox(
+                            height: h * 0.01,
+                          ),
+                      itemCount: 6
+                      // SectionCubit.get(context).sectionModel.data!.length,
+                      ),
+                ),
+
+                // ConditionalBuilder(
+                //     condition: state is! GetSectionLoadingState,
+                //     builder: (context) =>
+                //    Container(),
+                //     fallback: (context) => Center(
+                //           child: CircularProgressIndicator(),
+                //         ))
               ],
             ),
           ),
@@ -164,7 +167,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
   Widget buildSectionDataRow({
     required String sctionName,
     required String branchName,
-    required String id,
+    // required String id,
   }) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
@@ -208,7 +211,9 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-            buildSectionRowCard(id: id, secionName: sctionName)
+            buildSectionRowCard(
+                // id: id,
+                secionName: sctionName)
           ],
         ),
       ),
@@ -216,7 +221,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
   }
 
   Widget buildSectionRowCard({
-    required String id,
+    // required String id,
     required String secionName,
   }) =>
       BlocConsumer<SectionCubit, SectionState>(
@@ -234,7 +239,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => UpdateSectionScreeen(
-                                id: id,
+                                // id: id,
                                 sectionName: secionName,
                               )));
                 },
@@ -257,7 +262,7 @@ class _SectionsScreeenState extends State<SectionsScreeen> {
               ),
               InkWell(
                 onTap: () {
-                  SectionCubit.get(context).deleteSection(id);
+                  // SectionCubit.get(context).deleteSection(id);
                 },
                 child: Container(
                   width: 40,

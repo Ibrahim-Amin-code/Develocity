@@ -72,56 +72,64 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                 SizedBox(
                   height: h * 0.01,
                 ),
-                ConditionalBuilder(
-                  condition: state is! UserComplainForAdminLoadingState,
-                  builder: (context) => SizedBox(
-                    height: h * .73,
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      primary: true,
-                      itemBuilder: (context, index) => buildComplainCard(
+                SizedBox(
+                  height: h * .73,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    primary: true,
+                    itemBuilder: (context, index) => buildComplainCard(
                         h: h,
                         w: w,
-                        title: UserComplainForAdminCubit.get(context)
-                            .usersComplaintsModelForAdmin
-                            .data![index]
-                            .title
-                            .toString(),
-                        message: UserComplainForAdminCubit.get(context)
-                            .usersComplaintsModelForAdmin
-                            .data![index]
-                            .message
-                            .toString(),
+                        title: 'Complain Title',
+                        //  UserComplainForAdminCubit.get(context)
+                        //     .usersComplaintsModelForAdmin
+                        //     .data![index]
+                        //     .title
+                        //     .toString(),
+                        message: 'Complain message',
+                        // UserComplainForAdminCubit.get(context)
+                        //     .usersComplaintsModelForAdmin
+                        //     .data![index]
+                        //     .message
+                        //     .toString(),
                         // type: UserComplainForAdminCubit.get(context)
                         //     .usersComplaintsModelForAdmin
                         //     .data![index]
                         //     .type
                         //     .toString(),
-                        user: UserComplainForAdminCubit.get(context)
-                            .usersComplaintsModelForAdmin
-                            .data![index]
-                            .user!
-                            .name
-                            .toString(),
-                        jobTitle: UserComplainForAdminCubit.get(context)
-                            .usersComplaintsModelForAdmin
-                            .data![index]
-                            .user!
-                            .jobDesc
-                            .toString(),
-                      ),
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: h * 0.013,
-                      ),
-                      itemCount: UserComplainForAdminCubit.get(context)
-                          .usersComplaintsModelForAdmin
-                          .data!
-                          .length,
+                        user: 'user name',
+                        //  UserComplainForAdminCubit.get(context)
+                        //     .usersComplaintsModelForAdmin
+                        //     .data![index]
+                        //     .user!
+                        //     .name
+                        //     .toString(),
+                        jobTitle: 'jobTitle'
+                        // UserComplainForAdminCubit.get(context)
+                        //     .usersComplaintsModelForAdmin
+                        //     .data![index]
+                        //     .user!
+                        //     .jobDesc
+                        //     .toString(),
+                        ),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: h * 0.013,
                     ),
+                    itemCount:
+                        //  UserComplainForAdminCubit.get(context)
+                        //     .usersComplaintsModelForAdmin
+                        //     .data!
+                        //     .length
+                        6,
                   ),
-                  fallback: (context) =>
-                      Center(child: CircularProgressIndicator()),
-                )
+                ),
+
+                // ConditionalBuilder(
+                //   condition: state is! UserComplainForAdminLoadingState,
+                //   builder: (context) => Container(),
+                //   fallback: (context) =>
+                //       Center(child: CircularProgressIndicator()),
+                // )
               ],
             ),
           );

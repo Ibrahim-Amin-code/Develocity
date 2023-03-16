@@ -159,11 +159,11 @@ class _CustomDropDownUsersState extends State<CustomDropDownUsers> {
           border: InputBorder.none,
         ),
         value: CustomDropDownUsers.chosenValue,
-        items: widget.items?.map<DropdownMenuItem<AdminUserData>>((value) {
+        items: widget.items?.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem(
             value: value,
             child: Text(
-              value.name.toString(),
+              value.toString(),
               style: headingStyle.copyWith(
                   color: Color(0xffC4C4C4),
                   fontFamily: 'SF Pro Display',

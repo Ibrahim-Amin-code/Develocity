@@ -18,11 +18,10 @@ import '../../../widgets/drawer_widget.dart';
 import 'branches_screen.dart';
 
 class UpdateBranchScreeen extends StatefulWidget {
-  final String updateId;
+  // final String updateId;
   final String updateCompanyName;
 
-  const UpdateBranchScreeen(
-      {Key? key, required this.updateId, required this.updateCompanyName})
+  const UpdateBranchScreeen({Key? key, required this.updateCompanyName})
       : super(key: key);
   @override
   State<UpdateBranchScreeen> createState() => _UpdateBranchScreeenState();
@@ -224,41 +223,42 @@ class _UpdateBranchScreeenState extends State<UpdateBranchScreeen> {
                 }
               },
               builder: (context, state) {
-                return (state is! UpdateBranchLoadingState)
-                    ? defaultButton(
-                        title: 'Submit Update',
-                        onPressed: () {
-                          if (_keyForm.currentState!.validate()) {
-                            if (image1 != '') {
-                              BranchCubit.get(context).updateBranch(
-                                  id: widget.updateId,
-                                  context: context,
-                                  name: nameController.text,
-                                  lat: map.latLng!
-                                      .toString()
-                                      .split(',')
-                                      .first
-                                      .toString(),
-                                  lng: map.latLng!
-                                      .toString()
-                                      .split(',')
-                                      .last
-                                      .toString(),
-                                  location: locationController.text,
-                                  img: image1);
-                            } else {
-                              return snackBar(
-                                  message: 'You Must Choose Image',
-                                  context: context);
-                            }
-                          }
-                        },
-                        fontSize: 16,
-                        height: h * 0.06,
-                        width: w * 0.9,
-                        color: MyColors.mainColor,
-                        textColor: Colors.white)
-                    : Center(child: CircularProgressIndicator());
+                // return (state is! UpdateBranchLoadingState)
+                //     ?
+                return defaultButton(
+                    title: 'Submit Update',
+                    onPressed: () {
+                      // if (_keyForm.currentState!.validate()) {
+                      //   if (image1 != '') {
+                      //     BranchCubit.get(context).updateBranch(
+                      //         id: widget.updateId,
+                      //         context: context,
+                      //         name: nameController.text,
+                      //         lat: map.latLng!
+                      //             .toString()
+                      //             .split(',')
+                      //             .first
+                      //             .toString(),
+                      //         lng: map.latLng!
+                      //             .toString()
+                      //             .split(',')
+                      //             .last
+                      //             .toString(),
+                      //         location: locationController.text,
+                      //         img: image1);
+                      //   } else {
+                      //     return snackBar(
+                      //         message: 'You Must Choose Image',
+                      //         context: context);
+                      //   }
+                      // }
+                    },
+                    fontSize: 16,
+                    height: h * 0.06,
+                    width: w * 0.9,
+                    color: MyColors.mainColor,
+                    textColor: Colors.white);
+                // : Center(child: CircularProgressIndicator());
               },
             )
           ]),

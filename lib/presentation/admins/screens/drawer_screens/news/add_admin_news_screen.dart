@@ -51,6 +51,26 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
     });
   }
 
+  final List<String> branches = [
+    'branche1',
+    'branche2',
+    'branche3',
+    'branche4',
+    'branche5',
+    'branche6',
+    'branche7',
+  ];
+
+  final List<String> admins = [
+    'Bashawaty',
+    'Bashawaty',
+    'Bashawaty',
+    'Bashawaty',
+    'Bashawaty',
+    'Bashawaty',
+    'Bashawaty',
+  ];
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -105,13 +125,15 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
 
               BlocConsumer<AdminNewsCubit, AdminNewsState>(
                 listener: (context, state) {
-                  if (state is AddAdminNewsTypeSuccessState) {
-                    AdminNewsCubit.get(context).getAdminNewsType();
-                  }
+                  // if (state is AddAdminNewsTypeSuccessState) {
+                  //   AdminNewsCubit.get(context).getAdminNewsType();
+                  // }
                 },
                 builder: (context, state) {
-                  return (state is! AddAdminNewsTypeLoadingState)
-                      ? defaultButton(
+                  return
+                      // (state is! AddAdminNewsTypeLoadingState)
+                      //     ?
+                      defaultButton(
                           title: 'Add News Type',
                           onPressed: () {
                             // if (_keyForm.currentState!.validate()) {
@@ -124,10 +146,10 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
                           height: h * 0.06,
                           width: w * 0.9,
                           color: MyColors.mainColor,
-                          textColor: Colors.white)
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
+                          textColor: Colors.white);
+                  // : Center(
+                  //     child: CircularProgressIndicator(),
+                  //   );
                 },
               ),
               ////////////////////////////////////////////////////////
@@ -177,7 +199,9 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
                   return ConditionalBuilder(
                       condition: state is! GetBranchLoadingState,
                       builder: (context) => CustomDropDownBranch(
-                            items: BranchCubit.get(context).branchModel.data!,
+                            items: branches,
+
+                            // BranchCubit.get(context).branchModel.data!,
                             text: 'Select Branch',
                           ),
                       fallback: (context) => Center(
@@ -206,9 +230,10 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
                   return ConditionalBuilder(
                       condition: state is! GetAdminNewsTypeLoadingState,
                       builder: (context) => CustomDropDownNewsType(
-                            items: AdminNewsCubit.get(context)
-                                .getAdminNewsTypeModel
-                                .data!,
+                            items: admins,
+                            // AdminNewsCubit.get(context)
+                            //     .getAdminNewsTypeModel
+                            //     .data!,
                             text: 'Select News Type',
                           ),
                       fallback: (context) => Center(
@@ -318,43 +343,45 @@ class _AddNewsScreeenState extends State<AddNewsScreeen> {
               ),
               BlocConsumer<AdminNewsCubit, AdminNewsState>(
                 listener: (context, state) {
-                  if (state is AddNewsSuccessState) {
-                    AdminNewsCubit.get(context).getNews();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AdminNewsScreen()));
-                  }
+                  // if (state is AddNewsSuccessState) {
+                  //   AdminNewsCubit.get(context).getNews();
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => AdminNewsScreen()));
+                  // }
                 },
                 builder: (context, state) {
-                  return (state is! AddNewsLoadingState)
-                      ? defaultButton(
+                  return
+                      //  (state is! AddNewsLoadingState)
+                      // ?
+                      defaultButton(
                           title: 'Add News',
                           onPressed: () {
                             // if (_keyForm.currentState!.validate()) {
-                            if (image1 != '') {
-                              AdminNewsCubit.get(context).addNews(
-                                desc: descController.text,
-                                title: titleController.text,
-                                typeId:
-                                    prefs.getString('newsTypeId').toString(),
-                                img: image1,
-                                branchId:
-                                    prefs.getString('branchId').toString(),
-                              );
-                            } else {
-                              return snackBar(
-                                  message: 'You Must Choose Image',
-                                  context: context);
-                            }
+                            // if (image1 != '') {
+                            //   AdminNewsCubit.get(context).addNews(
+                            //     desc: descController.text,
+                            //     title: titleController.text,
+                            //     typeId:
+                            //         prefs.getString('newsTypeId').toString(),
+                            //     img: image1,
+                            //     branchId:
+                            //         prefs.getString('branchId').toString(),
+                            //   );
+                            // } else {
+                            //   return snackBar(
+                            //       message: 'You Must Choose Image',
+                            //       context: context);
+                            // }
                             // }
                           },
                           fontSize: 16,
                           height: h * 0.06,
                           width: w * 0.9,
                           color: MyColors.mainColor,
-                          textColor: Colors.white)
-                      : Center(child: CircularProgressIndicator());
+                          textColor: Colors.white);
+                  // : Center(child: CircularProgressIndicator());
                 },
               )
             ]),

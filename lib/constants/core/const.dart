@@ -257,11 +257,11 @@ class _CustomDropDownBranchState extends State<CustomDropDownBranch> {
           border: InputBorder.none,
         ),
         value: CustomDropDownBranch.chosenValue,
-        items: widget.items?.map<DropdownMenuItem<Data>>((value) {
+        items: widget.items?.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem(
             value: value,
             child: Text(
-              value.name.toString(),
+              value.toString(),
               style: headingStyle.copyWith(
                   color: Color(0xffC4C4C4),
                   fontFamily: 'SF Pro Display',
@@ -338,11 +338,11 @@ class _CustomDropDownNewsTypeState extends State<CustomDropDownNewsType> {
           border: InputBorder.none,
         ),
         value: CustomDropDownNewsType.chosenValue,
-        items: widget.items?.map<DropdownMenuItem<DataNewsType>>((value) {
+        items: widget.items?.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem(
             value: value,
             child: Text(
-              value.title.toString(),
+              value.toString(),
               style: headingStyle.copyWith(
                   color: Color(0xffC4C4C4),
                   fontFamily: 'SF Pro Display',
@@ -420,11 +420,11 @@ class _CustomDropDownSectionState extends State<CustomDropDownSection> {
           border: InputBorder.none,
         ),
         value: CustomDropDownSection.chosenValue,
-        items: widget.items?.map<DropdownMenuItem<SectionData?>>((value) {
+        items: widget.items?.map<DropdownMenuItem<String?>>((value) {
           return DropdownMenuItem(
             value: value,
             child: Text(
-              value.name.toString(),
+              value.toString(),
               style: headingStyle.copyWith(
                   color: Color(0xffC4C4C4),
                   fontFamily: 'SF Pro Display',

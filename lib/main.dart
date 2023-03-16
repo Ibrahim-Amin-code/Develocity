@@ -41,6 +41,7 @@ void main() async {
     ),
   );
 
+  // ignore: deprecated_member_use
   BlocOverrides.runZoned(
     () {
       runApp(MyApp());

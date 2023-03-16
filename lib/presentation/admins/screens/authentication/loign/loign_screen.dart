@@ -1,6 +1,5 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:develocity/business_logic/app_cubit/app_cubit.dart';
 import 'package:develocity/constants/core/colors.dart';
 import 'package:develocity/presentation/admins/screens/bottom_nav/layout.dart';
 import 'package:develocity/presentation/admins/screens/onBorading/onBoardingScreen.dart';
@@ -8,6 +7,7 @@ import 'package:develocity/presentation/admins/widgets/login_widget.dart';
 import 'package:develocity/presentation/users/screens/home_layout/user_home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../business_logic/app_cubit/app_cubit.dart';
 import '../../../../../business_logic/auth_cubit/auth_cubit.dart';
 import '../register/register_screen.dart';
 
@@ -30,13 +30,13 @@ class _LoginScreenState extends State<LoginScreen> {
     double w = MediaQuery.of(context).size.width;
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (BuildContext context, state) {
-      if (state is AdminLoginSuccessState) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => LayoutScreen(index: 0)));
-      } else if (state is UserLoginSuccessState) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => UserHomeLayoutScreen()));
-      }
+      // if (state is AdminLoginSuccessState) {
+      //   Navigator.push(context,
+      //       MaterialPageRoute(builder: (context) => LayoutScreen(index: 0)));
+      // } else if (state is UserLoginSuccessState) {
+      //   Navigator.push(context,
+      //       MaterialPageRoute(builder: (context) => UserHomeLayoutScreen()));
+      // }
     }, builder: (BuildContext context, state) {
       return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -134,29 +134,45 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: h * 0.03,
                         ),
-                        (state is! AdminLoginLoadingState)
-                            ? defaultButton(
-                                title: 'Login',
-                                onPressed: () {
-                                  if (AppCubit.get(context).isAdmin) {
-                                    AuthCubit.get(context).adminLogin(
-                                        context: context,
-                                        email: emailController.text,
-                                        password: passController.text);
-                                  } else if (AppCubit.get(context).isUser) {
-                                    AuthCubit.get(context).userLogin(
-                                        context: context,
-                                        email: emailController.text,
-                                        password: passController.text);
-                                  }
-                                },
-                                fontSize: 14,
-                                height: h * 0.063,
-                                width: w * 0.95,
-                                color: MyColors.mainColor,
-                                // ignore: prefer_const_constructors
-                                textColor: Colors.white)
-                            : const Center(child: CircularProgressIndicator()),
+                        // (state is! AdminLoginLoadingState)
+                        //     ?
+                        defaultButton(
+                            title: 'Login',
+                            onPressed: () {
+                              if (AppCubit.get(context).isAdmin) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LayoutScreen(
+                                              index: 0,
+                                            )));
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UserHomeLayoutScreen()));
+                              }
+
+                              // if (AppCubit.get(context).isAdmin) {
+                              //   AuthCubit.get(context).adminLogin(
+                              //       context: context,
+                              //       email: emailController.text,
+                              //       password: passController.text);
+                              // } else if (AppCubit.get(context).isUser) {
+                              //   AuthCubit.get(context).userLogin(
+                              //       context: context,
+                              //       email: emailController.text,
+                              //       password: passController.text);
+                              // }
+                            },
+                            fontSize: 14,
+                            height: h * 0.063,
+                            width: w * 0.95,
+                            color: MyColors.mainColor,
+                            // ignore: prefer_const_constructors
+                            textColor: Colors.white),
+                        // : const Center(child: CircularProgressIndicator()),
                         SizedBox(
                           height: h * 0.03,
                         ),

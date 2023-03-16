@@ -85,29 +85,30 @@ class _UsersScreeenState extends State<UsersScreeen> {
                       shrinkWrap: true,
                       primary: true,
                       itemBuilder: (context, index) => buildUsersRow(
-                          id: AddUserCubit.get(context)
-                              .getAdminUserModel
-                              .data![index]
-                              .id
-                              .toString(),
+                          // id: AddUserCubit.get(context)
+                          //     .getAdminUserModel
+                          //     .data![index]
+                          //     .id
+                          //     .toString(),
                           branch: 'Cairo',
-                          job: AddUserCubit.get(context)
-                              .getAdminUserModel
-                              .data![index]
-                              .jobTitle
-                              .toString(),
-                          name: AddUserCubit.get(context)
-                              .getAdminUserModel
-                              .data![index]
-                              .name
-                              .toString()),
+                          job: "jobTitle"
+                          // AddUserCubit.get(context)
+                          //     .getAdminUserModel
+                          //     .data![index]
+                          //     .jobTitle
+                          //     .toString(),
+                          ,
+                          name: 'Name'
+                          //  AddUserCubit.get(context)
+                          //     .getAdminUserModel
+                          //     .data![index]
+                          //     .name
+                          //     .toString()
+                          ),
                       separatorBuilder: (context, index) => SizedBox(
                         height: h * 0.01,
                       ),
-                      itemCount: AddUserCubit.get(context)
-                          .getAdminUserModel
-                          .data!
-                          .length,
+                      itemCount: 6,
                     ),
                   ),
                   fallback: (context) =>
@@ -167,7 +168,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
   Widget buildUsersRow({
     required String name,
     required String job,
-    required String id,
+    // required String id,
     required String branch,
   }) {
     double w = MediaQuery.of(context).size.width;
@@ -220,14 +221,19 @@ class _UsersScreeenState extends State<UsersScreeen> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-            buildUserRowCard(id: id)
+            buildUserRowCard()
           ],
         ),
       ),
     );
   }
 
-  Widget buildUserRowCard({required String id}) => Row(
+  Widget buildUserRowCard(
+          // {
+          // required String id
+          // }
+          ) =>
+      Row(
         children: [
           // Container(
           //   width: 40,
@@ -253,7 +259,7 @@ class _UsersScreeenState extends State<UsersScreeen> {
             builder: (context, state) {
               return InkWell(
                 onTap: () {
-                  AddUserCubit.get(context).deleteUser(id);
+                  // AddUserCubit.get(context).deleteUser(id);
                 },
                 child: Container(
                   width: 40,

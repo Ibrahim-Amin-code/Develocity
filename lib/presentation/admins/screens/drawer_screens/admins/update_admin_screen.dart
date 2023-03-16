@@ -14,13 +14,13 @@ import 'package:image_picker/image_picker.dart';
 import '../../../widgets/drawer_widget.dart';
 
 class UpdateAdminsScreeen extends StatefulWidget {
-  final String updateId;
+  // final String updateId;
   final String name;
   final String email;
 
   const UpdateAdminsScreeen(
       {Key? key,
-      required this.updateId,
+      // required this.updateId,
       required this.name,
       required this.email})
       : super(key: key);
@@ -226,34 +226,38 @@ class _UpdateAdminsScreeenState extends State<UpdateAdminsScreeen> {
                   }
                 },
                 builder: (context, state) {
-                  return (state is! UpdateAdminLoadingState)
-                      ? defaultButton(
+                  return
+                      // (state is! UpdateAdminLoadingState)
+                      //     ?
+
+                      defaultButton(
                           title: 'Update',
                           onPressed: () {
-                            if (_keyForm.currentState!.validate()) {
-                              if (image1 != '') {
-                                AdminCubit.get(context).updateAdmin(
-                                    id: widget.updateId,
-                                    name: nameController.text,
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                    jobTitle: jobController.text,
-                                    img: image1);
-                              } else {
-                                return snackBar(
-                                    message: 'You Must Choose Image',
-                                    context: context);
-                              }
-                            }
+
+                            // if (_keyForm.currentState!.validate()) {
+                            //   if (image1 != '') {
+                            //     AdminCubit.get(context).updateAdmin(
+                            //         // id: widget.updateId,
+                            //         name: nameController.text,
+                            //         email: emailController.text,
+                            //         password: passwordController.text,
+                            //         jobTitle: jobController.text,
+                            //         img: image1);
+                            //   } else {
+                            //     return snackBar(
+                            //         message: 'You Must Choose Image',
+                            //         context: context);
+                            //   }
+                            // }
                           },
                           fontSize: 16,
                           height: h * 0.06,
                           width: w * 0.9,
                           color: MyColors.mainColor,
-                          textColor: Colors.white)
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
+                          textColor: Colors.white);
+                  // : Center(
+                  //     child: CircularProgressIndicator(),
+                  //   );
                 },
               )
             ]),

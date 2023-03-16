@@ -17,20 +17,20 @@ import '../../../../../constants/core/const.dart';
 import '../../../widgets/drawer_widget.dart';
 
 class UpdateNewsScreeen extends StatefulWidget {
-  final String id;
-  final String typeId;
+  // final String id;
+  // final String typeId;
   final String title;
   final String desc;
   final String titleType;
 
-  const UpdateNewsScreeen(
-      {Key? key,
-      required this.id,
-      required this.title,
-      required this.desc,
-      required this.titleType,
-      required this.typeId})
-      : super(key: key);
+  const UpdateNewsScreeen({
+    Key? key,
+    // required this.id,
+    required this.title,
+    required this.desc,
+    required this.titleType,
+    // required this.typeId
+  }) : super(key: key);
 
   @override
   State<UpdateNewsScreeen> createState() => _UpdateNewsScreeenState();
@@ -129,24 +129,27 @@ class _UpdateNewsScreeenState extends State<UpdateNewsScreeen> {
                   }
                 },
                 builder: (context, state) {
-                  return (state is! UpdateAdminNewsTypeLoadingState)
-                      ? defaultButton(
+                  return
+                      // (state is! UpdateAdminNewsTypeLoadingState)
+                      //     ?
+                      defaultButton(
                           title: 'Update News Type',
                           onPressed: () {
                             // if (_keyForm.currentState!.validate()) {
-                            AdminNewsCubit.get(context).updateAdminNewsType(
-                                id: widget.typeId.toString(),
-                                titleType: titleTypeController.text);
+                            // AdminNewsCubit.get(context).updateAdminNewsType(
+                            // id: ,
+                            // id: widget.typeId.toString(),
+                            // titleType: titleTypeController.text);
                             // }
                           },
                           fontSize: 16,
                           height: h * 0.06,
                           width: w * 0.9,
                           color: MyColors.mainColor,
-                          textColor: Colors.white)
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
+                          textColor: Colors.white);
+                  // : Center(
+                  //     child: CircularProgressIndicator(),
+                  //   );
                 },
               ),
               ////////////////////////////////////////////////////////
@@ -346,35 +349,37 @@ class _UpdateNewsScreeenState extends State<UpdateNewsScreeen> {
                   }
                 },
                 builder: (context, state) {
-                  return (state is! UpdateNewsLoadingState)
-                      ? defaultButton(
+                  return
+                      // (state is! UpdateNewsLoadingState)
+                      //     ?
+                      defaultButton(
                           title: 'Update News',
                           onPressed: () {
                             // if (_keyForm.currentState!.validate()) {
-                            if (image1 != '') {
-                              AdminNewsCubit.get(context).updateNews(
-                                id: widget.id,
-                                desc: descController.text,
-                                title: titleController.text,
-                                typeId:
-                                    prefs.getString('newsTypeId').toString(),
-                                img: image1,
-                                branchId:
-                                    prefs.getString('branchId').toString(),
-                              );
-                            } else {
-                              return snackBar(
-                                  message: 'You Must Choose Image',
-                                  context: context);
-                            }
+                            // if (image1 != '') {
+                            //   AdminNewsCubit.get(context).updateNews(
+                            //     id: widget.id,
+                            //     desc: descController.text,
+                            //     title: titleController.text,
+                            //     typeId:
+                            //         prefs.getString('newsTypeId').toString(),
+                            //     img: image1,
+                            //     branchId:
+                            //         prefs.getString('branchId').toString(),
+                            //   );
+                            // } else {
+                            //   return snackBar(
+                            //       message: 'You Must Choose Image',
+                            //       context: context);
+                            // }
                             // }
                           },
                           fontSize: 16,
                           height: h * 0.06,
                           width: w * 0.9,
                           color: MyColors.mainColor,
-                          textColor: Colors.white)
-                      : Center(child: CircularProgressIndicator());
+                          textColor: Colors.white);
+                  // : Center(child: CircularProgressIndicator());
                 },
               )
             ]),

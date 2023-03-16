@@ -82,31 +82,34 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                   builder: (context) => SizedBox(
                     height: h * .65,
                     child: ListView.separated(
-                      shrinkWrap: true,
-                      primary: true,
-                      itemBuilder: (context, index) => buildBranchDataRow(
-                        id: BranchCubit.get(context)
-                            .branchModel
-                            .data![index]
-                            .id
-                            .toString(),
-                        branchLoaction: BranchCubit.get(context)
-                            .branchModel
-                            .data![index]
-                            .location
-                            .toString(),
-                        branchName: BranchCubit.get(context)
-                            .branchModel
-                            .data![index]
-                            .name
-                            .toString(),
-                      ),
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: h * 0.01,
-                      ),
-                      itemCount:
-                          BranchCubit.get(context).branchModel.data!.length,
-                    ),
+                        shrinkWrap: true,
+                        primary: true,
+                        itemBuilder: (context, index) => buildBranchDataRow(
+                            // id:
+                            //  BranchCubit.get(context)
+                            //     .branchModel
+                            //     .data![index]
+                            //     .id
+                            //     .toString(),
+                            branchLoaction: 'Cairo',
+                            // BranchCubit.get(context)
+                            //     .branchModel
+                            //     .data![index]
+                            //     .location
+                            //     .toString(),
+                            branchName: 'Ui/Ux'
+                            //  BranchCubit.get(context)
+                            //     .branchModel
+                            //     .data![index]
+                            //     .name
+                            //     .toString(),
+                            ),
+                        separatorBuilder: (context, index) => SizedBox(
+                              height: h * 0.01,
+                            ),
+                        itemCount: 6
+                        // BranchCubit.get(context).branchModel.data!.length,
+                        ),
                   ),
                   fallback: (context) =>
                       Center(child: CircularProgressIndicator()),
@@ -157,7 +160,7 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
   Widget buildBranchDataRow({
     required String branchName,
     required String branchLoaction,
-    required String id,
+    // required String id,
   }) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
@@ -205,14 +208,19 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                 ),
               ),
             ),
-            buildUserRowCard(updateId: id, name: branchName)
+            buildUserRowCard(
+                // updateId: id,
+                name: branchName)
           ],
         ),
       ),
     );
   }
 
-  Widget buildUserRowCard({required String updateId, required String name}) =>
+  Widget buildUserRowCard(
+          {
+          // required String updateId,
+          required String name}) =>
       BlocConsumer<BranchCubit, BranchState>(
         listener: (context, state) {
           if (state is DeleteBranchSuccessState) {
@@ -228,7 +236,7 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => UpdateBranchScreeen(
-                                updateId: updateId,
+                                // updateId: updateId,
                                 updateCompanyName: name,
                               )));
                 },
@@ -251,7 +259,7 @@ class _BranchesScreeenState extends State<BranchesScreeen> {
               ),
               InkWell(
                 onTap: () {
-                  BranchCubit.get(context).deleteBranch(updateId);
+                  // BranchCubit.get(context).deleteBranch(updateId);
                 },
                 child: Container(
                   width: 40,
